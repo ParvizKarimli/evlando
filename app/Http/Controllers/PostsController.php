@@ -182,7 +182,7 @@ class PostsController extends Controller
         }
         $post->save();
 
-        return redirect('posts')->with('success', 'Post Updated');
+        return redirect('posts/' . $post->id)->with('success', 'Post Updated');
     }
 
     /**
@@ -214,5 +214,33 @@ class PostsController extends Controller
         $post->delete();
 
         return redirect('posts')->with('success', 'Post Removed');
+    }
+
+    // Remove Cover Image
+    public function remove_cover_image(Request $request)
+    {
+        $id = $request->input('id');
+        $post = Post::find($id);
+        if(!empty($post))
+        {
+            if($post->cover_image && $post->cover_image !== 'noimage.jpg')
+            {
+                // Delete cover image
+                unlink('storage/cover_images/' . $post->cover_image);
+
+                // Delete thumbnail
+                unlink('storage/cover_images/thumbnails/' . $post->thumbnail);
+            }
+
+            $post->cover_image = 'noimage.jpg';
+            $post->thumbnail = 'noimage_thumb.jpg';
+            $post->save();
+
+            return redirect('posts/' . $post->id . '/' . 'edit')->with('success', 'Cover Image Removed');
+        }
+        else
+        {
+            return redirect('posts')->with('error', 'Post Not Found');
+        }
     }
 }
