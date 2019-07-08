@@ -56,21 +56,17 @@ class PostsController extends Controller
         // Handle File Upload
         if($request->hasFile('cover_image'))
         {
-            // Get file name with extension
-            $filename_with_ext = $request->file('cover_image')->getClientOriginalName();
-            // Get just file name without extension
-            $filename = pathinfo($filename_with_ext, PATHINFO_FILENAME);
             // Get just file extension without file name
             $file_extension = $request->file('cover_image')->getClientOriginalExtension();
             // File name salt
-            $filename_salt = '_' . time();
+            $filename_salt = mt_rand() . '_' . time();
             // File name to store in DB
-            $filename_to_store = $filename . $filename_salt . '.' . $file_extension;
+            $filename_to_store = $filename_salt . '.' . $file_extension;
             // Upload image to storage
             $request->file('cover_image')->storeAs('public/cover_images', $filename_to_store);
 
             // Create thumbnail file name
-            $thumbnail_name_to_store = $filename . $filename_salt . '_thumb.' . $file_extension;
+            $thumbnail_name_to_store = $filename_salt . '_thumb.' . $file_extension;
             // Create thumbnail and upload to storage
             Image::make('storage/cover_images/' . $filename_to_store)
                 ->resize(340, 230)
@@ -159,21 +155,17 @@ class PostsController extends Controller
 
             // Upload new cover image and thumbnail
 
-            // Get file name with the extension
-            $filename_with_ext = $request->file('cover_image')->getClientOriginalName();
-            // Get just file name without extension
-            $filename = pathinfo($filename_with_ext, PATHINFO_FILENAME);
             // Get just extension without filename
             $file_extension = $request->file('cover_image')->getClientOriginalExtension();
             // File name salt
-            $filename_salt = '_' . time();
+            $filename_salt = mt_rand() . '_' . time();
             // File name to store in DB
-            $filename_to_store = $filename . $filename_salt . '.' . $file_extension;
+            $filename_to_store = $filename_salt . '.' . $file_extension;
             // Upload image to storage
             $request->file('cover_image')->storeAs('public/cover_images', $filename_to_store);
 
             // Create thumbnail file name
-            $thumbnail_name_to_store = $filename . $filename_salt . '_thumb.' . $file_extension;
+            $thumbnail_name_to_store = $filename_salt . '_thumb.' . $file_extension;
             // Create thumbnail of cover image and upload to storage
             Image::make('storage/cover_images/' . $filename_to_store)
                 ->resize(340, 230)
