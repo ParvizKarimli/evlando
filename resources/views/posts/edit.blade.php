@@ -31,7 +31,9 @@
         @endif
         {{Form::file('cover_image')}}
     </div>
-    {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
+    <div class="form-group">
+        {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
+    </div>
 {!! Form::close() !!}
 
 @if($post->cover_image !== 'noimage.jpg')
