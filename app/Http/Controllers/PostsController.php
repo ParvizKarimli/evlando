@@ -100,7 +100,8 @@ class PostsController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
-        return view('posts.show')->with('post', $post);
+        $images = $post->images;
+        return view('posts.show')->with(['post' => $post, 'images' => $images]);
     }
 
     /**

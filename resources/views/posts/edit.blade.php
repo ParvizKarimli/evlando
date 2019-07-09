@@ -42,3 +42,9 @@
     {!! Form::close() !!}
 @endif
 @endsection
+
+@section('ckeditor')
+<script>
+    CKEDITOR.replace( 'article-ckeditor' );
+</script>
+@endsection

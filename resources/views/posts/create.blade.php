@@ -20,3 +20,9 @@
     </div>
 {!! Form::close() !!}
 @endsection
+
+@section('ckeditor')
+<script>
+    CKEDITOR.replace( 'article-ckeditor' );
+</script>
+@endsection
