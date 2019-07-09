@@ -15,27 +15,33 @@
 </div>
 <hr>
 
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner">
-        @foreach($images as $image)
-            <div class="carousel-item">
-                <img class="d-block w-100" src="/storage/cover_images/{{$image->filename}}" alt="First slide">
+<div class="well">
+    <div id="postCarousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#postCarousel" data-slide-to="0" class="active"></li>
+            @for($i=1; $i<=$number_of_images; $i++)
+                <li data-target="#postCarousel" data-slide-to="{{$i}}"></li>
+            @endfor
+        </ol>
+        <div class="carousel-inner">
+            <div class="item active">
+                <img class="d-block w-100" src="/storage/cover_images/{{$post->cover_image}}" alt="First slide">
             </div>
-        @endforeach
+            @foreach($images as $image)
+                <div class="item">
+                    <img class="d-block w-100" src="/storage/cover_images/{{$image->filename}}" alt="First slide">
+                </div>
+            @endforeach
+        </div>
+        <a class="left carousel-control" href="#postCarousel" data-slide="prev">
+            <i class="fas fa-chevron-left"></i>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#postCarousel" data-slide="next">
+            <i class="fas fa-chevron-right"></i>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
 </div>
 
 <hr>

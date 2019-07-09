@@ -101,7 +101,8 @@ class PostsController extends Controller
     {
         $post = Post::find($id);
         $images = $post->images;
-        return view('posts.show')->with(['post' => $post, 'images' => $images]);
+        $number_of_images = count($images);
+        return view('posts.show')->with(['post' => $post, 'images' => $images, 'number_of_images' => $number_of_images]);
     }
 
     /**
