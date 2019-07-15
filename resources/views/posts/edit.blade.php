@@ -14,7 +14,7 @@
     <div class="form-group">
         {{Form::label('cover_image', 'Cover Image')}}
         <p>
-            <img src="/storage/cover_images/thumbnails/{{$post->thumbnail}}">
+            <img src="/storage/images/thumbnails/{{$post->thumbnail}}">
         </p>
         @if($post->cover_image !== 'noimage.jpg')
             <p>
