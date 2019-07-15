@@ -63,14 +63,14 @@ class PostsController extends Controller
             // File name to store in DB
             $filename_to_store = $filename_salt . '.' . $file_extension;
             // Upload image to storage
-            $request->file('cover_image')->storeAs('public/cover_images', $filename_to_store);
+            $request->file('cover_image')->storeAs('public/images', $filename_to_store);
 
             // Create thumbnail file name
             $thumbnail_name_to_store = $filename_salt . '_thumb.' . $file_extension;
             // Create thumbnail and upload to storage
-            Image::make('storage/cover_images/' . $filename_to_store)
+            Image::make('storage/images/' . $filename_to_store)
                 ->resize(340, 230)
-                ->save('storage/cover_images/thumbnails/' . $thumbnail_name_to_store);
+                ->save('storage/images/thumbnails/' . $thumbnail_name_to_store);
         }
         else
         {
@@ -149,10 +149,10 @@ class PostsController extends Controller
             if($post->cover_image && $post->cover_image !== 'noimage.jpg')
             {
                 // Delete old cover image
-                unlink('storage/cover_images/' . $post->cover_image);
+                unlink('storage/images/' . $post->cover_image);
 
                 // Delete old thumbnail
-                unlink('storage/cover_images/thumbnails/' . $post->thumbnail);
+                unlink('storage/images/thumbnails/' . $post->thumbnail);
             }
 
             // Upload new cover image and thumbnail
@@ -164,14 +164,14 @@ class PostsController extends Controller
             // File name to store in DB
             $filename_to_store = $filename_salt . '.' . $file_extension;
             // Upload image to storage
-            $request->file('cover_image')->storeAs('public/cover_images', $filename_to_store);
+            $request->file('cover_image')->storeAs('public/images', $filename_to_store);
 
             // Create thumbnail file name
             $thumbnail_name_to_store = $filename_salt . '_thumb.' . $file_extension;
             // Create thumbnail of cover image and upload to storage
-            Image::make('storage/cover_images/' . $filename_to_store)
+            Image::make('storage/images/' . $filename_to_store)
                 ->resize(340, 230)
-                ->save('storage/cover_images/thumbnails/' . $thumbnail_name_to_store);
+                ->save('storage/images/thumbnails/' . $thumbnail_name_to_store);
         }
 
         // Write to DB
@@ -206,10 +206,10 @@ class PostsController extends Controller
         if($post->cover_image && $post->cover_image !== 'noimage.jpg')
         {
             // Delete cover image
-            unlink('storage/cover_images/' . $post->cover_image);
+            unlink('storage/images/' . $post->cover_image);
 
             // Delete thumbnail
-            unlink('storage/cover_images/thumbnails/' . $post->thumbnail);
+            unlink('storage/images/thumbnails/' . $post->thumbnail);
         }
 
         // Delete from DB
@@ -228,10 +228,10 @@ class PostsController extends Controller
             if($post->cover_image && $post->cover_image !== 'noimage.jpg')
             {
                 // Delete cover image
-                unlink('storage/cover_images/' . $post->cover_image);
+                unlink('storage/images/' . $post->cover_image);
 
                 // Delete thumbnail
-                unlink('storage/cover_images/thumbnails/' . $post->thumbnail);
+                unlink('storage/images/thumbnails/' . $post->thumbnail);
             }
 
             $post->cover_image = 'noimage.jpg';
