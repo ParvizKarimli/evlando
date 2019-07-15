@@ -3,15 +3,25 @@
 @section('content')
 <h1>Edit Post <a href="/posts/{{$post->id}}">{{$post->title}}</a></h1>
 {!! Form::open(['id' => 'postForm', 'action' => ['PostsController@update', $post->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
-    <div class="form-group">
+    <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
         {{Form::label('title', 'Title')}}
-        {{Form::text('title', $post->title, ['class' => 'form-control', 'placeholder' => 'Title'])}}
+        {{Form::text('title', $post->title, ['class' => 'form-control', 'placeholder' => 'Title', 'required' => 'required'])}}
+        @if($errors->has('title'))
+            <span class="help-block">
+                <strong>{{ $errors->first('title') }}</strong>
+            </span>
+        @endif
     </div>
-    <div class="form-group">
+    <div class="form-group {{ $errors->has('body') ? 'has-error' : '' }}">
         {{Form::label('body', 'Body')}}
-        {{Form::textarea('body', $post->body, ['id' => 'article-ckeditor', 'class' => 'form-control', 'placeholder' => 'Body'])}}
+        {{Form::textarea('body', $post->body, ['id' => 'article-ckeditor', 'class' => 'form-control', 'placeholder' => 'Body', 'required' => 'required'])}}
+        @if($errors->has('body'))
+            <span class="help-block">
+                <strong>{{ $errors->first('body') }}</strong>
+            </span>
+        @endif
     </div>
-    <div class="form-group">
+    <div class="form-group {{ $errors->has('cover_image') ? 'has-error' : '' }}">
         {{Form::label('cover_image', 'Cover Image')}}
         <p>
             <img src="/storage/images/cover_images/thumbnails/{{$post->thumbnail}}">
@@ -29,7 +39,12 @@
                 </a>
             </p>
         @endif
-        {{Form::file('cover_image')}}
+        {{Form::file('cover_image', '', ['accept' => '.jpg, .jpeg, .png, .gif'])}}
+        @if($errors->has('cover_image'))
+            <span class="help-block">
+                <strong>{{ $errors->first('cover_image') }}</strong>
+            </span>
+        @endif
     </div>
     <div class="form-group">
         {{Form::label('images', 'Images')}}

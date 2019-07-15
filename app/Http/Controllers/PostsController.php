@@ -54,6 +54,14 @@ class PostsController extends Controller
             'cover_image' => 'image|nullable|max:1999'
         ]);
 
+        $number_of_images = e($request->numberOfImages);
+        for($i=1; $i<=$number_of_images; $i++) {
+            $image_element_name = 'image_' . $i;
+            $this->validate($request, [
+                $image_element_name => 'mimes:png,jpg,gif,jpeg|max:5000'
+            ]);
+        }
+
         // Handle File Upload
         if($request->hasFile('cover_image'))
         {
@@ -90,13 +98,6 @@ class PostsController extends Controller
         $post->save();
 
         // Add images
-        $number_of_images = e($request->numberOfImages);
-        for($i=1; $i<=$number_of_images; $i++) {
-            $image_element_name = 'image_' . $i;
-            $this->validate($request, [
-                $image_element_name => 'mimes:png,jpg,gif,jpeg|max:5000'
-            ]);
-        }
         for($i = 1; $i<=$number_of_images; $i++) {
             $image_element_name = 'image_' . $i;
             if($request->hasFile($image_element_name)) {
@@ -177,6 +178,14 @@ class PostsController extends Controller
             'cover_image' => 'image|nullable|max:1999'
         ]);
 
+        $number_of_images = e($request->numberOfImages);
+        for($i=1; $i<=$number_of_images; $i++) {
+            $image_element_name = 'image_' . $i;
+            $this->validate($request, [
+                $image_element_name => 'mimes:png,jpg,gif,jpeg|max:5000'
+            ]);
+        }
+
         // Update post
         $post = Post::find($id);
 
@@ -223,13 +232,6 @@ class PostsController extends Controller
         $post->save();
 
         // Add images
-        $number_of_images = e($request->numberOfImages);
-        for($i=1; $i<=$number_of_images; $i++) {
-            $image_element_name = 'image_' . $i;
-            $this->validate($request, [
-                $image_element_name => 'mimes:png,jpg,gif,jpeg|max:5000'
-            ]);
-        }
         for($i = 1; $i<=$number_of_images; $i++) {
             $image_element_name = 'image_' . $i;
             if($request->hasFile($image_element_name)) {
