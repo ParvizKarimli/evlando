@@ -24,12 +24,12 @@
             @endfor
         </ol>
         <div class="carousel-inner">
-            <div class="item active">
-                <img class="d-block w-100" src="/storage/cover_images/{{$post->cover_image}}" alt="First slide">
+            <div class="item active" style="width:535px;height:350px;background-color:black;">
+                <img class="d-block w-100" style="display:block;max-width:535px;max-height:350px;width:auto;height:auto;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);" src="/storage/cover_images/{{$post->cover_image}}" alt="First slide">
             </div>
             @foreach($images as $image)
-                <div class="item">
-                    <img class="d-block w-100" src="/storage/cover_images/{{$image->filename}}" alt="First slide">
+                <div class="item" style="width:535px;height:350px;background-color:black;">
+                    <img class="d-block w-100" style="display:block;max-width:535px;max-height:350px;width:auto;height:auto;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);" src="/storage/cover_images/{{$image->filename}}" alt="First slide">
                 </div>
             @endforeach
         </div>
