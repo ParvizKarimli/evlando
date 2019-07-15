@@ -17,6 +17,7 @@ class CreateImagesTable extends Migration
             $table->increments('id');
             $table->integer('post_id');
             $table->string('filename');
+            $table->string('filename_thumb');
             $table->timestamp('created_at');
         });
     }

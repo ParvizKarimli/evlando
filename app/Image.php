@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Image extends Model
 {
+    public $timestamps = false;
+
     public function post()
     {
         return $this->belongsTo('App\Post');

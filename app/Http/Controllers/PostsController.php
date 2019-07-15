@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
-use Image;
+use App\Image;
+use Image as ImageLib;
 
 class PostsController extends Controller
 {
@@ -63,14 +64,14 @@ class PostsController extends Controller
             // File name to store in DB
             $filename_to_store = $filename_salt . '.' . $file_extension;
             // Upload image to storage
-            $request->file('cover_image')->storeAs('public/images', $filename_to_store);
+            $request->file('cover_image')->storeAs('public/images/cover_images', $filename_to_store);
 
             // Create thumbnail file name
             $thumbnail_name_to_store = $filename_salt . '_thumb.' . $file_extension;
             // Create thumbnail and upload to storage
-            Image::make('storage/images/' . $filename_to_store)
+            ImageLib::make('storage/images/cover_images/' . $filename_to_store)
                 ->resize(340, 230)
-                ->save('storage/images/thumbnails/' . $thumbnail_name_to_store);
+                ->save('storage/images/cover_images/thumbnails/' . $thumbnail_name_to_store);
         }
         else
         {
@@ -87,6 +88,41 @@ class PostsController extends Controller
         $post->cover_image = $filename_to_store;
         $post->thumbnail = $thumbnail_name_to_store;
         $post->save();
+
+        // Add images
+        $number_of_images = e($request->numberOfImages);
+        for($i=1; $i<=$number_of_images; $i++) {
+            $image_element_name = 'image_' . $i;
+            $this->validate($request, [
+                $image_element_name => 'mimes:png,jpg,gif,jpeg|max:5000'
+            ]);
+        }
+        for($i = 1; $i<=$number_of_images; $i++) {
+            $image_element_name = 'image_' . $i;
+            if($request->hasFile($image_element_name)) {
+                // Get just file extension without file name
+                $file_extension = $request->file($image_element_name)->getClientOriginalExtension();
+                // File name salt
+                $filename_salt = mt_rand() . '_' . time();
+                // File name to store in DB
+                $filename_to_store = $filename_salt . '.' . $file_extension;
+                // Upload image to storage
+                $request->file($image_element_name)->storeAs('public/images', $filename_to_store);
+
+                // Create thumbnail file name
+                $thumbnail_name_to_store = $filename_salt . '_thumb.' . $file_extension;
+                // Create thumbnail of cover image and upload to storage
+                ImageLib::make('storage/images/' . $filename_to_store)
+                    ->resize(150, 150)
+                    ->save('storage/images/thumbnails/' . $thumbnail_name_to_store);
+
+                $image = new Image;
+                $image->post_id = $post->id;
+                $image->filename = $filename_to_store;
+                $image->filename_thumb = $thumbnail_name_to_store;
+                $image->save();
+            }
+        }
 
         return redirect('posts')->with('success', 'Post Created');
     }
@@ -121,7 +157,9 @@ class PostsController extends Controller
             return redirect('posts')->with('error', 'Unauthorized Page');
         }
 
-        return view('posts.edit')->with('post', $post);
+        $images = $post->images;
+
+        return view('posts.edit')->with(['post' => $post, 'images' => $images]);
     }
 
     /**
@@ -149,10 +187,10 @@ class PostsController extends Controller
             if($post->cover_image && $post->cover_image !== 'noimage.jpg')
             {
                 // Delete old cover image
-                unlink('storage/images/' . $post->cover_image);
+                unlink('storage/images/cover_images/' . $post->cover_image);
 
                 // Delete old thumbnail
-                unlink('storage/images/thumbnails/' . $post->thumbnail);
+                unlink('storage/images/cover_images/thumbnails/' . $post->thumbnail);
             }
 
             // Upload new cover image and thumbnail
@@ -164,14 +202,14 @@ class PostsController extends Controller
             // File name to store in DB
             $filename_to_store = $filename_salt . '.' . $file_extension;
             // Upload image to storage
-            $request->file('cover_image')->storeAs('public/images', $filename_to_store);
+            $request->file('cover_image')->storeAs('public/images/cover_images', $filename_to_store);
 
             // Create thumbnail file name
             $thumbnail_name_to_store = $filename_salt . '_thumb.' . $file_extension;
             // Create thumbnail of cover image and upload to storage
-            Image::make('storage/images/' . $filename_to_store)
+            ImageLib::make('storage/images/cover_images/' . $filename_to_store)
                 ->resize(340, 230)
-                ->save('storage/images/thumbnails/' . $thumbnail_name_to_store);
+                ->save('storage/images/cover_images/thumbnails/' . $thumbnail_name_to_store);
         }
 
         // Write to DB
@@ -183,6 +221,41 @@ class PostsController extends Controller
             $post->thumbnail = $thumbnail_name_to_store;
         }
         $post->save();
+
+        // Add images
+        $number_of_images = e($request->numberOfImages);
+        for($i=1; $i<=$number_of_images; $i++) {
+            $image_element_name = 'image_' . $i;
+            $this->validate($request, [
+                $image_element_name => 'mimes:png,jpg,gif,jpeg|max:5000'
+            ]);
+        }
+        for($i = 1; $i<=$number_of_images; $i++) {
+            $image_element_name = 'image_' . $i;
+            if($request->hasFile($image_element_name)) {
+                // Get just file extension without file name
+                $file_extension = $request->file($image_element_name)->getClientOriginalExtension();
+                // File name salt
+                $filename_salt = mt_rand() . '_' . time();
+                // File name to store in DB
+                $filename_to_store = $filename_salt . '.' . $file_extension;
+                // Upload image to storage
+                $request->file($image_element_name)->storeAs('public/images', $filename_to_store);
+
+                // Create thumbnail file name
+                $thumbnail_name_to_store = $filename_salt . '_thumb.' . $file_extension;
+                // Create thumbnail of cover image and upload to storage
+                ImageLib::make('storage/images/' . $filename_to_store)
+                    ->resize(150, 150)
+                    ->save('storage/images/thumbnails/' . $thumbnail_name_to_store);
+
+                $image = new Image;
+                $image->post_id = $post->id;
+                $image->filename = $filename_to_store;
+                $image->filename_thumb = $thumbnail_name_to_store;
+                $image->save();
+            }
+        }
 
         return redirect('posts/' . $post->id)->with('success', 'Post Updated');
     }
@@ -206,11 +279,20 @@ class PostsController extends Controller
         if($post->cover_image && $post->cover_image !== 'noimage.jpg')
         {
             // Delete cover image
-            unlink('storage/images/' . $post->cover_image);
+            unlink('storage/images/cover_images/' . $post->cover_image);
 
             // Delete thumbnail
-            unlink('storage/images/thumbnails/' . $post->thumbnail);
+            unlink('storage/images/cover_images/thumbnails/' . $post->thumbnail);
         }
+
+        $images = $post->images;
+        foreach($images as $image)
+        {
+            unlink('storage/images/' . $image->filename);
+            unlink('storage/images/thumbnails/' . $image->filename_thumb);
+        }
+
+        Image::where('post_id', $post->id)->delete();
 
         // Delete from DB
         $post->delete();
@@ -228,10 +310,10 @@ class PostsController extends Controller
             if($post->cover_image && $post->cover_image !== 'noimage.jpg')
             {
                 // Delete cover image
-                unlink('storage/images/' . $post->cover_image);
+                unlink('storage/images/cover_images/' . $post->cover_image);
 
                 // Delete thumbnail
-                unlink('storage/images/thumbnails/' . $post->thumbnail);
+                unlink('storage/images/cover_images/thumbnails/' . $post->thumbnail);
             }
 
             $post->cover_image = 'noimage.jpg';
@@ -244,5 +326,19 @@ class PostsController extends Controller
         {
             return redirect('posts')->with('error', 'Post Not Found');
         }
+    }
+
+    // Remove Image
+    public function remove_image(Request $request)
+    {
+        $id = $request->input('id');
+        $image = Image::find($id);
+        if(!empty($image))
+        {
+            unlink('storage/images/' . $image->filename);
+            unlink('storage/images/thumbnails/' . $image->filename_thumb);
+        }
+        $image->delete();
+        return redirect()->back()->with('success', 'Image Removed');
     }
 }
