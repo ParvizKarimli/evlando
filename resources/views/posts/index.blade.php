@@ -34,7 +34,7 @@
                         Created at {{$post->created_at}} by {{$post->user->name}}
                     </small>
                     <div>
-                        {!!$post->body!!}
+                        {!! str_limit($post->body, $limit = 150, $end = '...') !!}
                     </div>
                 </div>
             </div>
