@@ -27,6 +27,10 @@
             </h1>
             <small>Created at {{$post->created_at}} by {{$post->user->name}}</small>
             <div>{!!$post->body!!}</div>
+            <span>
+                <i class="fas fa-eye"></i>
+                {{ Counter::showAndCount('/posts/{$post->id}', $post->id) }}
+            </span>
         </div>
     </div>
 </div>
