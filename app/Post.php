@@ -15,4 +15,9 @@ class Post extends Model
     {
         return $this->hasMany('App\Image');
     }
+
+    public function bookmarks()
+    {
+        return $this->hasMany('App\Bookmark');
+    }
 }
