@@ -40,7 +40,7 @@
             </div>
         </div>
     @endforeach
-    {{$posts->links()}}
+    {{$bookmarks->links()}}
 @else
     <p>No posts found.</p>
 @endif
