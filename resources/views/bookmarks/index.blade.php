@@ -9,14 +9,12 @@
             <div class="panel-body">
 
                 <p><a href="/dashboard" class="btn btn-primary">Dashboard</a></p>
-                <a href="/posts" class="btn btn-primary">Posts</a>
 
                 <h3>Your Bookmarks</h3>
                 @if(count($bookmarks) > 0)
                     <table class="table table-striped">
                         <tr>
                             <th>Post Title & Link</th>
-                            <th></th>
                             <th></th>
                         </tr>
                         @foreach($bookmarks as $bookmark)
@@ -25,9 +23,6 @@
                                     <a href="/posts/{{$bookmark->post_id}}">
                                         {{$bookmark->post->title}}
                                     </a>
-                                </td>
-                                <td>
-                                    <a href="/bookmarks/{{$bookmark->id}}/edit" class="btn btn-default">Edit</a>
                                 </td>
                                 <td>
                                     <a class="btn btn-danger pull-right" href="" onclick="

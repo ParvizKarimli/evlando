@@ -25,8 +25,28 @@ class BookmarksController extends Controller
     public function index()
     {
         $user_id = auth()->user()->id;
-        $bookmarks = Bookmark::where('user_id', '=', $user_id)->orderBy('id', 'desc')->paginate(10);
+        $bookmarks = Bookmark::where('user_id', $user_id)->orderBy('id', 'desc')->paginate(10);
         return view('bookmarks.index')->with('bookmarks', $bookmarks);
+    }
+
+    // Add or remove bookmark
+    public function bookmark(Request $request)
+    {
+        $post_id = $request->input('post_id');
+        $user_id = auth()->user()->id;
+
+        if(empty(Bookmark::where('user_id', $user_id)->where('post_id', $post_id)->first()))
+        {
+            $bookmark = new Bookmark;
+            $bookmark->user_id = $user_id;
+            $bookmark->post_id = $post_id;
+            $bookmark->save();
+        }
+        else
+        {
+            $bookmark = Bookmark::where('user_id', $user_id)->where('post_id', $post_id)->first();
+            $bookmark->delete();
+        }
     }
 
     /**
@@ -92,6 +112,16 @@ class BookmarksController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $bookmark = Bookmark::find($id);
+
+        // Check for correct user
+        if(auth()->user()->id !== $bookmark->user_id)
+        {
+            return redirect('bookmarks')->with('error', 'Unauthorized Page');
+        }
+
+        $bookmark->delete();
+
+        return redirect('bookmarks')->with('success', 'Bookmark Removed');
     }
 }

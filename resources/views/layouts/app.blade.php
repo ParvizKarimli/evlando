@@ -32,5 +32,6 @@
     <script src="{{ asset('js/jssor_internal.js') }}" type="text/javascript"></script>
     @yield('jssor')
     <script src="{{ asset('js/image_fields_creator.js') }}"></script>
+    <script src="{{ asset('js/bookmarkpost.js') }}"></script>
 </body>
 </html>

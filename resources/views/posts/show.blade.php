@@ -7,7 +7,24 @@
             <img style="width:100%" src="/storage/images/cover_images/{{$post->cover_image}}">
         </div>
         <div class="col-md-6 col-sm-6">
-            <h1>{{$post->title}}</h1>
+            <h1>
+                {{$post->title}}
+                @if(auth()->user())
+                    @if($bookmarked === false)
+                        <a href="" title="Bookmark this post" bookmark-post-id="{{$post->id}}" onclick="bookmarkPost(this);">
+                            <i class="far fa-star"></i>
+                        </a>
+                    @elseif($bookmarked === true)
+                        <a href="" title="Remove this post from bookmarks" bookmark-post-id="{{$post->id}}" onclick="bookmarkPost(this);">
+                            <i class="fas fa-star"></i>
+                        </a>
+                    @endif
+                @elseif(auth()->guest())
+                    <a href="{{route('login')}}" title="Bookmark this post">
+                        <i class="far fa-star"></i>
+                    </a>
+                @endif
+            </h1>
             <small>Created at {{$post->created_at}} by {{$post->user->name}}</small>
             <div>{!!$post->body!!}</div>
         </div>

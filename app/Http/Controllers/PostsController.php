@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Image;
+use App\Bookmark;
 use Image as ImageLib;
 
 class PostsController extends Controller
@@ -27,6 +28,23 @@ class PostsController extends Controller
     public function index()
     {
         $posts = Post::orderBy('id', 'desc')->paginate(10);
+        if(auth()->user())
+        {
+            $user_id = auth()->user()->id;
+            $bookmarked = array();
+            foreach ($posts as $post)
+            {
+                if(!empty(Bookmark::where('user_id', $user_id)->where('post_id', $post->id)->first()))
+                {
+                    $bookmarked[$post->id] = true;
+                }
+                else
+                {
+                    $bookmarked[$post->id] = false;
+                }
+            }
+            return view('posts.index')->with(['posts' => $posts, 'bookmarked' => $bookmarked]);
+        }
         return view('posts.index')->with('posts', $posts);
     }
 
@@ -139,7 +157,16 @@ class PostsController extends Controller
         $post = Post::find($id);
         $images = $post->images;
         $number_of_images = count($images);
-        return view('posts.show')->with(['post' => $post, 'images' => $images, 'number_of_images' => $number_of_images]);
+        $bookmarked = false;
+        if(auth()->user())
+        {
+            $user_id = auth()->user()->id;
+            if(!empty(Bookmark::where('user_id', $user_id)->where('post_id', $post->id)->first()))
+            {
+                $bookmarked = true;
+            }
+        }
+        return view('posts.show')->with(['post' => $post, 'images' => $images, 'number_of_images' => $number_of_images, 'bookmarked' => $bookmarked]);
     }
 
     /**
