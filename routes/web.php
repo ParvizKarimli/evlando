@@ -19,4 +19,4 @@ Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 Route::resource('posts', 'PostsController');
 Route::post('posts/remove_cover_image', 'PostsController@remove_cover_image');
 Route::post('posts/remove_image', 'PostsController@remove_image');
-Route::resource('posts', 'PostsController');
+Route::resource('bookmarks', 'BookmarksController');

@@ -13,6 +13,8 @@
                     </div>
                 @endif
 
+                <p><a href="/bookmarks" class="btn btn-primary">Bookmarks</a></p>
+
                 <a href="/posts/create" class="btn btn-primary">Create Post</a>
                 <h3>Your Posts</h3>
                 @if(count($posts) > 0)
