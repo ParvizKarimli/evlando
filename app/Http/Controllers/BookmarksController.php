@@ -129,7 +129,7 @@ class BookmarksController extends Controller
     public function sale()
     {
         $user_id = auth()->user()->id;
-        $bookmarks = Bookmark::where('user_id', $user_id)->orderBy('id', 'desc')->paginate(10);
+        $bookmarks = Bookmark::join('posts', 'bookmarks.post_id', '=', 'posts.id')->where('bookmarks.user_id', $user_id)->where('posts.type', 'sale')->orderBy('bookmarks.id', 'desc')->paginate(10);
         return view('bookmarks.sale')->with('bookmarks', $bookmarks);
     }
 
@@ -137,7 +137,7 @@ class BookmarksController extends Controller
     public function rent()
     {
         $user_id = auth()->user()->id;
-        $bookmarks = Bookmark::where('user_id', $user_id)->orderBy('id', 'desc')->paginate(10);
+        $bookmarks = Bookmark::join('posts', 'bookmarks.post_id', '=', 'posts.id')->where('bookmarks.user_id', $user_id)->where('posts.type', 'rent')->orderBy('bookmarks.id', 'desc')->paginate(10);
         return view('bookmarks.rent')->with('bookmarks', $bookmarks);
     }
 }
