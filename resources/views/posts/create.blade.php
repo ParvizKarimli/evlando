@@ -5,11 +5,16 @@
 {!! Form::open(['id' => 'postForm', 'action' => 'PostsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
     <div class="form-group {{ $errors->has('type') ? 'has-error' : '' }}">
         {{Form::label('type', 'Type')}}
-        <br>
-        {{Form::radio('type', 'sale')}}
-        For Sale
-        {{Form::radio('type', 'rent')}}
-        For Rent
+        <div class="radio">
+            <label>
+                {{Form::radio('type', 'sale')}} For Sale
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                {{Form::radio('type', 'rent')}} For Rent
+            </label>
+        </div>
         @if($errors->has('type'))
             <span class="help-block">
                 <strong>{{ $errors->first('type') }}</strong>
