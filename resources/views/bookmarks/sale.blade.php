@@ -15,7 +15,7 @@
                     <label for="type">Type:</label>
                     <select name="type" site="bookmarks" onchange="typeChange(this)">
                         <option value="all">All</option>
-                        <option value="sale">For Sale</option>
+                        <option value="sale" selected>For Sale</option>
                         <option value="rent">For Rent</option>
                     </select>
                 </div>

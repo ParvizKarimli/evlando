@@ -16,7 +16,7 @@
                     <select name="type" site="bookmarks" onchange="typeChange(this)">
                         <option value="all">All</option>
                         <option value="sale">For Sale</option>
-                        <option value="rent">For Rent</option>
+                        <option value="rent" selected>For Rent</option>
                     </select>
                 </div>
                 @if(count($bookmarks) > 0)

@@ -21,5 +21,7 @@ Route::get('posts/rent', 'PostsController@rent');
 Route::resource('posts', 'PostsController');
 Route::post('posts/remove_cover_image', 'PostsController@remove_cover_image');
 Route::post('posts/remove_image', 'PostsController@remove_image');
+Route::get('bookmarks/sale', 'BookmarksController@sale');
+Route::get('bookmarks/rent', 'BookmarksController@rent');
 Route::resource('bookmarks', 'BookmarksController');
 Route::post('bookmarks/bookmark', 'BookmarksController@bookmark');

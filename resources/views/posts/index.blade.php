@@ -4,7 +4,7 @@
 <h1>Posts</h1>
 <div class="form-group">
     <label for="type">Type:</label>
-    <select name="type" onchange="typeChange(this)">
+    <select name="type" site="posts" onchange="typeChange(this)">
         <option value="all">All</option>
         <option value="sale">For Sale</option>
         <option value="rent">For Rent</option>

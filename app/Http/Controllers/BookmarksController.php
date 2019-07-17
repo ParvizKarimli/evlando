@@ -124,4 +124,20 @@ class BookmarksController extends Controller
 
         return redirect('bookmarks')->with('success', 'Bookmark Removed');
     }
+
+    // For sale
+    public function sale()
+    {
+        $user_id = auth()->user()->id;
+        $bookmarks = Bookmark::where('user_id', $user_id)->orderBy('id', 'desc')->paginate(10);
+        return view('bookmarks.sale')->with('bookmarks', $bookmarks);
+    }
+
+    // For rent
+    public function rent()
+    {
+        $user_id = auth()->user()->id;
+        $bookmarks = Bookmark::where('user_id', $user_id)->orderBy('id', 'desc')->paginate(10);
+        return view('bookmarks.rent')->with('bookmarks', $bookmarks);
+    }
 }
