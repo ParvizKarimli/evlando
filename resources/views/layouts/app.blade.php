@@ -33,5 +33,6 @@
     @yield('jssor')
     <script src="{{ asset('js/image_fields_creator.js') }}"></script>
     <script src="{{ asset('js/bookmarkpost.js') }}"></script>
+    <script src="{{ asset('js/typechange.js') }}"></script>
 </body>
 </html>

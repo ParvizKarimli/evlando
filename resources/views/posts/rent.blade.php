@@ -7,7 +7,7 @@
     <select name="type" onchange="typeChange(this)">
         <option value="all">All</option>
         <option value="sale">For Sale</option>
-        <option value="rent">For Rent</option>
+        <option value="rent" selected>For Rent</option>
     </select>
 </div>
 @if(count($posts) > 0)
