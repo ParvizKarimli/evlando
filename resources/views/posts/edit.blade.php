@@ -3,6 +3,19 @@
 @section('content')
 <h1>Edit Post <a href="/posts/{{$post->id}}">{{$post->title}}</a></h1>
 {!! Form::open(['id' => 'postForm', 'action' => ['PostsController@update', $post->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
+    <div class="form-group {{ $errors->has('type') ? 'has-error' : '' }}">
+        {{Form::label('type', 'Type')}}
+        <br>
+        {{Form::radio('type', 'sale', $post->type === 'sale' ? ['checked'] : '')}}
+        For Sale
+        {{Form::radio('type', 'rent', $post->type === 'rent' ? ['checked'] : '')}}
+        For Rent
+        @if($errors->has('type'))
+            <span class="help-block">
+                <strong>{{ $errors->first('type') }}</strong>
+            </span>
+        @endif
+    </div>
     <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
         {{Form::label('title', 'Title')}}
         {{Form::text('title', $post->title, ['class' => 'form-control', 'placeholder' => 'Title', 'required' => 'required'])}}

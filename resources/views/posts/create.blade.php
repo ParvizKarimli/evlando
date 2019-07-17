@@ -3,6 +3,19 @@
 @section('content')
 <h1>Create Post</h1>
 {!! Form::open(['id' => 'postForm', 'action' => 'PostsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+    <div class="form-group {{ $errors->has('type') ? 'has-error' : '' }}">
+        {{Form::label('type', 'Type')}}
+        <br>
+        {{Form::radio('type', 'sale')}}
+        For Sale
+        {{Form::radio('type', 'rent')}}
+        For Rent
+        @if($errors->has('type'))
+            <span class="help-block">
+                <strong>{{ $errors->first('type') }}</strong>
+            </span>
+        @endif
+    </div>
     <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
         {{Form::label('title', 'Title')}}
         {{Form::text('title', '', ['class' => 'form-control', 'placeholder' => 'Title', 'required' => 'required'])}}

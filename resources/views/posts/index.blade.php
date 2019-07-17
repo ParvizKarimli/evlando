@@ -38,6 +38,11 @@
                             </a>
                         @endif
                     </h3>
+                    @if($post->type === 'sale')
+                        <p class="alert-info">For Sale</p>
+                    @elseif($post->type === 'rent')
+                        <p class="alert-info">For Rent</p>
+                    @endif
                     <small>
                         Created at {{$post->created_at}} by {{$post->user->name}}
                     </small>

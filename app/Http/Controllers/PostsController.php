@@ -67,6 +67,7 @@ class PostsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'type' => 'required',
             'title' => 'required',
             'body' => 'required',
             'cover_image' => 'image|nullable|max:1999'
@@ -109,6 +110,7 @@ class PostsController extends Controller
         // Create post and write to DB
         $post = new Post;
         $post->user_id = auth()->user()->id;
+        $post->type = $request->input('type');
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         $post->cover_image = $filename_to_store;
@@ -200,6 +202,7 @@ class PostsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
+            'type' => 'required',
             'title' => 'required',
             'body' => 'required',
             'cover_image' => 'image|nullable|max:1999'
@@ -249,6 +252,7 @@ class PostsController extends Controller
         }
 
         // Write to DB
+        $post->type = $request->input('type');
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         if($request->hasFile('cover_image'))
