@@ -110,7 +110,18 @@ class PostsController extends Controller
         // Create post and write to DB
         $post = new Post;
         $post->user_id = auth()->user()->id;
-        $post->type = $request->input('type');
+        if($request->input('type') === 'sale')
+        {
+            $post->type = 'sale';
+        }
+        elseif($request->input('type') === 'rent')
+        {
+            $post->type = 'rent';
+        }
+        else
+        {
+            $post->type = 'sale';
+        }
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         $post->cover_image = $filename_to_store;
@@ -252,7 +263,18 @@ class PostsController extends Controller
         }
 
         // Write to DB
-        $post->type = $request->input('type');
+        if($request->input('type') === 'sale')
+        {
+            $post->type = 'sale';
+        }
+        elseif($request->input('type') === 'rent')
+        {
+            $post->type = 'rent';
+        }
+        else
+        {
+            $post->type = 'sale';
+        }
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         if($request->hasFile('cover_image'))
