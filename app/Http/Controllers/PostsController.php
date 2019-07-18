@@ -446,6 +446,34 @@ class PostsController extends Controller
     }
 
     // Search Post
-    public function search()
-    {}
+    public function search(Request $request)
+    {
+        $property_types = $request->input('property_types');
+        if(empty($property_types))
+        {
+            $property_types = ['apartment', 'house'];
+        }
+        $posts = Post::whereIn('property_type', $property_types)
+            ->orderBy('id', 'desc')
+            ->paginate(10);
+
+        if(auth()->user())
+        {
+            $user_id = auth()->user()->id;
+            $bookmarked = array();
+            foreach ($posts as $post)
+            {
+                if(!empty(Bookmark::where('user_id', $user_id)->where('post_id', $post->id)->first()))
+                {
+                    $bookmarked[$post->id] = true;
+                }
+                else
+                {
+                    $bookmarked[$post->id] = false;
+                }
+            }
+            return view('posts.index')->with(['posts' => $posts, 'bookmarked' => $bookmarked]);
+        }
+        return view('posts.index')->with('posts', $posts);
+    }
 }

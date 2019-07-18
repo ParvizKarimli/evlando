@@ -23,12 +23,12 @@
                 <label for="property_type">Property Type</label>
                 <div class="checkbox">
                     <label>
-                        {{ Form::checkbox('property_type', 'apartment') }} Apartment
+                        {{ Form::checkbox('property_types[]', 'apartment') }} Apartment
                     </label>
                 </div>
                 <div class="checkbox">
                     <label>
-                        {!! Form::checkbox('property_type', 'house') !!} House
+                        {!! Form::checkbox('property_types[]', 'house') !!} House
                     </label>
                 </div>
             </div>
