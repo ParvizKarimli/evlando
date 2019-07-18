@@ -440,12 +440,18 @@ class PostsController extends Controller
     // Search Post
     public function search(Request $request)
     {
+        $types = $request->input('types');
         $property_types = $request->input('property_types');
+        if(empty($types))
+        {
+            $types = ['sale', 'rent'];
+        }
         if(empty($property_types))
         {
             $property_types = ['apartment', 'house'];
         }
-        $posts = Post::whereIn('property_type', $property_types)
+        $posts = Post::whereIn('type', $types)
+            ->whereIn('property_type', $property_types)
             ->orderBy('id', 'desc')
             ->paginate(10);
         

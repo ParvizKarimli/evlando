@@ -20,6 +20,19 @@
     <div class="well">
         {!! Form::open(['action' => 'PostsController@search', 'method' => 'GET']) !!}
             <div class="form-group">
+                <label for="type">Type</label>
+                <div class="checkbox">
+                    <label>
+                        {{ Form::checkbox('types[]', 'sale') }} For Sale
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        {!! Form::checkbox('types[]', 'rent') !!} For Rent
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
                 <label for="property_type">Property Type</label>
                 <div class="checkbox">
                     <label>
@@ -48,7 +61,7 @@
                     </div>
                     <div class="col-md-8 col-sm-8">
                         <h3>
-                            <a href="posts/{{$post->id}}">
+                            <a href="/posts/{{$post->id}}">
                                 {{$post->title}}
                             </a>
                             @if(auth()->user())
