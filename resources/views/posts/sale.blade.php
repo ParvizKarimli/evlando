@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="col-md-2 col-sm-2">
-    <h1>Search</h1>
+    <!-- Empty space -->
 </div>
 <div class="col-md-10 col-sm-10">
     <h1>
@@ -16,10 +16,11 @@
     </h1>
 </div>
 <div class="col-md-2 col-sm-2">
+    <h1>Search</h1>
     <div class="well">
         {!! Form::open(['action' => 'PostsController@search', 'method' => 'GET']) !!}
             <div class="form-group">
-                {!! Form::label('property_type', 'Property Type') !!}
+                <label for="property_type">Property Type</label>
                 <div class="checkbox">
                     <label>
                         {{ Form::checkbox('property_type', 'apartment') }} Apartment

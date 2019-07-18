@@ -4,7 +4,7 @@
 <h1>Edit Post <a href="/posts/{{$post->id}}">{{$post->title}}</a></h1>
 {!! Form::open(['id' => 'post-form', 'action' => ['PostsController@update', $post->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
     <div class="form-group {{ $errors->has('type') ? 'has-error' : '' }}">
-        {{Form::label('type', 'Type')}}
+        <label for="type">Type</label>
         <div class="radio">
             <label>
                 {{Form::radio('type', 'sale', $post->type === 'sale' ? ['checked'] : '')}} For Sale
