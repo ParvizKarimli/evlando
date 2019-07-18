@@ -32,7 +32,7 @@
     <script src="{{ asset('js/jssor_internal.js') }}" type="text/javascript"></script>
     @yield('jssor')
     <script src="{{ asset('js/image_fields_creator.js') }}"></script>
-    <script src="{{ asset('js/bookmarkpost.js') }}"></script>
-    <script src="{{ asset('js/typechange.js') }}"></script>
+    <script src="{{ asset('js/bookmark_post.js') }}"></script>
+    <script src="{{ asset('js/change_type.js') }}"></script>
 </body>
 </html>

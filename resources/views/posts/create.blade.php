@@ -2,7 +2,7 @@
 
 @section('content')
 <h1>Create Post</h1>
-{!! Form::open(['id' => 'postForm', 'action' => 'PostsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+{!! Form::open(['id' => 'post-form', 'action' => 'PostsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
     <div class="form-group {{ $errors->has('type') ? 'has-error' : '' }}">
         {{Form::label('type', 'Type')}}
         <div class="radio">

@@ -1,17 +1,40 @@
 @extends('layouts.app')
 
 @section('content')
-<h1 class="text-center">Posts</h1>
+<div class="col-md-2 col-sm-2">
+    <h1>Search</h1>
+</div>
+<div class="col-md-10 col-sm-10">
+    <h1>
+        Posts
+        <label for="type">Type:</label>
+        <select name="type" site="posts" onchange="typeChange(this)">
+            <option value="all">All</option>
+            <option value="sale">For Sale</option>
+            <option value="rent" selected>For Rent</option>
+        </select>
+    </h1>
+</div>
 <div class="col-md-2 col-sm-2">
     <div class="well">
-        <div class="form-group">
-            <label for="type">Type:</label>
-            <select name="type" site="posts" onchange="typeChange(this)">
-                <option value="all">All</option>
-                <option value="sale">For Sale</option>
-                <option value="rent" selected>For Rent</option>
-            </select>
-        </div>
+        {!! Form::open(['action' => 'PostsController@search', 'method' => 'GET']) !!}
+            <div class="form-group">
+                {!! Form::label('property_type', 'Property Type') !!}
+                <div class="checkbox">
+                    <label>
+                        {{ Form::checkbox('property_type', 'apartment') }} Apartment
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        {!! Form::checkbox('property_type', 'house') !!} House
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                {{Form::submit('Search', ['class' => 'btn btn-default'])}}
+            </div>
+        {!! Form::close() !!}
     </div>
 </div>
 <div class="col-md-10 col-sm-10">

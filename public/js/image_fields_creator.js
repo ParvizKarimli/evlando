@@ -1,6 +1,6 @@
 var i = 1;
 function addImage() {
-	var postForm = document.getElementById('postForm');
+	var postForm = document.getElementById('post-form');
 	var newDiv = document.createElement('div');
 	newDiv.setAttribute('class', "form-group");
 	postForm.appendChild(newDiv);

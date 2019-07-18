@@ -444,4 +444,8 @@ class PostsController extends Controller
         }
         return view('posts.rent')->with('posts', $posts);
     }
+
+    // Search Post
+    public function search()
+    {}
 }
