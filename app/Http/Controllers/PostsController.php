@@ -31,19 +31,11 @@ class PostsController extends Controller
         if(auth()->user())
         {
             $user_id = auth()->user()->id;
-            $bookmarked = array();
-            foreach ($posts as $post)
-            {
-                if(!empty(Bookmark::where('user_id', $user_id)->where('post_id', $post->id)->first()))
-                {
-                    $bookmarked[$post->id] = true;
-                }
-                else
-                {
-                    $bookmarked[$post->id] = false;
-                }
-            }
-            return view('posts.index')->with(['posts' => $posts, 'bookmarked' => $bookmarked]);
+            $bookmarked_posts_ids = Bookmark::where('user_id', $user_id)
+                ->pluck('post_id')
+                ->toArray();
+
+            return view('posts.index')->with(['posts' => $posts, 'bookmarked_posts_ids' => $bookmarked_posts_ids]);
         }
         return view('posts.index')->with('posts', $posts);
     }
@@ -456,23 +448,15 @@ class PostsController extends Controller
         $posts = Post::whereIn('property_type', $property_types)
             ->orderBy('id', 'desc')
             ->paginate(10);
-
+        
         if(auth()->user())
         {
             $user_id = auth()->user()->id;
-            $bookmarked = array();
-            foreach ($posts as $post)
-            {
-                if(!empty(Bookmark::where('user_id', $user_id)->where('post_id', $post->id)->first()))
-                {
-                    $bookmarked[$post->id] = true;
-                }
-                else
-                {
-                    $bookmarked[$post->id] = false;
-                }
-            }
-            return view('posts.index')->with(['posts' => $posts, 'bookmarked' => $bookmarked]);
+            $bookmarked_posts_ids = Bookmark::where('user_id', $user_id)
+                ->pluck('post_id')
+                ->toArray();
+
+            return view('posts.index')->with(['posts' => $posts, 'bookmarked_posts_ids' => $bookmarked_posts_ids]);
         }
         return view('posts.index')->with('posts', $posts);
     }

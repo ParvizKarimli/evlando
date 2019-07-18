@@ -52,13 +52,13 @@
                                 {{$post->title}}
                             </a>
                             @if(auth()->user())
-                                @if($bookmarked[$post->id] === false)
-                                    <a href="" title="Bookmark this post" bookmark-post-id="{{$post->id}}" onclick="bookmarkPost(this);">
-                                        <i class="far fa-star"></i>
-                                    </a>
-                                @elseif($bookmarked[$post->id] === true)
+                                @if(in_array($post->id, $bookmarked_posts_ids))
                                     <a href="" title="Remove this post from bookmarks" bookmark-post-id="{{$post->id}}" onclick="bookmarkPost(this);">
                                         <i class="fas fa-star"></i>
+                                    </a>
+                                @else
+                                    <a href="" title="Bookmark this post" bookmark-post-id="{{$post->id}}" onclick="bookmarkPost(this);">
+                                        <i class="far fa-star"></i>
                                     </a>
                                 @endif
                             @elseif(auth()->guest())
