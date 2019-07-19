@@ -85,6 +85,19 @@
                 </div>
             </div>
             <div class="form-group">
+                <label for="bathrooms">Bathrooms</label>
+                <div>
+                    <label>
+                        Min {{ Form::number('bathrooms_min', '', ['class' => 'form-control', 'min' => 1]) }}
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        Max {{ Form::number('bathrooms_max', '', ['class' => 'form-control', 'min' => 1]) }}
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
                 {{Form::submit('Search', ['class' => 'btn btn-default'])}}
             </div>
         {!! Form::close() !!}
@@ -138,6 +151,11 @@
                             <p>1 bedroom</p>
                         @else
                             <p>{{ $post->bedrooms }} bedrooms</p>
+                        @endif
+                        @if($post->bathrooms === 1)
+                            <p>1 bathroom</p>
+                        @else
+                            <p>{{ $post->bathrooms }} bathrooms</p>
                         @endif
                         <small>
                             Created at {{$post->created_at}} by {{$post->user->name}}

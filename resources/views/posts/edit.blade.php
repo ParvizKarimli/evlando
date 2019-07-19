@@ -72,6 +72,17 @@
             </span>
         @endif
     </div>
+    <div class="form-group {{ $errors->has('bathrooms') ? 'has-error' : '' }}">
+        {{Form::label('bathrooms', 'Bathrooms')}}
+        <div>
+            {{Form::number('bathrooms', $post->bathrooms, ['min' => 1, 'required' => 'required'])}}
+        </div>
+        @if($errors->has('bathrooms'))
+            <span class="help-block">
+                <strong>{{ $errors->first('bathrooms') }}</strong>
+            </span>
+        @endif
+    </div>
     <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
         {{Form::label('title', 'Title')}}
         {{Form::text('title', $post->title, ['class' => 'form-control', 'placeholder' => 'Title', 'required' => 'required'])}}

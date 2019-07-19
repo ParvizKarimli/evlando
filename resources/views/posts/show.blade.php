@@ -45,6 +45,11 @@
             @else
                 <p>{{ $post->bedrooms }} bedrooms</p>
             @endif
+            @if($post->bathrooms === 1)
+                <p>1 bathroom</p>
+            @else
+                <p>{{ $post->bathrooms }} bathrooms</p>
+            @endif
             <small>Created at {{$post->created_at}} by {{$post->user->name}}</small>
             <div>{!!$post->body!!}</div>
             <span>
