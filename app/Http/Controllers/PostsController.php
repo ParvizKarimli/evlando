@@ -62,6 +62,8 @@ class PostsController extends Controller
             'type' => 'required|in:sale,rent',
             'property_type' => 'required|in:apartment,house',
             'floor' => 'required|integer|min:1',
+            'area' => 'required|integer|min:10',
+            'area_unit' => 'required|in:sqm,sqft',
             'title' => 'required',
             'body' => 'required',
             'cover_image' => 'image|nullable|max:1999'
@@ -201,6 +203,8 @@ class PostsController extends Controller
             'type' => 'required|in:sale,rent',
             'property_type' => 'required|in:apartment,house',
             'floor' => 'required|integer|min:1',
+            'area' => 'required|integer|min:10',
+            'area_unit' => 'required|in:sqm,sqft',
             'title' => 'required',
             'body' => 'required',
             'cover_image' => 'image|nullable|max:1999'
