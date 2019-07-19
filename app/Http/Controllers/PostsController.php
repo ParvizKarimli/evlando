@@ -63,7 +63,6 @@ class PostsController extends Controller
             'property_type' => 'required|in:apartment,house',
             'floor' => 'required|integer|min:1',
             'area' => 'required|integer|min:10',
-            'area_unit' => 'required|in:sqm,sqft',
             'title' => 'required',
             'body' => 'required',
             'cover_image' => 'image|nullable|max:1999'
@@ -110,7 +109,6 @@ class PostsController extends Controller
         $post->property_type = $request->input('property_type');
         $post->floor = $request->input('floor');
         $post->area = $request->input('area');
-        $post->area_unit = $request->input('area_unit');
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         $post->cover_image = $filename_to_store;
@@ -206,7 +204,6 @@ class PostsController extends Controller
             'property_type' => 'required|in:apartment,house',
             'floor' => 'required|integer|min:1',
             'area' => 'required|integer|min:10',
-            'area_unit' => 'required|in:sqm,sqft',
             'title' => 'required',
             'body' => 'required',
             'cover_image' => 'image|nullable|max:1999'
@@ -260,7 +257,6 @@ class PostsController extends Controller
         $post->property_type = $request->input('property_type');
         $post->floor = $request->input('floor');
         $post->area = $request->input('area');
-        $post->area_unit = $request->input('area_unit');
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         if($request->hasFile('cover_image'))
@@ -434,17 +430,12 @@ class PostsController extends Controller
     // Search posts
     public function search(Request $request)
     {
-        $this->validate($request, [
-            'area_unit' => 'required|in:sqm,sqft'
-        ]);
-
         $types = $request->input('types');
         $property_types = $request->input('property_types');
         $floor_min = $request->input('floor_min');
         $floor_max = $request->input('floor_max');
         $area_min = $request->input('area_min');
         $area_max = $request->input('area_max');
-        $area_unit = $request->input('area_unit');
         if(empty($types))
         {
             $types = ['sale', 'rent'];
@@ -473,7 +464,6 @@ class PostsController extends Controller
             ->whereIn('property_type', $property_types)
             ->whereBetween('floor', [$floor_min, $floor_max])
             ->whereBetween('area', [$area_min, $area_max])
-            ->where('area_unit', $area_unit)
             ->orderBy('id', 'desc')
             ->paginate(10);
         

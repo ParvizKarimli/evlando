@@ -71,24 +71,6 @@
                     </label>
                 </div>
             </div>
-            <div class="form-group {{ $errors->has('area_unit') ? 'has-error' : '' }}">
-                <label for="area_unit">Area Unit</label>
-                <div class="radio">
-                    <label>
-                        {{ Form::radio('area_unit', 'sqm') }} Square Meters
-                    </label>
-                </div>
-                <div class="radio">
-                    <label>
-                        {!! Form::radio('area_unit', 'sqft') !!} Square Feet
-                    </label>
-                </div>
-                @if($errors->has('area_unit'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('area_unit') }}</strong>
-                    </span>
-                @endif
-            </div>
             <div class="form-group">
                 {{Form::submit('Search', ['class' => 'btn btn-default'])}}
             </div>
@@ -138,14 +120,7 @@
                                 <p>{{ $post->floor }} floors</p>
                             @endif
                         @endif
-                        <p>
-                            {{ $post->area }}
-                            @if($post->area_unit === 'sqm')
-                                square meters
-                            @elseif($post->area_unit === 'sqft')
-                                square feet
-                            @endif
-                        </p>
+                        <p>{{ $post->area }} square meters</p>
                         <small>
                             Created at {{$post->created_at}} by {{$post->user->name}}
                         </small>

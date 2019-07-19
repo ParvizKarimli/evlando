@@ -61,24 +61,6 @@
             </span>
         @endif
     </div>
-    <div class="form-group {{ $errors->has('area_unit') ? 'has-error' : '' }}">
-        <label for="area_unit">Area Unit</label>
-        <div class="radio">
-            <label>
-                {{Form::radio('area_unit', 'sqm', $post->area_unit === 'sqm' ? ['checked'] : '')}} Square Meters
-            </label>
-        </div>
-        <div class="radio">
-            <label>
-                {{Form::radio('area_unit', 'sqft', $post->area_unit === 'sqft' ? ['checked'] : '')}} Square Feet
-            </label>
-        </div>
-        @if($errors->has('area_unit'))
-        <span class="help-block">
-                    <strong>{{ $errors->first('area_unit') }}</strong>
-                </span>
-        @endif
-    </div>
     <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
         {{Form::label('title', 'Title')}}
         {{Form::text('title', $post->title, ['class' => 'form-control', 'placeholder' => 'Title', 'required' => 'required'])}}
