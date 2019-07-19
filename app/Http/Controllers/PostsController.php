@@ -431,11 +431,16 @@ class PostsController extends Controller
         return view('posts.rent')->with('posts', $posts);
     }
 
-    // Search Post
+    // Search posts
     public function search(Request $request)
     {
         $types = $request->input('types');
         $property_types = $request->input('property_types');
+        $floor_min = $request->input('floor_min');
+        $floor_max = $request->input('floor_max');
+        $area_min = $request->input('area_min');
+        $area_max = $request->input('area_max');
+        $area_unit = $request->input('area_unit');
         if(empty($types))
         {
             $types = ['sale', 'rent'];
@@ -444,8 +449,31 @@ class PostsController extends Controller
         {
             $property_types = ['apartment', 'house'];
         }
+        if(empty($floor_min))
+        {
+            $floor_min = 1;
+        }
+        if(empty($floor_max))
+        {
+            $floor_max = 100;
+        }
+        if(empty($area_min))
+        {
+            $area_min = 10;
+        }
+        if(empty($area_max))
+        {
+            $area_max = 1000;
+        }
+        if(empty($area_unit))
+        {
+            $area_unit = ['sqm', 'sqft'];
+        }
         $posts = Post::whereIn('type', $types)
             ->whereIn('property_type', $property_types)
+            ->whereBetween('floor', [$floor_min, $floor_max])
+            ->whereBetween('area', [$area_min, $area_max])
+            ->where('area_unit', $area_unit)
             ->orderBy('id', 'desc')
             ->paginate(10);
         
