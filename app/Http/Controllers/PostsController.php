@@ -339,6 +339,12 @@ class PostsController extends Controller
 
         Image::where('post_id', $post->id)->delete();
 
+        $bookmarks = $post->bookmarks;
+        foreach($bookmarks as $bookmark)
+        {
+            $bookmark->delete();
+        }
+
         // Delete from DB
         $post->delete();
 
