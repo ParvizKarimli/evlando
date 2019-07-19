@@ -85,6 +85,15 @@
                         @elseif($post->type === 'rent')
                             <p class="alert-info">For Rent</p>
                         @endif
+                        @if($post->property_type === 'apartment')
+                            <p>{{ $post->floor }}. floor</p>
+                        @elseif($post->property_type === 'house')
+                            @if($post->floor === 1)
+                                <p>{{ $post->floor }} floor</p>
+                            @else
+                                <p>{{ $post->floor }} floors</p>
+                            @endif
+                        @endif
                         <small>
                             Created at {{$post->created_at}} by {{$post->user->name}}
                         </small>

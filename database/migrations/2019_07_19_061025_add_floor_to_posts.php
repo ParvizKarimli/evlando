@@ -14,7 +14,7 @@ class AddFloorToPosts extends Migration
     public function up()
     {
         Schema::table('posts', function($table) {
-            $table->string('floor')->after('property_type');
+            $table->integer('floor')->after('property_type');
         });
     }
 
