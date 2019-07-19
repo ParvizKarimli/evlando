@@ -53,7 +53,7 @@
     <div class="form-group {{ $errors->has('area') ? 'has-error' : '' }}">
         {{Form::label('area', 'Area')}}
         <div>
-            {{Form::number('area', '', ['min' => 10, 'required' => 'required'])}}
+            {{Form::number('area', '', ['min' => 10, 'required' => 'required'])}} square meters
         </div>
         @if($errors->has('area'))
             <span class="help-block">

@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="area">Area</label>
+                <label for="area">Area (m<sup>2</sup>)</label>
                 <div>
                     <label>
                         Min {{ Form::number('area_min', '', ['class' => 'form-control', 'min' => 10]) }}
