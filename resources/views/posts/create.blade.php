@@ -21,6 +21,24 @@
             </span>
         @endif
     </div>
+    <div class="form-group {{ $errors->has('property_type') ? 'has-error' : '' }}">
+        <label for="property_type">Property Type</label>
+        <div class="radio">
+            <label>
+                {{Form::radio('property_type', 'apartment')}} Apartment
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                {{Form::radio('property_type', 'house')}} House
+            </label>
+        </div>
+        @if($errors->has('property_type'))
+            <span class="help-block">
+                <strong>{{ $errors->first('property_type') }}</strong>
+            </span>
+        @endif
+    </div>
     <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
         {{Form::label('title', 'Title')}}
         {{Form::text('title', '', ['class' => 'form-control', 'placeholder' => 'Title', 'required' => 'required'])}}
