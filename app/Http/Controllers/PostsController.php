@@ -117,6 +117,7 @@ class PostsController extends Controller
             $post->type = 'sale';
         }
         $post->property_type = $request->input('property_type');
+        $post->floor = $request->input('floor');
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         $post->cover_image = $filename_to_store;
@@ -273,6 +274,7 @@ class PostsController extends Controller
             $post->type = 'sale';
         }
         $post->property_type = $request->input('property_type');
+        $post->floor = $request->input('floor');
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         if($request->hasFile('cover_image'))
