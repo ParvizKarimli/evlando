@@ -39,6 +39,17 @@
             </span>
         @endif
     </div>
+    <div class="form-group {{ $errors->has('floor') ? 'has-error' : '' }}">
+        {{Form::label('floor', 'Floor')}}
+        <div>
+            {{Form::number('floor', 1, ['min' => 1, 'required' => 'required'])}}
+        </div>
+        @if($errors->has('floor'))
+            <span class="help-block">
+                <strong>{{ $errors->first('floor') }}</strong>
+            </span>
+        @endif
+    </div>
     <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
         {{Form::label('title', 'Title')}}
         {{Form::text('title', '', ['class' => 'form-control', 'placeholder' => 'Title', 'required' => 'required'])}}
