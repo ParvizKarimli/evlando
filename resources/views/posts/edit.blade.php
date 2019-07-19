@@ -61,14 +61,14 @@
             </span>
         @endif
     </div>
-    <div class="form-group {{ $errors->has('rooms') ? 'has-error' : '' }}">
-        {{Form::label('rooms', 'Rooms')}}
+    <div class="form-group {{ $errors->has('bedrooms') ? 'has-error' : '' }}">
+        {{Form::label('bedrooms', 'Bedrooms')}}
         <div>
-            {{Form::number('rooms', $post->rooms, ['min' => 1, 'required' => 'required'])}}
+            {{Form::number('bedrooms', $post->bedrooms, ['min' => 1, 'required' => 'required'])}}
         </div>
-        @if($errors->has('rooms'))
+        @if($errors->has('bedrooms'))
             <span class="help-block">
-                <strong>{{ $errors->first('rooms') }}</strong>
+                <strong>{{ $errors->first('bedrooms') }}</strong>
             </span>
         @endif
     </div>

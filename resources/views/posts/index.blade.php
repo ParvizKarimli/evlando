@@ -72,15 +72,15 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="floor">Rooms</label>
+                <label for="bedrooms">Bedrooms</label>
                 <div>
                     <label>
-                        Min {{ Form::number('rooms_min', '', ['class' => 'form-control', 'min' => 1]) }}
+                        Min {{ Form::number('bedrooms_min', '', ['class' => 'form-control', 'min' => 1]) }}
                     </label>
                 </div>
                 <div>
                     <label>
-                        Max {{ Form::number('rooms_max', '', ['class' => 'form-control', 'min' => 1]) }}
+                        Max {{ Form::number('bedrooms_max', '', ['class' => 'form-control', 'min' => 1]) }}
                     </label>
                 </div>
             </div>
@@ -134,10 +134,10 @@
                             @endif
                         @endif
                         <p>{{ $post->area }} square meters</p>
-                        @if($post->rooms === 1)
-                            <p>1 room</p>
+                        @if($post->bedrooms === 1)
+                            <p>1 bedroom</p>
                         @else
-                            <p>{{ $post->rooms }} rooms</p>
+                            <p>{{ $post->bedrooms }} bedrooms</p>
                         @endif
                         <small>
                             Created at {{$post->created_at}} by {{$post->user->name}}

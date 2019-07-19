@@ -63,7 +63,7 @@ class PostsController extends Controller
             'property_type' => 'required|in:apartment,house',
             'floor' => 'required|integer|min:1',
             'area' => 'required|integer|min:10',
-            'rooms' => 'required|integer|min:1',
+            'bedrooms' => 'required|integer|min:1',
             'title' => 'required',
             'body' => 'required',
             'cover_image' => 'image|nullable|max:1999'
@@ -110,7 +110,7 @@ class PostsController extends Controller
         $post->property_type = $request->input('property_type');
         $post->floor = $request->input('floor');
         $post->area = $request->input('area');
-        $post->rooms = $request->input('rooms');
+        $post->bedrooms = $request->input('bedrooms');
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         $post->cover_image = $filename_to_store;
@@ -206,7 +206,7 @@ class PostsController extends Controller
             'property_type' => 'required|in:apartment,house',
             'floor' => 'required|integer|min:1',
             'area' => 'required|integer|min:10',
-            'rooms' => 'required|integer|min:1',
+            'bedrooms' => 'required|integer|min:1',
             'title' => 'required',
             'body' => 'required',
             'cover_image' => 'image|nullable|max:1999'
@@ -260,7 +260,7 @@ class PostsController extends Controller
         $post->property_type = $request->input('property_type');
         $post->floor = $request->input('floor');
         $post->area = $request->input('area');
-        $post->rooms = $request->input('rooms');
+        $post->bedrooms = $request->input('bedrooms');
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         if($request->hasFile('cover_image'))
@@ -440,8 +440,8 @@ class PostsController extends Controller
         $floor_max = $request->input('floor_max');
         $area_min = $request->input('area_min');
         $area_max = $request->input('area_max');
-        $rooms_min = $request->input('rooms_min');
-        $rooms_max = $request->input('rooms_max');
+        $bedrooms_min = $request->input('bedrooms_min');
+        $bedrooms_max = $request->input('bedrooms_max');
         if(empty($types))
         {
             $types = ['sale', 'rent'];
@@ -466,19 +466,19 @@ class PostsController extends Controller
         {
             $area_max = 1000;
         }
-        if(empty($rooms_min))
+        if(empty($bedrooms_min))
         {
-            $rooms_min = 1;
+            $bedrooms_min = 1;
         }
-        if(empty($rooms_max))
+        if(empty($bedrooms_max))
         {
-            $rooms_max = 100;
+            $bedrooms_max = 100;
         }
         $posts = Post::whereIn('type', $types)
             ->whereIn('property_type', $property_types)
             ->whereBetween('floor', [$floor_min, $floor_max])
             ->whereBetween('area', [$area_min, $area_max])
-            ->whereBetween('rooms', [$rooms_min, $rooms_max])
+            ->whereBetween('bedrooms', [$bedrooms_min, $bedrooms_max])
             ->orderBy('id', 'desc')
             ->paginate(10);
         

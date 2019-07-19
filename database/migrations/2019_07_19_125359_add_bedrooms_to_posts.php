@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddRoomsToPosts extends Migration
+class AddBedroomsToPosts extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddRoomsToPosts extends Migration
     public function up()
     {
         Schema::table('posts', function($table) {
-            $table->integer('rooms')->after('area');
+            $table->integer('bedrooms')->after('area');
         });
     }
 
@@ -26,7 +26,7 @@ class AddRoomsToPosts extends Migration
     public function down()
     {
         Schema::table('posts', function($table) {
-            $table->dropColumn('rooms');
+            $table->dropColumn('bedrooms');
         });
     }
 }
