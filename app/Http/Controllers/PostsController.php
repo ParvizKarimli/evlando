@@ -61,7 +61,7 @@ class PostsController extends Controller
         $this->validate($request, [
             'type' => 'required|in:sale,rent',
             'property_type' => 'required|in:apartment,house',
-            'floor' => 'required|integer',
+            'floor' => 'required|integer|min:1',
             'title' => 'required',
             'body' => 'required',
             'cover_image' => 'image|nullable|max:1999'
@@ -200,7 +200,7 @@ class PostsController extends Controller
         $this->validate($request, [
             'type' => 'required|in:sale,rent',
             'property_type' => 'required|in:apartment,house',
-            'floor' => 'required|integer',
+            'floor' => 'required|integer|min:1',
             'title' => 'required',
             'body' => 'required',
             'cover_image' => 'image|nullable|max:1999'
