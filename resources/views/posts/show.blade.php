@@ -40,6 +40,11 @@
                 @endif
             @endif
             <p>{{ $post->area }} square meters</p>
+            @if($post->rooms === 1)
+                <p>1 room</p>
+            @else
+                <p>{{ $post->rooms }} rooms</p>
+            @endif
             <small>Created at {{$post->created_at}} by {{$post->user->name}}</small>
             <div>{!!$post->body!!}</div>
             <span>

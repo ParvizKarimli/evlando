@@ -61,6 +61,17 @@
             </span>
         @endif
     </div>
+    <div class="form-group {{ $errors->has('rooms') ? 'has-error' : '' }}">
+        {{Form::label('rooms', 'Rooms')}}
+        <div>
+            {{Form::number('rooms', '', ['min' => 1, 'required' => 'required'])}}
+        </div>
+        @if($errors->has('rooms'))
+            <span class="help-block">
+                <strong>{{ $errors->first('rooms') }}</strong>
+            </span>
+        @endif
+    </div>
     <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
         {{Form::label('title', 'Title')}}
         {{Form::text('title', '', ['class' => 'form-control', 'placeholder' => 'Title', 'required' => 'required'])}}

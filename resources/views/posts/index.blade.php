@@ -72,6 +72,19 @@
                 </div>
             </div>
             <div class="form-group">
+                <label for="floor">Rooms</label>
+                <div>
+                    <label>
+                        Min {{ Form::number('rooms_min', '', ['class' => 'form-control', 'min' => 1]) }}
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        Max {{ Form::number('rooms_max', '', ['class' => 'form-control', 'min' => 1]) }}
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
                 {{Form::submit('Search', ['class' => 'btn btn-default'])}}
             </div>
         {!! Form::close() !!}
@@ -115,12 +128,17 @@
                             <p>{{ $post->floor }}. floor</p>
                         @elseif($post->property_type === 'house')
                             @if($post->floor === 1)
-                                <p>{{ $post->floor }} floor</p>
+                                <p>1 floor</p>
                             @else
                                 <p>{{ $post->floor }} floors</p>
                             @endif
                         @endif
                         <p>{{ $post->area }} square meters</p>
+                        @if($post->rooms === 1)
+                            <p>1 room</p>
+                        @else
+                            <p>{{ $post->rooms }} rooms</p>
+                        @endif
                         <small>
                             Created at {{$post->created_at}} by {{$post->user->name}}
                         </small>
