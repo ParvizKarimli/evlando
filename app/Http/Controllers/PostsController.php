@@ -434,6 +434,10 @@ class PostsController extends Controller
     // Search posts
     public function search(Request $request)
     {
+        $this->validate($request, [
+            'area_unit' => 'required|in:sqm,sqft'
+        ]);
+
         $types = $request->input('types');
         $property_types = $request->input('property_types');
         $floor_min = $request->input('floor_min');
@@ -464,10 +468,6 @@ class PostsController extends Controller
         if(empty($area_max))
         {
             $area_max = 1000;
-        }
-        if(empty($area_unit))
-        {
-            $area_unit = ['sqm', 'sqft'];
         }
         $posts = Post::whereIn('type', $types)
             ->whereIn('property_type', $property_types)
