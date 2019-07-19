@@ -59,8 +59,8 @@ class PostsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'type' => 'required',
-            'property_type' => 'required',
+            'type' => 'required|in:sale,rent',
+            'property_type' => 'required|in:apartment,house',
             'floor' => 'required|integer',
             'title' => 'required',
             'body' => 'required',
@@ -104,18 +104,7 @@ class PostsController extends Controller
         // Create post and write to DB
         $post = new Post;
         $post->user_id = auth()->user()->id;
-        if($request->input('type') === 'sale')
-        {
-            $post->type = 'sale';
-        }
-        elseif($request->input('type') === 'rent')
-        {
-            $post->type = 'rent';
-        }
-        else
-        {
-            $post->type = 'sale';
-        }
+        $post->type = $request->input('type');
         $post->property_type = $request->input('property_type');
         $post->floor = $request->input('floor');
         $post->title = $request->input('title');
@@ -209,8 +198,8 @@ class PostsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'type' => 'required',
-            'property_type' => 'required',
+            'type' => 'required|in:sale,rent',
+            'property_type' => 'required|in:apartment,house',
             'floor' => 'required|integer',
             'title' => 'required',
             'body' => 'required',
@@ -261,18 +250,7 @@ class PostsController extends Controller
         }
 
         // Write to DB
-        if($request->input('type') === 'sale')
-        {
-            $post->type = 'sale';
-        }
-        elseif($request->input('type') === 'rent')
-        {
-            $post->type = 'rent';
-        }
-        else
-        {
-            $post->type = 'sale';
-        }
+        $post->type = $request->input('type');
         $post->property_type = $request->input('property_type');
         $post->floor = $request->input('floor');
         $post->title = $request->input('title');
