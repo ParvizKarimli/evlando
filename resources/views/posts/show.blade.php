@@ -39,6 +39,14 @@
                     <p>{{ $post->floor }} floors</p>
                 @endif
             @endif
+            <p>
+                {{ $post->area }}
+                @if($post->area_unit === 'sqm')
+                    square meters
+                @elseif($post->area_unit === 'sqft')
+                    square feet
+                @endif
+            </p>
             <small>Created at {{$post->created_at}} by {{$post->user->name}}</small>
             <div>{!!$post->body!!}</div>
             <span>
