@@ -493,7 +493,7 @@ class PostsController extends Controller
             ->whereBetween('floor', [$floor_min, $floor_max])
             ->whereBetween('area', [$area_min, $area_max])
             ->whereBetween('bedrooms', [$bedrooms_min, $bedrooms_max])
-            ->whereBetween('bedrooms', [$bathrooms_min, $bathrooms_max])
+            ->whereBetween('bathrooms', [$bathrooms_min, $bathrooms_max])
             ->orderBy('id', 'desc')
             ->paginate(10);
         
