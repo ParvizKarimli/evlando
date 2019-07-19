@@ -42,7 +42,7 @@
     <div class="form-group {{ $errors->has('floor') ? 'has-error' : '' }}">
         {{Form::label('floor', 'Floor')}}
         <div>
-            {{Form::number('floor', 1, ['min' => 1, 'required' => 'required'])}}
+            {{Form::number('floor', '', ['min' => 1, 'required' => 'required'])}}
         </div>
         @if($errors->has('floor'))
             <span class="help-block">

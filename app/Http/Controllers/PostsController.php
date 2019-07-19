@@ -61,7 +61,7 @@ class PostsController extends Controller
         $this->validate($request, [
             'type' => 'required',
             'property_type' => 'required',
-            'floor' => 'required',
+            'floor' => 'required|integer',
             'title' => 'required',
             'body' => 'required',
             'cover_image' => 'image|nullable|max:1999'
@@ -210,7 +210,7 @@ class PostsController extends Controller
         $this->validate($request, [
             'type' => 'required',
             'property_type' => 'required',
-            'floor' => 'required',
+            'floor' => 'required|integer',
             'title' => 'required',
             'body' => 'required',
             'cover_image' => 'image|nullable|max:1999'
