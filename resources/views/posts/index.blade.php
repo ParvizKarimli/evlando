@@ -46,6 +46,45 @@
                 </div>
             </div>
             <div class="form-group">
+                <label for="floor">Floor</label>
+                <div>
+                    <label>
+                        Min {{ Form::number('floor_min', '', ['class' => 'form-control', 'min' => 1]) }}
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        Max {{ Form::number('floor_max', '', ['class' => 'form-control', 'min' => 1]) }}
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="area">Area</label>
+                <div>
+                    <label>
+                        Min {{ Form::number('area_min', '', ['class' => 'form-control', 'min' => 10]) }}
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        Max {{ Form::number('area_max', '', ['class' => 'form-control', 'min' => 10]) }}
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="area_unit">Area Unit</label>
+                <div class="radio">
+                    <label>
+                        {{ Form::radio('area_unit', 'sqm') }} Square Meters
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        {!! Form::radio('area_unit', 'sqft') !!} Square Feet
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
                 {{Form::submit('Search', ['class' => 'btn btn-default'])}}
             </div>
         {!! Form::close() !!}
