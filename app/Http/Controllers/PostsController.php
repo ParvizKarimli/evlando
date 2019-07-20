@@ -65,6 +65,7 @@ class PostsController extends Controller
             'area' => 'required|integer|min:10',
             'bedrooms' => 'required|integer|min:1',
             'bathrooms' => 'required|integer|min:1',
+            'price' => 'required|integer|min:1',
             'title' => 'required',
             'body' => 'required',
             'cover_image' => 'image|nullable|max:1999'
@@ -113,6 +114,7 @@ class PostsController extends Controller
         $post->area = $request->input('area');
         $post->bedrooms = $request->input('bedrooms');
         $post->bathrooms = $request->input('bathrooms');
+        $post->price = $request->input('price');
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         $post->cover_image = $filename_to_store;
@@ -210,6 +212,7 @@ class PostsController extends Controller
             'area' => 'required|integer|min:10',
             'bedrooms' => 'required|integer|min:1',
             'bathrooms' => 'required|integer|min:1',
+            'price' => 'required|integer|min:1',
             'title' => 'required',
             'body' => 'required',
             'cover_image' => 'image|nullable|max:1999'
@@ -265,6 +268,7 @@ class PostsController extends Controller
         $post->area = $request->input('area');
         $post->bedrooms = $request->input('bedrooms');
         $post->bathrooms = $request->input('bathrooms');
+        $post->price = $request->input('price');
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         if($request->hasFile('cover_image'))
