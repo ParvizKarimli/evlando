@@ -36,5 +36,6 @@
     <script src="{{ asset('js/bookmark_post.js') }}"></script>
     <script src="{{ asset('js/change_type.js') }}"></script>
     <script src="{{ asset('js/get_location.js') }}"></script>
+    <script src="{{ asset('js/select_location.js') }}"></script>
 </body>
 </html>

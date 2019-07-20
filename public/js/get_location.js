@@ -18,8 +18,10 @@ function getLocation(e) {
 
         xmlhttp.onreadystatechange = function() {
             if(this.readyState == 4 && this.status == 200) {
-                document.getElementById('location-suggestions').style.display = 'block';
-                document.getElementById('location-suggestions').innerHTML = this.responseText;
+                if(this.responseText.length > 0) {
+                    document.getElementById('location-suggestions').style.display = 'block';
+                    document.getElementById('location-suggestions').innerHTML = this.responseText;
+                }
             }
         };
     } else {
