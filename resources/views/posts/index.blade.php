@@ -20,6 +20,10 @@
     <div class="well">
         {!! Form::open(['action' => 'PostsController@search', 'method' => 'GET']) !!}
             <div class="form-group">
+                {!! Form::label('location', 'Location') !!}
+                {!! Form::text('location', '', ['class' => 'form-control', 'placeholder' => 'New York']) !!}
+            </div>
+            <div class="form-group">
                 <label for="type">Type</label>
                 <div class="checkbox">
                     <label>

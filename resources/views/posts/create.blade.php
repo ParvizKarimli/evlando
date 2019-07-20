@@ -3,6 +3,15 @@
 @section('content')
 <h1>Create Post</h1>
 {!! Form::open(['id' => 'post-form', 'action' => 'PostsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+    <div class="form-group {{ $errors->has('location') ? 'has-error' : '' }}">
+        {{Form::label('location', 'Location')}}
+        {{Form::text('location', '', ['class' => 'form-control', 'placeholder' => 'New York', 'required' => 'required'])}}
+        @if($errors->has('location'))
+            <span class="help-block">
+                <strong>{{ $errors->first('location') }}</strong>
+            </span>
+        @endif
+    </div>
     <div class="form-group {{ $errors->has('type') ? 'has-error' : '' }}">
         <label for="type">Type</label>
         <div class="radio">
