@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="col-md-2 col-sm-2">
+<div class="col-md-4 col-sm-4">
     <!-- Empty space -->
 </div>
-<div class="col-md-10 col-sm-10">
+<div class="col-md-8 col-sm-8">
     <h1>
         Posts
         <label for="type">Type:</label>
@@ -15,14 +15,15 @@
         </select>
     </h1>
 </div>
-<div class="col-md-2 col-sm-2">
+<div class="col-md-4 col-sm-4">
     <h1>Search</h1>
     <div class="well">
         {!! Form::open(['action' => 'PostsController@search', 'method' => 'GET']) !!}
             <div class="form-group">
                 {!! Form::label('location', 'Location') !!}
-                {!! Form::text('location', '', ['class' => 'form-control', 'placeholder' => 'New York']) !!}
+                {!! Form::text('location', '', ['class' => 'form-control', 'placeholder' => 'New York', 'onkeyup' => 'getLocation(this)', 'autocomplete' => 'off']) !!}
             </div>
+            <div id="location-suggestions"></div>
             <div class="form-group">
                 <label for="type">Type</label>
                 <div class="checkbox">
@@ -120,7 +121,7 @@
         {!! Form::close() !!}
     </div>
 </div>
-<div class="col-md-10 col-sm-10">
+<div class="col-md-8 col-sm-8">
     @if(count($posts) > 0)
         @foreach($posts as $post)
             <div class="well">

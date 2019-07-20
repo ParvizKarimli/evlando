@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\Image;
 use App\Bookmark;
+use App\Location;
 use Image as ImageLib;
 
 class PostsController extends Controller
@@ -528,5 +529,19 @@ class PostsController extends Controller
             return view('posts.index')->with(['posts' => $posts, 'bookmarked_posts_ids' => $bookmarked_posts_ids]);
         }
         return view('posts.index')->with('posts', $posts);
+    }
+
+    public function getlocation(Request $request)
+    {
+        $location = $request->input('location');
+        if(!empty($location))
+        {
+            $locations = Location::where('city', 'like', $location . '%')->get();
+
+            foreach($locations as $location)
+            {
+                echo '<p><a href="">' . $location->city . ', ' . $location->province . ', ' . $location->country . '</a></p>';
+            }
+        }
     }
 }

@@ -22,6 +22,7 @@ Route::get('posts/search', 'PostsController@search');
 Route::resource('posts', 'PostsController');
 Route::post('posts/remove_cover_image', 'PostsController@remove_cover_image');
 Route::post('posts/remove_image', 'PostsController@remove_image');
+Route::post('posts/getlocation', 'PostsController@getlocation');
 Route::get('bookmarks/sale', 'BookmarksController@sale');
 Route::get('bookmarks/rent', 'BookmarksController@rent');
 Route::resource('bookmarks', 'BookmarksController');

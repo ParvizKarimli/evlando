@@ -14,6 +14,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('fontawesome/css/all.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/jssor_internal.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/mystyle.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -34,5 +35,6 @@
     <script src="{{ asset('js/image_fields_creator.js') }}"></script>
     <script src="{{ asset('js/bookmark_post.js') }}"></script>
     <script src="{{ asset('js/change_type.js') }}"></script>
+    <script src="{{ asset('js/get_location.js') }}"></script>
 </body>
 </html>
