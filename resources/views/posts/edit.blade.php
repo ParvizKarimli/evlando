@@ -83,6 +83,20 @@
             </span>
         @endif
     </div>
+    <div class="form-group {{ $errors->has('price') ? 'has-error' : '' }}">
+        {{Form::label('price', 'Price')}}
+        <div>
+            $ {{Form::number('price', $post->price, ['min' => 1, 'required' => 'required'])}}
+            @if($post->type === 'rent')
+                /month
+            @endif
+        </div>
+        @if($errors->has('price'))
+            <span class="help-block">
+                <strong>{{ $errors->first('price') }}</strong>
+            </span>
+        @endif
+    </div>
     <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
         {{Form::label('title', 'Title')}}
         {{Form::text('title', $post->title, ['class' => 'form-control', 'placeholder' => 'Title', 'required' => 'required'])}}
