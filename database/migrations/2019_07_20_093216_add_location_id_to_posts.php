@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddLocationToPosts extends Migration
+class AddLocationIdToPosts extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddLocationToPosts extends Migration
     public function up()
     {
         Schema::table('posts', function($table) {
-            $table->string('location')->after('price');
+            $table->integer('location_id')->after('user_id');
         });
     }
 
@@ -26,7 +26,7 @@ class AddLocationToPosts extends Migration
     public function down()
     {
         Schema::table('posts', function($table) {
-            $table->dropColumn('location');
+            $table->dropColumn('location_id');
         });
     }
 }
