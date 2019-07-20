@@ -20,4 +20,9 @@ class Post extends Model
     {
         return $this->hasMany('App\Bookmark');
     }
+
+    public function location()
+    {
+        return $this->hasOne('App\Location');
+    }
 }
