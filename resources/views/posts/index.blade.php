@@ -175,7 +175,10 @@
                         @elseif($post->type === 'rent')
                             <p>${{ number_format($post->price) }}/month</p>
                         @endif
-                        <p>{{ $post->location }}</p>
+                        <p>
+                            <i class="fas fa-map-marker-alt"></i>
+                            {{ $post->location }}
+                        </p>
                         <small>
                             Created at {{$post->created_at}} by {{$post->user->name}}
                         </small>
