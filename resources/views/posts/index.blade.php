@@ -181,7 +181,7 @@
                         @endif
                         <p>
                             <i class="fas fa-map-marker-alt"></i>
-                            {{ $post->location }}
+                            {{ $post->location->city }}
                         </p>
                         <small>
                             Created at {{$post->created_at}} by {{$post->user->name}}

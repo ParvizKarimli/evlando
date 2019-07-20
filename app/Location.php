@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Location extends Model
 {
-    public function post()
+    public function posts()
     {
-        return $this->belongsTo('App\Post');
+        return $this->hasMany('App\Post');
     }
 }

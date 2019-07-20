@@ -5,7 +5,7 @@
 {!! Form::open(['id' => 'post-form', 'action' => ['PostsController@update', $post->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
     <div class="form-group {{ $errors->has('location') ? 'has-error' : '' }}">
         {{Form::label('location', 'Location')}}
-        {{Form::text('location', $post->location, ['class' => 'form-control', 'placeholder' => 'New York', 'required' => 'required'])}}
+        {{Form::text('location', $post->location->city, ['class' => 'form-control', 'placeholder' => 'New York', 'required' => 'required'])}}
         @if($errors->has('location'))
             <span class="help-block">
                 <strong>{{ $errors->first('location') }}</strong>
