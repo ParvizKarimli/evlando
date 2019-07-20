@@ -98,6 +98,19 @@
                 </div>
             </div>
             <div class="form-group">
+                <label for="price">Price</label>
+                <div>
+                    <label>
+                        Min {{ Form::number('price_min', '', ['class' => 'form-control', 'min' => 1]) }}
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        Max {{ Form::number('price_max', '', ['class' => 'form-control', 'min' => 1]) }}
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
                 {{Form::submit('Search', ['class' => 'btn btn-default'])}}
             </div>
         {!! Form::close() !!}
