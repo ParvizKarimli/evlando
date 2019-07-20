@@ -157,6 +157,11 @@
                         @else
                             <p>{{ $post->bathrooms }} bathrooms</p>
                         @endif
+                        @if($post->type === 'sale')
+                            <p>${{ number_format($post->price) }}</p>
+                        @elseif($post->type === 'rent')
+                            <p>${{ number_format($post->price) }} / month</p>
+                        @endif
                         <small>
                             Created at {{$post->created_at}} by {{$post->user->name}}
                         </small>
