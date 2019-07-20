@@ -5,3 +5,7 @@ div#location-suggestions {
     max-height: 250px;
     overflow-y: auto;
 }
+
+a.location-suggestion {
+    text-decoration: none;
+}

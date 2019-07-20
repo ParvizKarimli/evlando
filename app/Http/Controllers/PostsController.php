@@ -540,7 +540,7 @@ class PostsController extends Controller
 
             foreach($locations as $location)
             {
-                echo '<p><a href="" onclick="selectLocation(this);" location-id="'. $location->id .'">' . $location->city . ', ' . $location->province . ', ' . $location->country . '</a></p>';
+                echo '<p><a class="location-suggestion" title="Click to select the location" href="" onclick="selectLocation(this);" location-id="'. $location->id .'">' . $location->city . ', ' . $location->province . ', ' . $location->country . '</a></p>';
             }
         }
     }
