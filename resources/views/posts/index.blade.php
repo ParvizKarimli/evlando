@@ -21,9 +21,9 @@
         {!! Form::open(['action' => 'PostsController@search', 'method' => 'GET']) !!}
             <div class="form-group">
                 {!! Form::label('location-input', 'Location') !!}
-                {!! Form::text('location-input', '', ['class' => 'form-control', 'placeholder' => 'New York', 'onfocusout' => 'hideLocationSuggestions()', 'onfocus' => 'showLocationSuggestions(this)', 'autocomplete' => 'off']) !!}
+                {!! Form::text('location-input', '', ['class' => 'form-control', 'placeholder' => 'New York', 'autocomplete' => 'off']) !!}
             </div>
-            <div id="location-suggestions"></div>
+            <div id="location-suggestions-container"></div>
             <div class="form-group">
                 <label for="type">Type</label>
                 <div class="checkbox">

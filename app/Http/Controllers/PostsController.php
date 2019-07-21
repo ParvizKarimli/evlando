@@ -531,7 +531,7 @@ class PostsController extends Controller
         return view('posts.index')->with('posts', $posts);
     }
 
-    public function getlocation(Request $request)
+    public function get_location_suggestions(Request $request)
     {
         $location_input_value = $request->input('location_input_value');
         if(!empty($location_input_value))
@@ -540,7 +540,7 @@ class PostsController extends Controller
 
             foreach($locations as $location)
             {
-                echo '<p><a class="location-suggestion" title="Click to select the location" href="" location-id="'. $location->id .'">' . $location->city . ', ' . $location->province . ', ' . $location->country . '</a></p>';
+                echo '<p><a class="location-suggestion-row" title="Click to select the location" href="" location-id="'. $location->id .'">' . $location->city . ', ' . $location->province . ', ' . $location->country . '</a></p>';
             }
         }
     }

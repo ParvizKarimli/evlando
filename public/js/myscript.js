@@ -1,5 +1,9 @@
 var locationInput = document.getElementById('location-input');
 locationInput.addEventListener('keyup', getLocationSuggestions);
+locationInput.addEventListener('focus', showLocationSuggestions);
+locationInput.addEventListener('focusout', hideLocationSuggestions);
+
+var locationSuggestionsContainer = document.getElementById('location-suggestions-container');
 
 function getLocationSuggestions() {
     var locationInputValue = this.value;
@@ -13,7 +17,7 @@ function getLocationSuggestions() {
             var xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
         }
 
-        xmlhttp.open('POST', '/posts/getlocation', true);
+        xmlhttp.open('POST', '/posts/get_location_suggestions', true);
         // Send the proper header information along with the request
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlhttp.setRequestHeader('X-CSRF-TOKEN', document.querySelector('meta[name="csrf-token"]').content);
@@ -22,27 +26,37 @@ function getLocationSuggestions() {
         xmlhttp.onreadystatechange = function() {
             if(this.readyState == 4 && this.status == 200) {
                 if(this.responseText.length > 0) {
-                    document.getElementById('location-suggestions').style.display = 'block';
-                    document.getElementById('location-suggestions').innerHTML = this.responseText;
+                    locationSuggestionsContainer.style.display = 'block';
+                    locationSuggestionsContainer.innerHTML = this.responseText;
 
-                    var locationSuggestions = document.querySelectorAll('.location-suggestion');
-                    if(locationSuggestions.length > 0) {
-                        for(var i=0; i<locationSuggestions.length; i++) {
-                            locationSuggestions[i].addEventListener('click', selectLocation);
+                    var locationSuggestionRows = document.querySelectorAll('.location-suggestion-row');
+                    if(locationSuggestionRows.length > 0) {
+                        for(var i=0; i<locationSuggestionRows.length; i++) {
+                            locationSuggestionRows[i].addEventListener('click', selectLocationSuggestion);
                         }
                     }
                 }
             }
         };
     } else {
-        document.getElementById('location-suggestions').style.display = 'none';
-        document.getElementById('location-suggestions').innerHTML = '';
+        locationSuggestionsContainer.style.display = 'none';
+        locationSuggestionsContainer.innerHTML = '';
     }
 }
 
-function selectLocation() {
+function selectLocationSuggestion() {
     event.preventDefault();
 
     document.getElementById('location-input').value = this.innerText;
-    document.getElementById('location-suggestions').style.display = 'none';
+    locationSuggestionsContainer.style.display = 'none';
+}
+
+function showLocationSuggestions() {
+    if(this.value.length > 0) {
+        locationSuggestionsContainer.style.display='block';
+    }
+}
+
+function hideLocationSuggestions() {
+    locationSuggestionsContainer.style.display='none';
 }
