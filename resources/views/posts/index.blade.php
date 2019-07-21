@@ -20,8 +20,8 @@
     <div class="well">
         {!! Form::open(['action' => 'PostsController@search', 'method' => 'GET']) !!}
             <div class="form-group">
-                {!! Form::label('location', 'Location') !!}
-                {!! Form::text('location', '', ['class' => 'form-control', 'placeholder' => 'New York', 'onkeyup' => 'getLocation(this)', 'autocomplete' => 'off']) !!}
+                {!! Form::label('location-input', 'Location') !!}
+                {!! Form::text('location-input', '', ['class' => 'form-control', 'placeholder' => 'New York', 'onfocusout' => 'hideLocationSuggestions()', 'onfocus' => 'showLocationSuggestions(this)', 'autocomplete' => 'off']) !!}
             </div>
             <div id="location-suggestions"></div>
             <div class="form-group">

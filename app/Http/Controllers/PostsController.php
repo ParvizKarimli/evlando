@@ -533,14 +533,14 @@ class PostsController extends Controller
 
     public function getlocation(Request $request)
     {
-        $location = $request->input('location');
-        if(!empty($location))
+        $location_input_value = $request->input('location_input_value');
+        if(!empty($location_input_value))
         {
-            $locations = Location::where('city', 'like', $location . '%')->get();
+            $locations = Location::where('city', 'like', $location_input_value . '%')->get();
 
             foreach($locations as $location)
             {
-                echo '<p><a class="location-suggestion" title="Click to select the location" href="" onclick="selectLocation(this);" location-id="'. $location->id .'">' . $location->city . ', ' . $location->province . ', ' . $location->country . '</a></p>';
+                echo '<p><a class="location-suggestion" title="Click to select the location" href="" location-id="'. $location->id .'">' . $location->city . ', ' . $location->province . ', ' . $location->country . '</a></p>';
             }
         }
     }
