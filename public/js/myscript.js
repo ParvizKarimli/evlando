@@ -1,7 +1,14 @@
 var locationInput = document.getElementById('location-input');
+var closeSuggestionsButton = document.getElementById('close-suggestions-button');
+
 locationInput.addEventListener('keyup', getLocationSuggestions);
 locationInput.addEventListener('focus', showLocationSuggestions);
-locationInput.addEventListener('focusout', hideLocationSuggestions);
+if(closeSuggestionsButton) {
+    closeSuggestionsButton.addEventListener('click', function(e) {
+        e.target.preventDefault();
+        hideLocationSuggestions(e);
+    });
+}
 
 var locationSuggestionsContainer = document.getElementById('location-suggestions-container');
 
