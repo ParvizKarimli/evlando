@@ -3,15 +3,18 @@
 @section('content')
 <h1>Create Post</h1>
 {!! Form::open(['id' => 'post-form', 'action' => 'PostsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
-    <div class="form-group {{ $errors->has('location') ? 'has-error' : '' }}">
-        {{Form::label('location', 'Location')}}
-        {{Form::text('location', '', ['class' => 'form-control', 'placeholder' => 'New York', 'required' => 'required'])}}
-        @if($errors->has('location'))
+    <div class="form-group {{ $errors->has('location_id') ? 'has-error' : '' }}">
+        {{Form::label('location-input', 'Location')}}
+        {{Form::text('location', '',
+        ['id' => 'location-input', 'class' => 'form-control', 'placeholder' => 'New York', 'autocomplete' => 'off', 'required' => 'required'])}}
+        {!! Form::hidden('location_id', '', ['id' => 'location_id']) !!}
+        @if($errors->has('location_id'))
             <span class="help-block">
-                <strong>{{ $errors->first('location') }}</strong>
+                <strong>{{ $errors->first('location_id') }}</strong>
             </span>
         @endif
     </div>
+    <div id="location-suggestions-container"></div>
     <div class="form-group {{ $errors->has('type') ? 'has-error' : '' }}">
         <label for="type">Type</label>
         <div class="radio">

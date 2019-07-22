@@ -59,7 +59,11 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
+        $custom_validation_messages = [
+            'location_id.required' => 'The location field is required. Please select from the location suggestions.'
+        ];
         $this->validate($request, [
+            'location_id' => 'required',
             'type' => 'required|in:sale,rent',
             'property_type' => 'required|in:apartment,house',
             'floor' => 'required|integer|min:1',
@@ -70,7 +74,7 @@ class PostsController extends Controller
             'title' => 'required',
             'body' => 'required',
             'cover_image' => 'image|nullable|max:1999'
-        ]);
+        ], $custom_validation_messages);
 
         $number_of_images = e($request->numberOfImages);
         for($i=1; $i<=$number_of_images; $i++) {
@@ -109,6 +113,7 @@ class PostsController extends Controller
         // Create post and write to DB
         $post = new Post;
         $post->user_id = auth()->user()->id;
+        $post->location_id = $request->input('location_id');
         $post->type = $request->input('type');
         $post->property_type = $request->input('property_type');
         $post->floor = $request->input('floor');
@@ -206,7 +211,11 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $custom_validation_messages = [
+            'location_id.required' => 'The location field is required. Please select from the location suggestions.'
+        ];
         $this->validate($request, [
+            'location_id' => 'required',
             'type' => 'required|in:sale,rent',
             'property_type' => 'required|in:apartment,house',
             'floor' => 'required|integer|min:1',
@@ -217,7 +226,7 @@ class PostsController extends Controller
             'title' => 'required',
             'body' => 'required',
             'cover_image' => 'image|nullable|max:1999'
-        ]);
+        ], $custom_validation_messages);
 
         $number_of_images = e($request->numberOfImages);
         for($i=1; $i<=$number_of_images; $i++) {
@@ -263,6 +272,7 @@ class PostsController extends Controller
         }
 
         // Write to DB
+        $post->location_id = $request->input('location_id');
         $post->type = $request->input('type');
         $post->property_type = $request->input('property_type');
         $post->floor = $request->input('floor');
