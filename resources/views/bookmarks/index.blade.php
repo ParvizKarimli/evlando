@@ -27,8 +27,8 @@
                         </tr>
                         @foreach($bookmarks as $bookmark)
                             <tr>
-                                <td class="post-thumb">
-                                    <a href="/posts/{{$bookmark->post_id}}/{{$bookmark->post->slug}}">
+                                <td>
+                                    <a class="post-thumb" href="/posts/{{$bookmark->post_id}}/{{$bookmark->post->slug}}">
                                         <img src="/storage/images/cover_images/thumbnails/{{$bookmark->post->thumbnail}}">
                                     </a>
                                 </td>

@@ -26,8 +26,8 @@
                         </tr>
                         @foreach($posts as $post)
                             <tr>
-                                <td class="post-thumb">
-                                    <a href="/posts/{{$post->id}}/{{$post->slug}}">
+                                <td>
+                                    <a class="post-thumb" href="/posts/{{$post->id}}/{{$post->slug}}">
                                         <img src="/storage/images/cover_images/thumbnails/{{$post->thumbnail}}">
                                     </a>
                                 </td>
