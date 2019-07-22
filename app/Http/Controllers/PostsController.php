@@ -122,6 +122,7 @@ class PostsController extends Controller
         $post->bathrooms = $request->input('bathrooms');
         $post->price = $request->input('price');
         $post->title = $request->input('title');
+        $post->slug = str_slug($request->input('title'), '-');
         $post->body = $request->input('body');
         $post->cover_image = $filename_to_store;
         $post->thumbnail = $thumbnail_name_to_store;
@@ -281,6 +282,7 @@ class PostsController extends Controller
         $post->bathrooms = $request->input('bathrooms');
         $post->price = $request->input('price');
         $post->title = $request->input('title');
+        $post->slug = str_slug($request->input('title'), '-');
         $post->body = $request->input('body');
         if($request->hasFile('cover_image'))
         {

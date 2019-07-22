@@ -7,7 +7,7 @@
         {{Form::label('location-input', 'Location')}}
         {{Form::text('location', $post->location->city . ', ' . $post->location->province . ', ' . $post->location->country,
         ['id' => 'location-input', 'class' => 'form-control', 'placeholder' => 'New York', 'autocomplete' => 'off', 'required' => 'required'])}}
-        {!! Form::hidden('location_id', '', ['id' => 'location_id']) !!}
+        {!! Form::hidden('location_id', $post->location_id, ['id' => 'location_id']) !!}
         @if($errors->has('location_id'))
             <span class="help-block">
                 <strong>{{ $errors->first('location_id') }}</strong>
