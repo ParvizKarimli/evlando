@@ -1,5 +1,4 @@
 var locationInput = document.getElementById('location-input');
-
 locationInput.addEventListener('keyup', getLocationSuggestions);
 
 var locationSuggestionsContainer = document.getElementById('location-suggestions-container');
@@ -46,6 +45,6 @@ function getLocationSuggestions() {
 function selectLocationSuggestion() {
     event.preventDefault();
 
-    document.getElementById('location-input').value = this.innerText;
+    locationInput.value = this.innerText;
     locationSuggestionsContainer.style.display = 'none';
 }
