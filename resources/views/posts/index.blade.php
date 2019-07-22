@@ -186,6 +186,11 @@
                         <div>
 							<b>Description:</b>
                             {!! str_limit($post->body, $limit = 150, $end = '...') !!}
+							@if(strlen($post->body) > 150)
+								<a href="/posts/{{$post->id}}/{{$post->slug}}" target="_blank">
+									Read More
+								</a>
+							@endif
                         </div>
                         <small>
                             Created at {{$post->created_at}} by {{$post->user->name}}
