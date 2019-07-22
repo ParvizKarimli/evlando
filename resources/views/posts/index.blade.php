@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="area">Area (m<sup>2</sup>)</label>
+                <label for="area">Area (ft<sup>2</sup>)</label>
                 <div>
                     <label>
                         Min {{ Form::number('area_min', '', ['class' => 'form-control', 'min' => 10]) }}
@@ -167,7 +167,7 @@
                                 <p>{{ $post->floor }} floors</p>
                             @endif
                         @endif
-                        <p>{{ $post->area }} square meters</p>
+                        <p>{{ $post->area }} square feet</p>
                         @if($post->bedrooms === 1)
                             <p>1 bedroom</p>
                         @else

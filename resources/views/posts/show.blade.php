@@ -79,7 +79,7 @@
                     <p>{{ $post->floor }} floors</p>
                 @endif
             @endif
-            <p>{{ $post->area }} square meters</p>
+            <p>{{ $post->area }} square feet</p>
             @if($post->bedrooms === 1)
                 <p>1 bedroom</p>
             @else
