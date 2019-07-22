@@ -132,7 +132,7 @@
                     </div>
                     <div class="col-md-8 col-sm-8">
                         <h3>
-                            <a href="/posts/{{$post->id}}">
+                            <a href="/posts/{{$post->id}}/{{$post->slug}}">
                                 {{$post->title}}
                             </a>
                             @if(auth()->user())

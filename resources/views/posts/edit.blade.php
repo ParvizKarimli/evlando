@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>Edit Post <a href="/posts/{{$post->id}}">{{$post->title}}</a></h1>
+<h1>Edit Post <a href="/posts/{{$post->id}}/{{$post->slug}}">{{$post->title}}</a></h1>
 {!! Form::open(['id' => 'post-form', 'action' => ['PostsController@update', $post->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
     <div class="form-group {{ $errors->has('location_id') ? 'has-error' : '' }}">
         {{Form::label('location-input', 'Location')}}
