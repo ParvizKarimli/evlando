@@ -110,7 +110,7 @@
         @endif
     </div>
     <div class="form-group {{ $errors->has('body') ? 'has-error' : '' }}">
-        {{Form::label('body', 'Body')}}
+        {{Form::label('body', 'Description')}}
         {{Form::textarea('body', $post->body, ['id' => 'article-ckeditor', 'class' => 'form-control', 'placeholder' => 'Body', 'required' => 'required'])}}
         @if($errors->has('body'))
             <span class="help-block">
