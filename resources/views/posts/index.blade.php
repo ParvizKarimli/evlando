@@ -183,7 +183,7 @@
                         @endif
                         <p>
                             <i class="fas fa-map-marker-alt"></i>
-                            {{ $post->location->city }}
+                            {{ $post->location->city }}, {{ $post->location->province }}, {{ $post->location->country }}
                         </p>
                         <small>
                             Created at {{$post->created_at}} by {{$post->user->name}}
