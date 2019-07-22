@@ -184,7 +184,12 @@ class PostsController extends Controller
                 $bookmarked = true;
             }
         }
-        return view('posts.show')->with(['post' => $post, 'images' => $images, 'number_of_images' => $number_of_images, 'bookmarked' => $bookmarked]);
+        return view('posts.show')->with([
+            'post' => $post,
+            'images' => $images,
+            'number_of_images' => $number_of_images,
+            'bookmarked' => $bookmarked
+        ]);
     }
 
     /**
@@ -517,7 +522,10 @@ class PostsController extends Controller
 
             foreach($locations as $location)
             {
-                echo '<p><a class="location-suggestion-row" title="Click to select the location suggestion" href="" location-id="'. $location->id .'">' . $location->city . ', ' . $location->province . ', ' . $location->country . '</a></p>';
+                echo '<p><a class="location-suggestion-row" title="Click to select the location suggestion" href="" ' .
+                'location-id="' .
+                $location->id . '">' . $location->city . ', ' . $location->province . ', ' . $location->country .
+                '</a></p>';
             }
         }
     }
