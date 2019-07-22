@@ -461,6 +461,8 @@ class PostsController extends Controller
         $bathrooms_max = $request->input('bathrooms_max');
         $price_min = $request->input('price_min');
         $price_max = $request->input('price_max');
+        $location_id = $request->input('location_id');
+
         if(empty($types))
         {
             $types = ['sale', 'rent'];
@@ -509,7 +511,8 @@ class PostsController extends Controller
         {
             $price_max = 100000000;
         }
-        $posts = Post::whereIn('type', $types)
+        $posts = Post::where('location_id', $location_id)
+            ->whereIn('type', $types)
             ->whereIn('property_type', $property_types)
             ->whereBetween('floor', [$floor_min, $floor_max])
             ->whereBetween('area', [$area_min, $area_max])
