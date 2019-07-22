@@ -9,12 +9,16 @@
                 <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="/storage/images/default/spin.svg" />
             </div>
             <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:600px;height:500px;overflow:hidden;">
-                <div>
-                    <img style="width:100%" src="/storage/images/cover_images/{{$post->cover_image}}">
+                <div title="Click to open this image in new tab">
+                    <a href="/storage/images/cover_images/{{$post->cover_image}}" target="_blank">
+                        <img style="width:100%" src="/storage/images/cover_images/{{$post->cover_image}}">
+                    </a>
                 </div>
                 @foreach($images as $image)
-                    <div>
-                        <img data-u="image" src="/storage/images/{{$image->filename}}" />
+                    <div title="Click to open this image in new tab">
+                        <a href="/storage/images/{{$image->filename}}" target="_blank">
+                            <img data-u="image" src="/storage/images/{{$image->filename}}" />
+                        </a>
                     </div>
                 @endforeach
             </div>

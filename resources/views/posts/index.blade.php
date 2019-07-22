@@ -124,7 +124,7 @@
                     <div class="container">
                         <div class="col-md-4 col-sm-4">
                             <p class="post-thumb">
-                                <a href="/posts/{{$post->id}}/{{$post->slug}}">
+                                <a href="/posts/{{$post->id}}/{{$post->slug}}" target="_blank">
                                     <img style="width:100%" src="/storage/images/cover_images/thumbnails/{{$post->thumbnail}}">
                                 </a>
                             </p>
