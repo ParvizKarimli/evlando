@@ -184,6 +184,7 @@
                             <p>${{ number_format($post->price) }}/month</p>
                         @endif
                         <div>
+							<b>Description:</b>
                             {!! str_limit($post->body, $limit = 150, $end = '...') !!}
                         </div>
                         <small>

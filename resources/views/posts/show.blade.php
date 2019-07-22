@@ -95,7 +95,9 @@
             @elseif($post->type === 'rent')
                 <p>${{ number_format($post->price) }}/month</p>
             @endif
-            <div>{!!$post->body!!}</div>
+            <div>
+				<b>Description:</b>
+				{!!$post->body!!}</div>
             <small>Created at {{$post->created_at}} by {{$post->user->name}}</small>
             <div>
                 <i class="fas fa-eye"></i>
