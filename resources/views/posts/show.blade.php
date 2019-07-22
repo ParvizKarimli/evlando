@@ -3,79 +3,15 @@
 @section('content')
 <div class="well">
     <div class="row">
-        <div class="col-md-6 col-sm-6">
-            <img style="width:100%" src="/storage/images/cover_images/{{$post->cover_image}}">
-        </div>
-        <div class="col-md-6 col-sm-6">
-            <h1>
-                @if(auth()->user())
-                    @if($bookmarked === false)
-                        <a href="" title="Bookmark this post" bookmark-post-id="{{$post->id}}" onclick="bookmarkPost(this);">
-                            <i class="far fa-star"></i>
-                        </a>
-                    @elseif($bookmarked === true)
-                        <a href="" title="Remove this post from bookmarks" bookmark-post-id="{{$post->id}}" onclick="bookmarkPost(this);">
-                            <i class="fas fa-star"></i>
-                        </a>
-                    @endif
-                @elseif(auth()->guest())
-                    <a href="{{route('login')}}" title="Bookmark this post">
-                        <i class="far fa-star"></i>
-                    </a>
-                @endif
-            </h1>
-            @if($post->type === 'sale')
-                <p class="alert-info">For Sale</p>
-            @elseif($post->type === 'rent')
-                <p class="alert-info">For Rent</p>
-            @endif
-            @if($post->property_type === 'apartment')
-                <p>{{ $post->floor }}. floor</p>
-            @elseif($post->property_type === 'house')
-                @if($post->floor === 1)
-                    <p>{{ $post->floor }} floor</p>
-                @else
-                    <p>{{ $post->floor }} floors</p>
-                @endif
-            @endif
-            <p>{{ $post->area }} square meters</p>
-            @if($post->bedrooms === 1)
-                <p>1 bedroom</p>
-            @else
-                <p>{{ $post->bedrooms }} bedrooms</p>
-            @endif
-            @if($post->bathrooms === 1)
-                <p>1 bathroom</p>
-            @else
-                <p>{{ $post->bathrooms }} bathrooms</p>
-            @endif
-            @if($post->type === 'sale')
-                <p>${{ number_format($post->price) }}</p>
-            @elseif($post->type === 'rent')
-                <p>${{ number_format($post->price) }}/month</p>
-            @endif
-            <p>
-                <i class="fas fa-map-marker-alt"></i>
-                {{ $post->location->city }}, {{ $post->location->province }}, {{ $post->location->country }}
-            </p>
-            <small>Created at {{$post->created_at}} by {{$post->user->name}}</small>
-            <div>{!!$post->body!!}</div>
-            <span>
-                <i class="fas fa-eye"></i>
-                {{ Counter::showAndCount('/posts/{$post->id}', $post->id) }}
-            </span>
-        </div>
-    </div>
-</div>
-
-@if(count($images) > 0)
-    <div class="well">
         <div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:600px;height:500px;overflow:hidden;visibility:hidden;">
             <!-- Loading Screen -->
             <div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
                 <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="/storage/images/default/spin.svg" />
             </div>
             <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:600px;height:500px;overflow:hidden;">
+                <div>
+                    <img style="width:100%" src="/storage/images/cover_images/{{$post->cover_image}}">
+                </div>
                 @foreach($images as $image)
                     <div>
                         <img data-u="image" src="/storage/images/{{$image->filename}}" />
@@ -103,8 +39,67 @@
                 </svg>
             </div>
         </div>
+        <div class="text-center">
+            <h1>
+                @if(auth()->user())
+                    @if($bookmarked === false)
+                        <a href="" title="Bookmark this post" bookmark-post-id="{{$post->id}}" onclick="bookmarkPost(this);">
+                            <i class="far fa-star"></i>
+                        </a>
+                    @elseif($bookmarked === true)
+                        <a href="" title="Remove this post from bookmarks" bookmark-post-id="{{$post->id}}" onclick="bookmarkPost(this);">
+                            <i class="fas fa-star"></i>
+                        </a>
+                    @endif
+                @elseif(auth()->guest())
+                    <a href="{{route('login')}}" title="Bookmark this post">
+                        <i class="far fa-star"></i>
+                    </a>
+                @endif
+            </h1>
+            @if($post->type === 'sale')
+                <p class="alert-info">{{ucfirst($post->property_type)}} For Sale</p>
+            @elseif($post->type === 'rent')
+                <p class="alert-info">{{ucfirst($post->property_type)}} For Rent</p>
+            @endif
+            <p>
+                <i class="fas fa-map-marker-alt"></i>
+                {{ $post->location->city }}, {{ $post->location->province }}, {{ $post->location->country }}
+            </p>
+            @if($post->property_type === 'apartment')
+                <p>{{ $post->floor }}. floor</p>
+            @elseif($post->property_type === 'house')
+                @if($post->floor === 1)
+                    <p>{{ $post->floor }} floor</p>
+                @else
+                    <p>{{ $post->floor }} floors</p>
+                @endif
+            @endif
+            <p>{{ $post->area }} square meters</p>
+            @if($post->bedrooms === 1)
+                <p>1 bedroom</p>
+            @else
+                <p>{{ $post->bedrooms }} bedrooms</p>
+            @endif
+            @if($post->bathrooms === 1)
+                <p>1 bathroom</p>
+            @else
+                <p>{{ $post->bathrooms }} bathrooms</p>
+            @endif
+            @if($post->type === 'sale')
+                <p>${{ number_format($post->price) }}</p>
+            @elseif($post->type === 'rent')
+                <p>${{ number_format($post->price) }}/month</p>
+            @endif
+            <div>{!!$post->body!!}</div>
+            <small>Created at {{$post->created_at}} by {{$post->user->name}}</small>
+            <div>
+                <i class="fas fa-eye"></i>
+                {{ Counter::showAndCount('/posts/{$post->id}', $post->id) }}
+            </div>
+        </div>
     </div>
-@endif
+</div>
 
 @if(!Auth::guest() && Auth::user()->id === $post->user_id)
     <hr>
