@@ -20,15 +20,15 @@
                 @if(count($posts) > 0)
                     <table class="table table-striped">
                         <tr>
-                            <th>ID</th>
+                            <th>Post</th>
                             <th></th>
                             <th></th>
                         </tr>
                         @foreach($posts as $post)
                             <tr>
-                                <td>
+                                <td class="post-thumb">
                                     <a href="/posts/{{$post->id}}/{{$post->slug}}">
-                                        {{$post->id}}
+                                        <img src="/storage/images/cover_images/thumbnails/{{$post->thumbnail}}">
                                     </a>
                                 </td>
                                 <td>

@@ -121,14 +121,13 @@
         @foreach($posts as $post)
             <div class="well">
                 <div class="row">
-                    <div class="col-md-4 col-sm-4">
-                        <img style="width:100%" src="/storage/images/cover_images/thumbnails/{{$post->thumbnail}}">
+                    <div class="post-thumb col-md-4 col-sm-4">
+                        <a href="/posts/{{$post->id}}/{{$post->slug}}">
+                            <img style="width:100%" src="/storage/images/cover_images/thumbnails/{{$post->thumbnail}}">
+                        </a>
                     </div>
                     <div class="col-md-8 col-sm-8">
                         <h3>
-                            <a href="/posts/{{$post->id}}/{{$post->slug}}">
-                                {{$post->id}}
-                            </a>
                             @if(auth()->user())
                                 @if(in_array($post->id, $bookmarked_posts_ids))
                                     <a href="" title="Remove this post from bookmarks" bookmark-post-id="{{$post->id}}" onclick="bookmarkPost(this);">

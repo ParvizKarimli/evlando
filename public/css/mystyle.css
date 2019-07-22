@@ -9,3 +9,7 @@ div#location-suggestions-container {
 a.location-suggestion-row {
     text-decoration: none;
 }
+
+.post-thumb {
+    border: 1px solid dodgerblue;
+}

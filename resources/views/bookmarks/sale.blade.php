@@ -22,14 +22,14 @@
                 @if(count($bookmarks) > 0)
                     <table class="table table-striped">
                         <tr>
-                            <th>Post ID & Link</th>
+                            <th>Post</th>
                             <th></th>
                         </tr>
                         @foreach($bookmarks as $bookmark)
                             <tr>
-                                <td>
+                                <td class="post-thumb">
                                     <a href="/posts/{{$bookmark->post_id}}/{{$bookmark->post->slug}}">
-                                        {{$bookmark->post->id}}
+                                        <img src="/storage/images/cover_images/thumbnails/{{$bookmark->post->thumbnail}}">
                                     </a>
                                 </td>
                                 <td>
