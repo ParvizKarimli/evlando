@@ -7,12 +7,6 @@
 <div class="col-md-8 col-sm-8">
     <h1>
         Posts
-        <label for="type">Type:</label>
-        <select name="type" site="posts" onchange="typeChange(this)">
-            <option value="all">All</option>
-            <option value="sale">For Sale</option>
-            <option value="rent">For Rent</option>
-        </select>
     </h1>
 </div>
 <div class="col-md-4 col-sm-4">

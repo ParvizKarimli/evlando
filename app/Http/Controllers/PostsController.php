@@ -410,54 +410,6 @@ class PostsController extends Controller
         return redirect()->back()->with('success', 'Image Removed');
     }
 
-    // For sale
-    public function sale()
-    {
-        $posts = Post::where('type', 'sale')->orderBy('id', 'desc')->paginate(10);
-        if(auth()->user())
-        {
-            $user_id = auth()->user()->id;
-            $bookmarked = array();
-            foreach ($posts as $post)
-            {
-                if(!empty(Bookmark::where('user_id', $user_id)->where('post_id', $post->id)->first()))
-                {
-                    $bookmarked[$post->id] = true;
-                }
-                else
-                {
-                    $bookmarked[$post->id] = false;
-                }
-            }
-            return view('posts.sale')->with(['posts' => $posts, 'bookmarked' => $bookmarked]);
-        }
-        return view('posts.sale')->with('posts', $posts);
-    }
-
-    // For rent
-    public function rent()
-    {
-        $posts = Post::where('type', 'rent')->orderBy('id', 'desc')->paginate(10);
-        if(auth()->user())
-        {
-            $user_id = auth()->user()->id;
-            $bookmarked = array();
-            foreach ($posts as $post)
-            {
-                if(!empty(Bookmark::where('user_id', $user_id)->where('post_id', $post->id)->first()))
-                {
-                    $bookmarked[$post->id] = true;
-                }
-                else
-                {
-                    $bookmarked[$post->id] = false;
-                }
-            }
-            return view('posts.rent')->with(['posts' => $posts, 'bookmarked' => $bookmarked]);
-        }
-        return view('posts.rent')->with('posts', $posts);
-    }
-
     // Search posts
     public function search(Request $request)
     {
