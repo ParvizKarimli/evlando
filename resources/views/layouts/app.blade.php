@@ -32,9 +32,6 @@
     <script src="{{ asset('js/jssor.slider-27.5.0.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/jssor_internal.js') }}" type="text/javascript"></script>
     @yield('jssor')
-    <script src="{{ asset('js/image_fields_creator.js') }}"></script>
-    <script src="{{ asset('js/bookmark_post.js') }}"></script>
-    <script src="{{ asset('js/change_type.js') }}"></script>
     <script src="{{ asset('js/myscript.js') }}"></script>
 </body>
 </html>
