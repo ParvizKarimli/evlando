@@ -46,5 +46,6 @@ function selectLocationSuggestion() {
     event.preventDefault();
 
     locationInput.value = this.innerText;
+    document.getElementById('location_id').value = this.getAttribute('location-id');
     locationSuggestionsContainer.style.display = 'none';
 }

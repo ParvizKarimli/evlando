@@ -22,6 +22,7 @@
             <div class="form-group">
                 {!! Form::label('location-input', 'Location') !!}
                 {!! Form::text('location', '', ['id' => 'location-input', 'class' => 'form-control', 'placeholder' => 'New York', 'autocomplete' => 'off']) !!}
+                {!! Form::hidden('location_id', '', ['id' => 'location_id']) !!}
             </div>
             <div id="location-suggestions-container"></div>
             <div class="form-group">
