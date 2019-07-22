@@ -32,7 +32,7 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="/posts/{{$post->id}}/edit" class="btn btn-default">Edit</a>
+                                   <a href="/posts/{{$post->id}}/edit" class="btn btn-default">Edit</a>
                                 </td>
                                 <td>
                                     <a class="btn btn-danger pull-right" href="" onclick="

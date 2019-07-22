@@ -122,10 +122,12 @@
             <div class="well">
                 <div class="row">
                     <div class="container">
-                        <div class="post-thumb col-md-4 col-sm-4">
-                            <a href="/posts/{{$post->id}}/{{$post->slug}}">
-                                <img style="width:100%" src="/storage/images/cover_images/thumbnails/{{$post->thumbnail}}">
-                            </a>
+                        <div class="col-md-4 col-sm-4">
+                            <p class="post-thumb">
+                                <a href="/posts/{{$post->id}}/{{$post->slug}}">
+                                    <img style="width:100%" src="/storage/images/cover_images/thumbnails/{{$post->thumbnail}}">
+                                </a>
+                            </p>
                         </div>
                         <div class="col-md-8 col-sm-8"></div>
                     </div>
