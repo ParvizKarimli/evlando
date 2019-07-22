@@ -1,14 +1,6 @@
 var locationInput = document.getElementById('location-input');
-var closeSuggestionsButton = document.getElementById('close-suggestions-button');
 
 locationInput.addEventListener('keyup', getLocationSuggestions);
-locationInput.addEventListener('focus', showLocationSuggestions);
-if(closeSuggestionsButton) {
-    closeSuggestionsButton.addEventListener('click', function(e) {
-        e.target.preventDefault();
-        hideLocationSuggestions(e);
-    });
-}
 
 var locationSuggestionsContainer = document.getElementById('location-suggestions-container');
 
@@ -56,14 +48,4 @@ function selectLocationSuggestion() {
 
     document.getElementById('location-input').value = this.innerText;
     locationSuggestionsContainer.style.display = 'none';
-}
-
-function showLocationSuggestions() {
-    if(this.value.length > 0) {
-        locationSuggestionsContainer.style.display='block';
-    }
-}
-
-function hideLocationSuggestions() {
-    locationSuggestionsContainer.style.display='none';
 }

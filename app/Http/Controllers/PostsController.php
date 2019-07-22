@@ -542,7 +542,6 @@ class PostsController extends Controller
             {
                 echo '<p><a class="location-suggestion-row" title="Click to select the location suggestion" href="" location-id="'. $location->id .'">' . $location->city . ', ' . $location->province . ', ' . $location->country . '</a></p>';
             }
-            echo '<h3 class="text-center"><a id="close-suggestions-button" href="" title="Click to close the location suggestions list"><i class="fas fa-chevron-up"></i></a></h3>';
         }
     }
 }
