@@ -27,7 +27,7 @@
                         @foreach($posts as $post)
                             <tr>
                                 <td>
-                                    <a href="/posts/{{$post->id}}">
+                                    <a href="/posts/{{$post->id}}/{{$post->slug}}">
                                         {{$post->title}}
                                     </a>
                                 </td>

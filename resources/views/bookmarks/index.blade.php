@@ -28,7 +28,7 @@
                         @foreach($bookmarks as $bookmark)
                             <tr>
                                 <td>
-                                    <a href="/posts/{{$bookmark->post_id}}">
+                                    <a href="/posts/{{$bookmark->post_id}}/{{$bookmark->post->slug}}">
                                         {{$bookmark->post->title}}
                                     </a>
                                 </td>
