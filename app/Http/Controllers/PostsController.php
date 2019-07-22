@@ -124,10 +124,10 @@ class PostsController extends Controller
         $post->title = $request->input('title');
         $post->slug = str_slug(
             $request->input('property_type') .
-            ' for ' . $request->input('type') . '-' .
-            $request->input('floor') . ' floor ' .
-            $request->input('bedrooms') . ' beds ' .
-            $request->input('bathrooms') . ' baths ' .
+            ' for ' . $request->input('type') .
+            ' floor ' . $request->input('floor') .
+            ' beds ' . $request->input('bedrooms') .
+            ' baths ' . $request->input('bathrooms') . '-' .
             $request->input('location'),
             '-');
         $post->body = $request->input('body');
@@ -291,10 +291,10 @@ class PostsController extends Controller
         $post->title = $request->input('title');
         $post->slug = str_slug(
             $request->input('property_type') .
-            ' for ' . $request->input('type') . '-' .
-            $request->input('floor') . ' floor ' .
-            $request->input('bedrooms') . ' beds ' .
-            $request->input('bathrooms') . ' baths ' .
+            ' for ' . $request->input('type') .
+            ' floor ' . $request->input('floor') .
+            ' beds ' . $request->input('bedrooms') .
+            ' baths ' . $request->input('bathrooms') . '-' .
             $request->input('location'),
             '-');
         $post->body = $request->input('body');
@@ -333,7 +333,7 @@ class PostsController extends Controller
             }
         }
 
-        return redirect('posts/' . $post->id)->with('success', 'Post Updated');
+        return redirect('posts/' . $post->id . '/' . $post->slug)->with('success', 'Post Updated');
     }
 
     /**
