@@ -8,7 +8,7 @@
         </div>
         <div class="col-md-6 col-sm-6">
             <h1>
-                {{$post->title}}
+                {{$post->id}}
                 @if(auth()->user())
                     @if($bookmarked === false)
                         <a href="" title="Bookmark this post" bookmark-post-id="{{$post->id}}" onclick="bookmarkPost(this);">

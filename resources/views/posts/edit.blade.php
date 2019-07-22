@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>Edit Post <a href="/posts/{{$post->id}}/{{$post->slug}}">{{$post->title}}</a></h1>
+<h1>Edit Post <a href="/posts/{{$post->id}}/{{$post->slug}}">{{$post->id}}</a></h1>
 {!! Form::open(['id' => 'post-form', 'action' => ['PostsController@update', $post->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
     <div class="form-group {{ $errors->has('location_id') ? 'has-error' : '' }}">
         {{Form::label('location-input', 'Location')}}
@@ -106,15 +106,6 @@
         @if($errors->has('price'))
             <span class="help-block">
                 <strong>{{ $errors->first('price') }}</strong>
-            </span>
-        @endif
-    </div>
-    <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
-        {{Form::label('title', 'Title')}}
-        {{Form::text('title', $post->title, ['class' => 'form-control', 'placeholder' => 'Title', 'required' => 'required'])}}
-        @if($errors->has('title'))
-            <span class="help-block">
-                <strong>{{ $errors->first('title') }}</strong>
             </span>
         @endif
     </div>

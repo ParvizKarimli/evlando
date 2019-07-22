@@ -106,15 +106,6 @@
             </span>
         @endif
     </div>
-    <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
-        {{Form::label('title', 'Title')}}
-        {{Form::text('title', '', ['class' => 'form-control', 'placeholder' => 'Title', 'required' => 'required'])}}
-        @if($errors->has('title'))
-            <span class="help-block">
-                <strong>{{ $errors->first('title') }}</strong>
-            </span>
-        @endif
-    </div>
     <div class="form-group {{ $errors->has('body') ? 'has-error' : '' }}">
         {{Form::label('body', 'Body')}}
         {{Form::textarea('body', '', ['id' => 'article-ckeditor', 'class' => 'form-control', 'placeholder' => 'Body', 'required' => 'required'])}}

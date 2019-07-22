@@ -71,7 +71,6 @@ class PostsController extends Controller
             'bedrooms' => 'required|integer|min:1',
             'bathrooms' => 'required|integer|min:1',
             'price' => 'required|integer|min:1',
-            'title' => 'required',
             'body' => 'required',
             'cover_image' => 'image|nullable|max:1999'
         ], $custom_validation_messages);
@@ -121,7 +120,6 @@ class PostsController extends Controller
         $post->bedrooms = $request->input('bedrooms');
         $post->bathrooms = $request->input('bathrooms');
         $post->price = $request->input('price');
-        $post->title = $request->input('title');
         $post->slug = str_slug(
             $request->input('property_type') .
             ' for ' . $request->input('type') .
@@ -231,7 +229,6 @@ class PostsController extends Controller
             'bedrooms' => 'required|integer|min:1',
             'bathrooms' => 'required|integer|min:1',
             'price' => 'required|integer|min:1',
-            'title' => 'required',
             'body' => 'required',
             'cover_image' => 'image|nullable|max:1999'
         ], $custom_validation_messages);
@@ -288,7 +285,6 @@ class PostsController extends Controller
         $post->bedrooms = $request->input('bedrooms');
         $post->bathrooms = $request->input('bathrooms');
         $post->price = $request->input('price');
-        $post->title = $request->input('title');
         $post->slug = str_slug(
             $request->input('property_type') .
             ' for ' . $request->input('type') .

@@ -20,7 +20,7 @@
                 @if(count($posts) > 0)
                     <table class="table table-striped">
                         <tr>
-                            <th>Title</th>
+                            <th>ID</th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -28,7 +28,7 @@
                             <tr>
                                 <td>
                                     <a href="/posts/{{$post->id}}/{{$post->slug}}">
-                                        {{$post->title}}
+                                        {{$post->id}}
                                     </a>
                                 </td>
                                 <td>

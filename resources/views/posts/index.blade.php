@@ -127,7 +127,7 @@
                     <div class="col-md-8 col-sm-8">
                         <h3>
                             <a href="/posts/{{$post->id}}/{{$post->slug}}">
-                                {{$post->title}}
+                                {{$post->id}}
                             </a>
                             @if(auth()->user())
                                 @if(in_array($post->id, $bookmarked_posts_ids))
