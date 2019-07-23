@@ -109,12 +109,12 @@
             </span>
         @endif
     </div>
-    <div class="form-group {{ $errors->has('body') ? 'has-error' : '' }}">
-        {{Form::label('body', 'Description')}}
-        {{Form::textarea('body', $post->body, ['id' => 'article-ckeditor', 'class' => 'form-control', 'placeholder' => 'Body', 'required' => 'required'])}}
-        @if($errors->has('body'))
+    <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
+        {{Form::label('description', 'Description')}}
+        {{Form::textarea('description', $post->description, ['id' => 'article-ckeditor', 'class' => 'form-control', 'placeholder' => 'description', 'required' => 'required'])}}
+        @if($errors->has('description'))
             <span class="help-block">
-                <strong>{{ $errors->first('body') }}</strong>
+                <strong>{{ $errors->first('description') }}</strong>
             </span>
         @endif
     </div>

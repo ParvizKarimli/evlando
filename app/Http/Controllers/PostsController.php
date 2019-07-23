@@ -71,7 +71,7 @@ class PostsController extends Controller
             'bedrooms' => 'required|integer|min:1',
             'bathrooms' => 'required|integer|min:1',
             'price' => 'required|integer|min:1',
-            'body' => 'required',
+            'description' => 'required',
             'cover_image' => 'image|nullable|max:1999'
         ], $custom_validation_messages);
 
@@ -128,7 +128,7 @@ class PostsController extends Controller
             ' baths ' . $request->input('bathrooms') . '-' .
             $request->input('location'),
             '-');
-        $post->body = $request->input('body');
+        $post->description = $request->input('description');
         $post->cover_image = $filename_to_store;
         $post->thumbnail = $thumbnail_name_to_store;
         $post->save();
@@ -234,7 +234,7 @@ class PostsController extends Controller
             'bedrooms' => 'required|integer|min:1',
             'bathrooms' => 'required|integer|min:1',
             'price' => 'required|integer|min:1',
-            'body' => 'required',
+            'description' => 'required',
             'cover_image' => 'image|nullable|max:1999'
         ], $custom_validation_messages);
 
@@ -298,7 +298,7 @@ class PostsController extends Controller
             ' baths ' . $request->input('bathrooms') . '-' .
             $request->input('location'),
             '-');
-        $post->body = $request->input('body');
+        $post->description = $request->input('description');
         if($request->hasFile('cover_image'))
         {
             $post->cover_image = $filename_to_store;

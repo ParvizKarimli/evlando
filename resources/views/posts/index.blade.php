@@ -187,8 +187,8 @@
                         @endif
                         <div>
 							<b>Description:</b>
-                            {!! str_limit($post->body, $limit = 150, $end = '...') !!}
-							@if(strlen($post->body) > 150)
+                            {!! str_limit($post->description, $limit = 150, $end = '...') !!}
+							@if(strlen($post->description) > 150)
 								<a href="/posts/{{$post->id}}/{{$post->slug}}" target="_blank">
 									Read More
 								</a>

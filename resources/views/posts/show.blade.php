@@ -99,7 +99,7 @@
             @endif
             <div>
 				<b>Description:</b>
-				{!!$post->body!!}</div>
+				{!!$post->description!!}</div>
             <small>Created at {{$post->created_at}} by {{$post->user->name}}</small>
             <div>
                 <i class="fas fa-eye"></i>
