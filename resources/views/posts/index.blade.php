@@ -135,11 +135,13 @@
                         <h3>
                             @if(auth()->user())
                                 @if(in_array($post->id, $bookmarked_posts_ids))
-                                    <a href="" title="Remove this post from bookmarks" bookmark-post-id="{{$post->id}}" onclick="bookmarkPost(this);">
+                                    <a href="" title="Remove this post from bookmarks" bookmark-post-id="{{$post->id}}"
+                                       id="post-to-bookmark">
                                         <i class="fas fa-star"></i>
                                     </a>
                                 @else
-                                    <a href="" title="Bookmark this post" bookmark-post-id="{{$post->id}}" onclick="bookmarkPost(this);">
+                                    <a href="" title="Bookmark this post" bookmark-post-id="{{$post->id}}"
+                                       id="post-to-bookmark">
                                         <i class="far fa-star"></i>
                                     </a>
                                 @endif

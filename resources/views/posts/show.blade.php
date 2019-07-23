@@ -47,11 +47,13 @@
             <h1>
                 @if(auth()->user())
                     @if($bookmarked === false)
-                        <a href="" title="Bookmark this post" bookmark-post-id="{{$post->id}}" onclick="bookmarkPost(this);">
+                        <a href="" title="Bookmark this post" bookmark-post-id="{{$post->id}}"
+                        id="post-to-bookmark">
                             <i class="far fa-star"></i>
                         </a>
                     @elseif($bookmarked === true)
-                        <a href="" title="Remove this post from bookmarks" bookmark-post-id="{{$post->id}}" onclick="bookmarkPost(this);">
+                        <a href="" title="Remove this post from bookmarks" bookmark-post-id="{{$post->id}}"
+                        id="post-to-bookmark">
                             <i class="fas fa-star"></i>
                         </a>
                     @endif

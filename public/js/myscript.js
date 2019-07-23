@@ -52,11 +52,16 @@ function selectLocationSuggestion() {
     locationSuggestionsContainer.style.display = 'none';
 }
 
-function bookmarkPost(e)
+var postToBookmark = document.getElementById('post-to-bookmark');
+if(postToBookmark) {
+    postToBookmark.addEventListener('click', bookmarkPost);
+}
+
+function bookmarkPost()
 {
     event.preventDefault();
 
-    var post_id = e.getAttribute('bookmark-post-id');
+    var post_id = this.getAttribute('bookmark-post-id'); // ...postToBookmark.getAttribute...
 
     if(window.XMLHttpRequest) {
         // code for IE7+, Firefox, Chrome, Opera, Safari
@@ -77,16 +82,16 @@ function bookmarkPost(e)
         if(this.readyState == 4 && this.status == 200)
         {
             // Check if not bookmarked, then bookmark it
-            if(e.innerHTML == '<i class="far fa-star"></i>')
+            if(postToBookmark.innerHTML == '<i class="far fa-star"></i>')
             {
-                e.innerHTML = '<i class="fas fa-star"></i>';
-                e.title = 'Remove this post from bookmarks';
+                postToBookmark.innerHTML = '<i class="fas fa-star"></i>';
+                postToBookmark.title = 'Remove this post from bookmarks';
             }
             // Check if bookmarked, then remove it from bookmarks
-            else if(e.innerHTML == '<i class="fas fa-star"></i>')
+            else if(postToBookmark.innerHTML == '<i class="fas fa-star"></i>')
             {
-                e.innerHTML = '<i class="far fa-star"></i>';
-                e.title = 'Add this post to bookmarks';
+                postToBookmark.innerHTML = '<i class="far fa-star"></i>';
+                postToBookmark.title = 'Add this post to bookmarks';
             }
         }
     };
