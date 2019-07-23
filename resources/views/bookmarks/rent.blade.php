@@ -13,7 +13,7 @@
                 <h3>Your Bookmarks</h3>
                 <div class="form-group">
                     <label for="type">Type:</label>
-                    <select name="type" site="bookmarks" onchange="typeChange(this)">
+                    <select id="site-type" name="type" site="bookmarks">
                         <option value="all">All</option>
                         <option value="sale">For Sale</option>
                         <option value="rent" selected>For Rent</option>

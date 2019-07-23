@@ -99,6 +99,25 @@ function bookmarkPost()
     return;
 }
 
+var siteType = document.getElementById('site-type');
+if(siteType) {
+    siteType.addEventListener('change', changeType);
+}
+
+function changeType()
+{
+    var site = this.getAttribute('site');
+    var type = this.value;
+    if(type === 'all')
+    {
+        window.location.href = '/' + site;
+    }
+    else
+    {
+        window.location.href = '/' + site + '/' + type;
+    }
+}
+
 var image_i = 1;
 function addImage() {
     var postForm = document.getElementById('post-form');
