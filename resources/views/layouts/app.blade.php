@@ -27,8 +27,6 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-    @yield('ckeditor')
     <script src="{{ asset('js/jssor.slider-27.5.0.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/jssor_internal.js') }}" type="text/javascript"></script>
     @yield('jssor')

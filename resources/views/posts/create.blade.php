@@ -108,7 +108,7 @@
     </div>
     <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
         {{Form::label('description', 'Description')}}
-        {{Form::textarea('description', '', ['id' => 'article-ckeditor', 'class' => 'form-control', 'placeholder' => 'description', 'required' => 'required'])}}
+        {{Form::textarea('description', '', ['class' => 'form-control', 'placeholder' => 'description', 'required' => 'required'])}}
         @if($errors->has('description'))
             <span class="help-block">
                 <strong>{{ $errors->first('description') }}</strong>
@@ -137,10 +137,4 @@
         {{Form::submit('Submit', ['class' => 'btn btn-primary', 'id' => 'number-of-images-sender'])}}
     </div>
 {!! Form::close() !!}
-@endsection
-
-@section('ckeditor')
-<script>
-    CKEDITOR.replace( 'article-ckeditor' );
-</script>
 @endsection
