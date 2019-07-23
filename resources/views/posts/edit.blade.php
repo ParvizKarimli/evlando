@@ -163,13 +163,13 @@
         @endforeach
     </div>
     <div class="form-group" id="imageAdderButton">
-        <button class="btn btn-default" onclick="event.preventDefault(); addImage()">
+        <button class="btn btn-default" id="image-adder-button">
             <i class="fas fa-plus fa-fw"></i> Add Image
         </button>
     </div>
     <input type="hidden" name="numberOfImages" id="numberOfImages">
     <div class="form-group">
-        {{Form::submit('Submit', ['class' => 'btn btn-primary', 'onclick' => 'sendNumberOfImages()'])}}
+        {{Form::submit('Submit', ['class' => 'btn btn-primary', 'id' => 'number-of-images-sender'])}}
     </div>
 {!! Form::close() !!}
 

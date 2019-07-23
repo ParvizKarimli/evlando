@@ -118,8 +118,15 @@ function changeType()
     }
 }
 
+var imageAdderButton = document.getElementById('image-adder-button');
+if(imageAdderButton) {
+    imageAdderButton.addEventListener('click', addImage);
+}
+
 var image_i = 1;
 function addImage() {
+    event.preventDefault();
+
     var postForm = document.getElementById('post-form');
     var newDiv = document.createElement('div');
     newDiv.setAttribute('class', "form-group");
@@ -141,6 +148,11 @@ function addImage() {
     var imageAdderButton = document.getElementById('imageAdderButton');
     postForm.insertBefore(newDiv, imageAdderButton);
     image_i++;
+}
+
+var numberOfImagesSender = document.getElementById('number-of-images-sender');
+if(numberOfImagesSender) {
+    numberOfImagesSender.addEventListener('click', sendNumberOfImages);
 }
 
 function sendNumberOfImages() {
