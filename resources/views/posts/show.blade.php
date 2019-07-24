@@ -98,8 +98,9 @@
                 <p>${{ number_format($post->price) }}/month</p>
             @endif
             <div>
-				<b>Description:</b>
-				{!!$post->description!!}</div>
+				<b>Description:</b><br>
+				{{ $post->description }}
+            </div>
             <small>Created at {{$post->created_at}} by {{$post->user->name}}</small>
             <div>
                 <i class="fas fa-eye"></i>

@@ -186,8 +186,8 @@
                             <p>${{ number_format($post->price) }}/month</p>
                         @endif
                         <div>
-							<b>Description:</b>
-                            {!! str_limit($post->description, $limit = 150, $end = '...') !!}
+							<b>Description:</b><br>
+                            {{ str_limit($post->description, $limit = 150, $end = '...') }}
 							@if(strlen($post->description) > 150)
 								<a href="/posts/{{$post->id}}/{{$post->slug}}" target="_blank">
 									Read More
