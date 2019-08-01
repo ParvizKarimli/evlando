@@ -490,16 +490,32 @@ class PostsController extends Controller
         {
             $price_max = 100000000;
         }
-        $posts = Post::where('location_id', $location_id)
-            ->whereIn('type', $types)
-            ->whereIn('property_type', $property_types)
-            ->whereBetween('floor', [$floor_min, $floor_max])
-            ->whereBetween('area', [$area_min, $area_max])
-            ->whereBetween('bedrooms', [$bedrooms_min, $bedrooms_max])
-            ->whereBetween('bathrooms', [$bathrooms_min, $bathrooms_max])
-            ->whereBetween('price', [$price_min, $price_max])
-            ->orderBy('id', 'desc')
-            ->paginate(10);
+        // If no location selected, then bring posts from all locations
+        if(empty($location_id))
+        {
+            $posts = Post::whereIn('type', $types)
+                ->whereIn('property_type', $property_types)
+                ->whereBetween('floor', [$floor_min, $floor_max])
+                ->whereBetween('area', [$area_min, $area_max])
+                ->whereBetween('bedrooms', [$bedrooms_min, $bedrooms_max])
+                ->whereBetween('bathrooms', [$bathrooms_min, $bathrooms_max])
+                ->whereBetween('price', [$price_min, $price_max])
+                ->orderBy('id', 'desc')
+                ->paginate(10);
+        }
+        else
+        {
+            $posts = Post::where('location_id', $location_id)
+                ->whereIn('type', $types)
+                ->whereIn('property_type', $property_types)
+                ->whereBetween('floor', [$floor_min, $floor_max])
+                ->whereBetween('area', [$area_min, $area_max])
+                ->whereBetween('bedrooms', [$bedrooms_min, $bedrooms_max])
+                ->whereBetween('bathrooms', [$bathrooms_min, $bathrooms_max])
+                ->whereBetween('price', [$price_min, $price_max])
+                ->orderBy('id', 'desc')
+                ->paginate(10);
+        }
         
         if(auth()->user())
         {
