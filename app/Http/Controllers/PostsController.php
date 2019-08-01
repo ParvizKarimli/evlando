@@ -456,7 +456,7 @@ class PostsController extends Controller
         }
         if(empty($floor_max))
         {
-            $floor_max = 100;
+            $floor_max = 1000;
         }
         if(empty($area_min))
         {
@@ -464,7 +464,7 @@ class PostsController extends Controller
         }
         if(empty($area_max))
         {
-            $area_max = 1000;
+            $area_max = 100000;
         }
         if(empty($bedrooms_min))
         {
