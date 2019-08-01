@@ -472,7 +472,7 @@ class PostsController extends Controller
         }
         if(empty($bedrooms_max))
         {
-            $bedrooms_max = 100;
+            $bedrooms_max = 1000;
         }
         if(empty($bathrooms_min))
         {
@@ -488,7 +488,7 @@ class PostsController extends Controller
         }
         if(empty($price_max))
         {
-            $price_max = 100000000;
+            $price_max = 1000000000;
         }
         // If no location selected, then bring posts from all locations
         if(empty($location_id))
