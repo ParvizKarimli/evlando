@@ -54,7 +54,7 @@
     <div class="form-group {{ $errors->has('floor') ? 'has-error' : '' }}">
         {{Form::label('floor', 'Floor')}}
         <div>
-            {{Form::number('floor', $post->floor, ['min' => 1, 'required' => 'required'])}}
+            {{Form::number('floor', $post->floor, ['min' => 1, 'max' => 1000, 'required' => 'required'])}}
         </div>
         @if($errors->has('floor'))
             <span class="help-block">
@@ -65,7 +65,7 @@
     <div class="form-group {{ $errors->has('area') ? 'has-error' : '' }}">
         {{Form::label('area', 'Area')}}
         <div>
-            {{Form::number('area', $post->area, ['min' => 10, 'required' => 'required'])}} ft<sup>2</sup>
+            {{Form::number('area', $post->area, ['min' => 10, 'max' => 100000, 'required' => 'required'])}} ft<sup>2</sup>
         </div>
         @if($errors->has('area'))
             <span class="help-block">
@@ -76,7 +76,7 @@
     <div class="form-group {{ $errors->has('bedrooms') ? 'has-error' : '' }}">
         {{Form::label('bedrooms', 'Bedrooms')}}
         <div>
-            {{Form::number('bedrooms', $post->bedrooms, ['min' => 1, 'required' => 'required'])}}
+            {{Form::number('bedrooms', $post->bedrooms, ['min' => 1, 'max' => 1000, 'required' => 'required'])}}
         </div>
         @if($errors->has('bedrooms'))
             <span class="help-block">
@@ -87,7 +87,7 @@
     <div class="form-group {{ $errors->has('bathrooms') ? 'has-error' : '' }}">
         {{Form::label('bathrooms', 'Bathrooms')}}
         <div>
-            {{Form::number('bathrooms', $post->bathrooms, ['min' => 1, 'required' => 'required'])}}
+            {{Form::number('bathrooms', $post->bathrooms, ['min' => 1, 'max' => 100, 'required' => 'required'])}}
         </div>
         @if($errors->has('bathrooms'))
             <span class="help-block">
@@ -98,7 +98,7 @@
     <div class="form-group {{ $errors->has('price') ? 'has-error' : '' }}">
         {{Form::label('price', 'Price')}}
         <div>
-            $ {{Form::number('price', $post->price, ['min' => 1, 'required' => 'required'])}}
+            $ {{Form::number('price', $post->price, ['min' => 1, 'max' => 1000000000, 'required' => 'required'])}}
             @if($post->type === 'rent')
                 /month
             @endif

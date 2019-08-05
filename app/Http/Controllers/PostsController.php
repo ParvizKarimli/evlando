@@ -66,11 +66,11 @@ class PostsController extends Controller
             'location_id' => 'required',
             'type' => 'required|in:sale,rent',
             'property_type' => 'required|in:apartment,house',
-            'floor' => 'required|integer|min:1',
-            'area' => 'required|integer|min:10',
-            'bedrooms' => 'required|integer|min:1',
-            'bathrooms' => 'required|integer|min:1',
-            'price' => 'required|integer|min:1',
+            'floor' => 'required|integer|min:1|max:1000',
+            'area' => 'required|integer|min:10|max:100000',
+            'bedrooms' => 'required|integer|min:1|max:1000',
+            'bathrooms' => 'required|integer|min:1|max:100',
+            'price' => 'required|integer|min:1|max:1000000000',
             'description' => 'required',
             'cover_image' => 'image|nullable|max:1999'
         ], $custom_validation_messages);
@@ -229,11 +229,11 @@ class PostsController extends Controller
             'location_id' => 'required',
             'type' => 'required|in:sale,rent',
             'property_type' => 'required|in:apartment,house',
-            'floor' => 'required|integer|min:1',
-            'area' => 'required|integer|min:10',
-            'bedrooms' => 'required|integer|min:1',
-            'bathrooms' => 'required|integer|min:1',
-            'price' => 'required|integer|min:1',
+            'floor' => 'required|integer|min:1|max:1000',
+            'area' => 'required|integer|min:10|max:100000',
+            'bedrooms' => 'required|integer|min:1|max:1000',
+            'bathrooms' => 'required|integer|min:1|max:100',
+            'price' => 'required|integer|min:1|max:1000000000',
             'description' => 'required',
             'cover_image' => 'image|nullable|max:1999'
         ], $custom_validation_messages);
