@@ -110,7 +110,7 @@
     </div>
 </div>
 
-@if(!Auth::guest() && Auth::user()->id === $post->user_id)
+@if(!Auth::guest() && (Auth::user()->id === $post->user_id || Auth::user()->role === 'mod' || Auth::user()->role === 'admin'))
     <hr>
     <a href="/posts/{{$post->id}}/edit" class="btn btn-default">Edit</a>
 
