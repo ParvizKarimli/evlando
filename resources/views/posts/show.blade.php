@@ -110,6 +110,22 @@
     </div>
 </div>
 
+@if(auth()->user() && (auth()->user()->role === 'mod' || auth()->user()->role === 'admin'))
+    @if($post->suspended === 0)
+        <a class="btn btn-warning" href="" onclick="
+            event.preventDefault();
+            if(confirm('Suspend post?')) {
+                document.getElementById('post-suspend-form-{{$post->id}}').submit();
+            }
+        ">
+            Suspend
+        </a>
+    @endif
+    {!! Form::open(['action' => ['PostsController@suspend'], 'method' => 'POST', 'id' => 'post-suspend-form-' . $post->id]) !!}
+        {!! Form::hidden('id', $post->id) !!}
+    {!! Form::close() !!}
+@endif
+
 @if(!Auth::guest() && Auth::user()->id === $post->user_id)
     <hr>
     <a href="/posts/{{$post->id}}/edit" class="btn btn-default">Edit</a>
