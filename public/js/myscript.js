@@ -52,16 +52,19 @@ function selectLocationSuggestion() {
     locationSuggestionsContainer.style.display = 'none';
 }
 
-var postToBookmark = document.getElementById('post-to-bookmark');
-if(postToBookmark) {
-    postToBookmark.addEventListener('click', bookmarkPost);
+var postsToBookmark = document.querySelectorAll('.post-to-bookmark');
+if(postsToBookmark) {
+    for(var i=0; i<postsToBookmark.length; i++) {
+        postsToBookmark[i].addEventListener('click', bookmarkPost);
+    }
 }
 
 function bookmarkPost()
 {
     event.preventDefault();
 
-    var post_id = this.getAttribute('bookmark-post-id'); // ...postToBookmark.getAttribute...
+    var post_id = this.getAttribute('bookmark-post-id');
+    var postToBookmark = this;
 
     if(window.XMLHttpRequest) {
         // code for IE7+, Firefox, Chrome, Opera, Safari
