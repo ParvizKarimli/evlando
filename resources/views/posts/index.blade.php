@@ -195,7 +195,7 @@
 							@endif
                         </div>
                         <small>
-                            Created at {{$post->created_at}} by {{$post->user->name}}
+                            Created at {{$post->created_at}} by <a href="/users/{{$post->user->id}}">{{$post->user->name}}</a>
                         </small>
                     </div>
                 </div>

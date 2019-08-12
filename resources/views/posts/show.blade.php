@@ -101,7 +101,7 @@
 				<b>Description:</b><br>
 				{{ $post->description }}
             </div>
-            <small>Created at {{$post->created_at}} by {{$post->user->name}}</small>
+            <small>Created at {{$post->created_at}} by <a href="/users/{{$post->user->id}}">{{$post->user->name}}</a></small>
             <div>
                 <i class="fas fa-eye"></i>
                 {{ Counter::showAndCount('/posts/{$post->id}', $post->id) }}
