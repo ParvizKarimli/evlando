@@ -15,11 +15,11 @@
                     <select id="site-type" name="type" site="posts">
                         <option value="all">All</option>
                         <option value="suspended">Suspended</option>
-                        <option value="active">Active</option>
+                        <option value="active" selected>Active</option>
                     </select>
                 </div>
 
-                <h3>Posts</h3>
+                <h3>Active Posts</h3>
                 @if(count($posts) > 0)
                     <table class="table table-striped">
                         <tr>
@@ -83,7 +83,7 @@
                     </table>
                     {{$posts->links()}}
                 @else
-                    <p>No posts found.</p>
+                    <p>No active posts found.</p>
                 @endif
             </div>
         </div>

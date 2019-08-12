@@ -382,10 +382,34 @@ class PostsController extends Controller
     {
         $post_id = $request->id;
         $post = Post::find($post_id);
-        $post->suspended = 1;
-        $post->save();
+        if($post->suspended === 0)
+        {
+            $post->suspended = 1;
+            $post->save();
+            return redirect('posts')->with('success', 'Post Suspended');
+        }
+        elseif($post->suspended === 1)
+        {
+            $post->suspended = 0;
+            $post->save();
+            return redirect('posts')->with('success', 'Post Resumed');
+        }
+    }
 
-        return redirect('posts')->with('success', 'Post Suspended');
+    public function suspended()
+    {
+        $posts = Post::where('suspended', 1)
+            ->orderBy('id', 'desc')
+            ->paginate(20);
+        return view('posts.suspended')->with('posts', $posts);
+    }
+
+    public function active()
+    {
+        $posts = Post::where('suspended', 0)
+            ->orderBy('id', 'desc')
+            ->paginate(20);
+        return view('posts.active')->with('posts', $posts);
     }
 
     // Remove Cover Image

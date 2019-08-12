@@ -17,6 +17,8 @@ Route::get('/', 'PagesController@index');
 Route::get('about', 'PagesController@about');
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 Route::get('posts/search', 'PostsController@search');
+Route::get('posts/suspended', 'PostsController@suspended');
+Route::get('posts/active', 'PostsController@active');
 Route::resource('posts', 'PostsController');
 Route::get('posts/{id}/{slug}', 'PostsController@show');
 Route::post('posts/remove_cover_image', 'PostsController@remove_cover_image');
