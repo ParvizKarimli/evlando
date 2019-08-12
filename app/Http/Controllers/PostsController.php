@@ -168,6 +168,14 @@ class PostsController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
+        if(empty($post))
+        {
+            return redirect('/')->with('error', 'Post Not Found');
+        }
+        elseif($post->suspended === 1)
+        {
+            return redirect('/')->with('error', 'Suspended Post');
+        }
         $images = $post->images;
         $number_of_images = count($images);
         $bookmarked = false;
