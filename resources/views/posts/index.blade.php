@@ -49,9 +49,6 @@
                                         ">
                                             Suspend
                                         </a>
-                                        {!! Form::open(['action' => ['PostsController@suspend'], 'method' => 'POST', 'id' => 'post-suspend-form-' . $post->id]) !!}
-                                            {!! Form::hidden('id', $post->id) !!}
-                                        {!! Form::close() !!}
                                     @elseif($post->suspended === 1)
                                         <a class="btn btn-warning pull-right" href="" onclick="
                                             event.preventDefault();
@@ -61,10 +58,10 @@
                                         ">
                                             Resume
                                         </a>
-                                        {!! Form::open(['action' => ['PostsController@suspend'], 'method' => 'POST', 'id' => 'post-suspend-form-' . $post->id]) !!}
-                                            {!! Form::hidden('id', $post->id) !!}
-                                        {!! Form::close() !!}
                                     @endif
+                                    {!! Form::open(['action' => ['PostsController@suspend'], 'method' => 'POST', 'id' => 'post-suspend-form-' . $post->id]) !!}
+                                        {!! Form::hidden('id', $post->id) !!}
+                                    {!! Form::close() !!}
                                 </td>
                                 <td>
                                     <a class="btn btn-danger pull-right" href="" onclick="
