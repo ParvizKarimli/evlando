@@ -49,7 +49,7 @@
                     </table>
                     {{$bookmarks->links()}}
                 @else
-                    <p>You have no bookmarks for properties for rent.</p>
+                    <p>You have no bookmarked property for rent.</p>
                 @endif
             </div>
         </div>
