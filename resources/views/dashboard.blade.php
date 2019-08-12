@@ -19,7 +19,9 @@
 
                 <p><a href="/bookmarks" class="btn btn-link">Your Bookmarks</a></p>
 
-                <p><a href="/posts" class="btn btn-link">Posts</a></p>
+                @if(auth()->user() && (auth()->user()->role === 'mod' || auth()->user()->role === 'admin'))
+                    <p><a href="/posts" class="btn btn-link">Posts</a></p>
+                @endif
 
                 <p><a href="/posts/create" class="btn btn-link">Create Post</a></p>
 

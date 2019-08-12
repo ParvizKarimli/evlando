@@ -380,6 +380,10 @@ class PostsController extends Controller
 
     public function suspend(Request $request)
     {
+        if(auth()->user()->role !== 'mod' && auth()->user()->role !== 'admin')
+        {
+            return redirect('dashboard')->with('error', 'Unauthorized Page');
+        }
         $post_id = $request->id;
         $post = Post::find($post_id);
         if($post->suspended === 0)
@@ -398,6 +402,10 @@ class PostsController extends Controller
 
     public function suspended()
     {
+        if(auth()->user()->role !== 'mod' && auth()->user()->role !== 'admin')
+        {
+            return redirect('dashboard')->with('error', 'Unauthorized Page');
+        }
         $posts = Post::where('suspended', 1)
             ->orderBy('id', 'desc')
             ->paginate(20);
@@ -406,6 +414,10 @@ class PostsController extends Controller
 
     public function active()
     {
+        if(auth()->user()->role !== 'mod' && auth()->user()->role !== 'admin')
+        {
+            return redirect('dashboard')->with('error', 'Unauthorized Page');
+        }
         $posts = Post::where('suspended', 0)
             ->orderBy('id', 'desc')
             ->paginate(20);
