@@ -87,7 +87,7 @@
                                     @endif
                                 </div>
                                 <small>
-                                    Created at {{$post->created_at}} by {{$post->user->name}}
+                                    Created at {{$post->created_at}}
                                 </small>
                             </div>
                         </div>
