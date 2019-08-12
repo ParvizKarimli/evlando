@@ -378,6 +378,16 @@ class PostsController extends Controller
         return redirect('posts')->with('success', 'Post Removed');
     }
 
+    public function suspend(Request $request)
+    {
+        $post_id = $request->id;
+        $post = Post::find($post_id);
+        $post->suspended = 1;
+        $post->save();
+
+        return redirect('posts')->with('success', 'Post Suspended');
+    }
+
     // Remove Cover Image
     public function remove_cover_image(Request $request)
     {
