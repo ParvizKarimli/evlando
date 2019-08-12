@@ -13,6 +13,9 @@
                     </div>
                 @endif
 
+                @if(Auth::user()->role === 'admin')
+                    <p><a href="/users" class="btn btn-primary">Users</a></p>
+                @endif
                 <p><a href="/bookmarks" class="btn btn-primary">Bookmarks</a></p>
 
                 <a href="/posts/create" class="btn btn-primary">Create Post</a>
