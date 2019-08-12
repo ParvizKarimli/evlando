@@ -8,7 +8,7 @@
 
             <div class="panel-body">
 
-                <h3>Posts of {{$user->name}}</h3>
+                <h3>Posts by {{$user->name}}</h3>
                 @if(count($posts) > 0)
                     @foreach($posts as $post)
                         <div class="well">
