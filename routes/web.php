@@ -26,3 +26,4 @@ Route::get('bookmarks/sale', 'BookmarksController@sale');
 Route::get('bookmarks/rent', 'BookmarksController@rent');
 Route::resource('bookmarks', 'BookmarksController');
 Route::post('bookmarks/bookmark', 'BookmarksController@bookmark');
+Route::resource('users', 'UsersController');
