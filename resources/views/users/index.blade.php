@@ -44,7 +44,7 @@
                                     {{$user->updated_at}}
                                 </td>
                                 <td>
-                                    <a class="btn btn-warning pull-right" href="/users/{{$user->id}}">
+                                    <a class="btn btn-warning pull-right" href="/users/{{$user->id}}/edit">
                                         Edit
                                     </a>
                                 </td>
