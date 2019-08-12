@@ -32,7 +32,9 @@
                                     {{$user->role}}
                                 </td>
                                 <td>
-                                    {{$user->name}}
+                                    <a href="/users/{{$user->id}}">
+                                        {{$user->name}}
+                                    </a>
                                 </td>
                                 <td>
                                     {{$user->email}}
