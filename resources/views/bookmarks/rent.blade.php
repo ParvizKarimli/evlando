@@ -4,13 +4,12 @@
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-default">
-            <div class="panel-heading">Bookmarks</div>
+            <div class="panel-heading">Your Bookmarks</div>
 
             <div class="panel-body">
 
-                <p><a href="/dashboard" class="btn btn-primary">Dashboard</a></p>
+                <p><a href="/dashboard" class="btn btn-link">Dashboard</a></p>
 
-                <h3>Your Bookmarks</h3>
                 <div class="form-group">
                     <label for="type">Type:</label>
                     <select id="site-type" name="type" site="bookmarks">
@@ -19,6 +18,7 @@
                         <option value="rent" selected>For Rent</option>
                     </select>
                 </div>
+                <h3>Your Bookmarks (For Rent)</h3>
                 @if(count($bookmarks) > 0)
                     <table class="table table-striped">
                         <tr>

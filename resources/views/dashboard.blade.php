@@ -14,11 +14,11 @@
                 @endif
 
                 @if(Auth::user()->role === 'admin')
-                    <p><a href="/users" class="btn btn-primary">Users</a></p>
+                    <p><a href="/users" class="btn btn-link">Users</a></p>
                 @endif
-                <p><a href="/bookmarks" class="btn btn-primary">Bookmarks</a></p>
+                <p><a href="/bookmarks" class="btn btn-link">Your Bookmarks</a></p>
 
-                <a href="/posts/create" class="btn btn-primary">Create Post</a>
+                <a href="/posts/create" class="btn btn-link">Create Post</a>
                 <h3>Your Posts</h3>
                 @if(count($posts) > 0)
                     <table class="table table-striped">

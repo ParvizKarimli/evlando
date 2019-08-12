@@ -8,7 +8,7 @@
 
             <div class="panel-body">
 
-                <p><a href="/dashboard" class="btn btn-primary">Dashboard</a></p>
+                <p><a href="/dashboard" class="btn btn-link">Dashboard</a></p>
 
                 <h3>Users</h3>
                 @if(count($users) > 0)
