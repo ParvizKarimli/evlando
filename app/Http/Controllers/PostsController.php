@@ -203,7 +203,7 @@ class PostsController extends Controller
         $post = Post::find($id);
 
         // Check for correct user
-        if(auth()->user()->id !== $post->user_id && auth()->user()->role !== 'mod' && auth()->user()->role !== 'admin')
+        if(auth()->user()->id !== $post->user_id)
         {
             return redirect('posts')->with('error', 'Unauthorized Page');
         }
@@ -348,7 +348,7 @@ class PostsController extends Controller
         $post = Post::find($id);
 
         // Check for correct user
-        if(auth()->user()->id !== $post->user_id && auth()->user()->role !== 'mod' && auth()->user()->role !== 'admin')
+        if(auth()->user()->id !== $post->user_id)
         {
             return redirect('posts')->with('error', 'Unauthorized Page');
         }
