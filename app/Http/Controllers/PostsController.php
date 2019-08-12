@@ -18,7 +18,7 @@ class PostsController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('auth', ['except' => ['show']]);
     }
 
     /**
@@ -28,16 +28,11 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('id', 'desc')->paginate(10);
-        if(auth()->user())
+        if(auth()->user()->role !== 'mod' && auth()->user()->role !== 'admin')
         {
-            $user_id = auth()->user()->id;
-            $bookmarked_posts_ids = Bookmark::where('user_id', $user_id)
-                ->pluck('post_id')
-                ->toArray();
-
-            return view('posts.index')->with(['posts' => $posts, 'bookmarked_posts_ids' => $bookmarked_posts_ids]);
+            return redirect('dashboard')->with('error', 'Unauthorized Page');
         }
+        $posts = Post::orderBy('id', 'desc')->paginate(20);
         return view('posts.index')->with('posts', $posts);
     }
 
@@ -348,7 +343,7 @@ class PostsController extends Controller
         $post = Post::find($id);
 
         // Check for correct user
-        if(auth()->user()->id !== $post->user_id)
+        if(auth()->user()->id !== $post->user_id && auth()->user()->role !== 'mod' && auth()->user()->role !== 'admin')
         {
             return redirect('posts')->with('error', 'Unauthorized Page');
         }
@@ -524,9 +519,9 @@ class PostsController extends Controller
                 ->pluck('post_id')
                 ->toArray();
 
-            return view('posts.index')->with(['posts' => $posts, 'bookmarked_posts_ids' => $bookmarked_posts_ids]);
+            return view('pages.index')->with(['posts' => $posts, 'bookmarked_posts_ids' => $bookmarked_posts_ids]);
         }
-        return view('posts.index')->with('posts', $posts);
+        return view('pages.index')->with('posts', $posts);
     }
 
     public function get_location_suggestions(Request $request)

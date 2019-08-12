@@ -16,9 +16,13 @@
                 @if(Auth::user()->role === 'admin')
                     <p><a href="/users" class="btn btn-link">Users</a></p>
                 @endif
+
                 <p><a href="/bookmarks" class="btn btn-link">Your Bookmarks</a></p>
 
-                <a href="/posts/create" class="btn btn-link">Create Post</a>
+                <p><a href="/posts" class="btn btn-link">Posts</a></p>
+
+                <p><a href="/posts/create" class="btn btn-link">Create Post</a></p>
+
                 <h3>Your Posts</h3>
                 @if(count($posts) > 0)
                     <table class="table table-striped">
