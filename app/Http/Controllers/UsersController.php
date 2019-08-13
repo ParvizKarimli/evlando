@@ -64,6 +64,11 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::find($id);
+        if(empty($user))
+        {
+            return redirect('/dashboard')->with('error', 'User Not Found');
+        }
+
         $posts = Post::where('user_id', $id)
             ->orderBy('id', 'desc')
             ->paginate(10);
