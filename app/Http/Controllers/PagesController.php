@@ -10,7 +10,9 @@ class PagesController extends Controller
 {
     public function index()
     {
-        $posts = Post::orderBy('id', 'desc')->paginate(10);
+        $posts = Post::where('suspended', 0)
+            ->orderBy('id', 'desc')
+            ->paginate(10);
         if(auth()->user())
         {
             $user_id = auth()->user()->id;
