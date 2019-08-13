@@ -115,6 +115,16 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+
+        // Chech if the logged in user is admin
+        if(auth()->user()->role !== 'admin')
+        {
+            return redirect('dashboard')->with('error', 'Unauthorized Page');
+        }
+
+        $user->delete();
+
+        return redirect('users')->with('success', 'User Removed');
     }
 }
