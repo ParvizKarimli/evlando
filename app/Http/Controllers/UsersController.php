@@ -116,16 +116,20 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
+        // Chech if the logged in user is admin
+        if(auth()->user()->role !== 'admin')
+        {
+            return redirect('dashboard')->with('error', 'Unauthorized Page');
+        }
+
         $user = User::find($id);
         if(empty($user))
         {
             return redirect('/users')->with('error', 'User Not Found');
         }
-
-        // Chech if the logged in user is admin
-        if(auth()->user()->role !== 'admin')
+        elseif($user->role === 'admin')
         {
-            return redirect('dashboard')->with('error', 'Unauthorized Page');
+            return redirect('/users')->with('error', 'Admin cannot be deleted');
         }
 
         // Delete posts of the user to be deleted

@@ -51,16 +51,18 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <a class="btn btn-danger pull-right" href="" onclick="
-                                        event.preventDefault();
-                                        if(confirm('Delete user?')) {
-                                            document.getElementById('user-delete-form-{{$user->id}}').submit();
-                                        }
-                                    ">
-                                        Delete
-                                    </a>
-                                    {!! Form::open(['action' => ['UsersController@destroy', $user->id], 'method' => 'DELETE', 'id' => 'user-delete-form-' . $user->id]) !!}
-                                    {!! Form::close() !!}
+                                    @if($user->role === 'user' || $user->role === 'mod')
+                                        <a class="btn btn-danger pull-right" href="" onclick="
+                                            event.preventDefault();
+                                            if(confirm('Delete user?')) {
+                                                document.getElementById('user-delete-form-{{$user->id}}').submit();
+                                            }
+                                        ">
+                                            Delete
+                                        </a>
+                                        {!! Form::open(['action' => ['UsersController@destroy', $user->id], 'method' => 'DELETE', 'id' => 'user-delete-form-' . $user->id]) !!}
+                                        {!! Form::close() !!}
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
