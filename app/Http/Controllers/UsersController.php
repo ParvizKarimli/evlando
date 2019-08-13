@@ -66,7 +66,7 @@ class UsersController extends Controller
         $user = User::find($id);
         if(empty($user))
         {
-            return redirect('/dashboard')->with('error', 'User Not Found');
+            return redirect('/users')->with('error', 'User Not Found');
         }
 
         $posts = Post::where('user_id', $id)

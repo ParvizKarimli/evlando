@@ -117,6 +117,10 @@ class BookmarksController extends Controller
     public function destroy($id)
     {
         $bookmark = Bookmark::find($id);
+        if(empty($bookmark))
+        {
+            return redirect('/bookmarks')->with('error', 'Bookmark Not Found');
+        }
 
         // Check for correct user
         if(auth()->user()->id !== $bookmark->user_id)
