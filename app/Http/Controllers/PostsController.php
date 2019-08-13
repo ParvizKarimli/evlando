@@ -174,7 +174,7 @@ class PostsController extends Controller
         }
         elseif($post->suspended === 1)
         {
-            if(auth()->guest() || auth()->user()->role === 'user')
+            if(auth()->guest() || (auth()->user()->role === 'user' && $post->user_id !== auth()->user()->id))
             {
                 return redirect('/')->with('error', 'Suspended Post');
             }
