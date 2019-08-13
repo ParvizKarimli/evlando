@@ -106,6 +106,11 @@
                 <i class="fas fa-eye"></i>
                 {{ Counter::showAndCount('/posts/{$post->id}', $post->id) }}
             </div>
+            @if($post->suspended === 1)
+                <div>
+                    <img src="/storage/images/default/suspended-1.jpg">
+                </div>
+            @endif
         </div>
     </div>
 </div>
