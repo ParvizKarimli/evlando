@@ -545,7 +545,8 @@ class PostsController extends Controller
         // If no location selected, then bring posts from all locations
         if(empty($location_id))
         {
-            $posts = Post::whereIn('type', $types)
+            $posts = Post::where('suspended', 0)
+                ->whereIn('type', $types)
                 ->whereIn('property_type', $property_types)
                 ->whereBetween('floor', [$floor_min, $floor_max])
                 ->whereBetween('area', [$area_min, $area_max])
@@ -557,7 +558,8 @@ class PostsController extends Controller
         }
         else
         {
-            $posts = Post::where('location_id', $location_id)
+            $posts = Post::where('suspended', 0)
+                ->where('location_id', $location_id)
                 ->whereIn('type', $types)
                 ->whereIn('property_type', $property_types)
                 ->whereBetween('floor', [$floor_min, $floor_max])
