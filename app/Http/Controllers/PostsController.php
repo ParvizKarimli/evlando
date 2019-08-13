@@ -401,13 +401,13 @@ class PostsController extends Controller
         {
             $post->suspended = 1;
             $post->save();
-            return redirect('posts')->with('success', 'Post Suspended');
+            return redirect()->back()->with('success', 'Post Suspended');
         }
         elseif($post->suspended === 1)
         {
             $post->suspended = 0;
             $post->save();
-            return redirect('posts')->with('success', 'Post Resumed');
+            return redirect()->back()->with('success', 'Post Resumed');
         }
     }
 
