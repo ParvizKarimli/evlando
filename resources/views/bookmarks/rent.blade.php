@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-default">
-            <div class="panel-heading">Your Bookmarks</div>
+            <div class="panel-heading">Bookmarks</div>
 
             <div class="panel-body">
 
@@ -18,7 +18,7 @@
                         <option value="rent" selected>For Rent</option>
                     </select>
                 </div>
-                <h3>Your Bookmarks (For Rent)</h3>
+                <h3>Bookmarks (For Rent)</h3>
                 @if(count($bookmarks) > 0)
                     <table class="table table-striped">
                         <tr>
