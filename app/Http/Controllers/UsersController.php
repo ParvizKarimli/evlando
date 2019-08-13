@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Post;
 use App\Bookmark;
+use App\Image;
 
 class UsersController extends Controller
 {
@@ -116,11 +117,43 @@ class UsersController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
+        if(empty($user))
+        {
+            return redirect('/users')->with('error', 'User Not Found');
+        }
 
         // Chech if the logged in user is admin
         if(auth()->user()->role !== 'admin')
         {
             return redirect('dashboard')->with('error', 'Unauthorized Page');
+        }
+
+        // Delete posts of the user to be deleted
+        $posts = Post::where('user_id', $id)->cursor();
+        foreach($posts as $post)
+        {
+            if($post->cover_image && $post->cover_image !== 'noimage.jpg')
+            {
+                // Delete cover image
+                unlink('storage/images/cover_images/' . $post->cover_image);
+
+                // Delete thumbnail
+                unlink('storage/images/cover_images/thumbnails/' . $post->thumbnail);
+            }
+
+            $images = $post->images;
+            foreach($images as $image)
+            {
+                unlink('storage/images/' . $image->filename);
+                unlink('storage/images/thumbnails/' . $image->filename_thumb);
+            }
+
+            Image::where('post_id', $post->id)->delete();
+
+            Bookmark::where('post_id', $post->id)->delete();
+
+            // Delete from DB
+            $post->delete();
         }
 
         $user->delete();
