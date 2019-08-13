@@ -207,6 +207,10 @@ class PostsController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
+        if(empty($post))
+        {
+            return redirect('/')->with('error', 'Post Not Found');
+        }
 
         // Check for correct user
         if(auth()->user()->id !== $post->user_id)
@@ -228,6 +232,12 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $post = Post::find($id);
+        if(empty($post))
+        {
+            return redirect('/')->with('error', 'Post Not Found');
+        }
+
         $custom_validation_messages = [
             'location_id.required' => 'The location field is required. Please select from the location suggestions.'
         ];
@@ -253,8 +263,6 @@ class PostsController extends Controller
         }
 
         // Update post
-        $post = Post::find($id);
-
         // Handle File Upload
         if($request->hasFile('cover_image'))
         {
@@ -352,6 +360,10 @@ class PostsController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
+        if(empty($post))
+        {
+            return redirect('/')->with('error', 'Post Not Found');
+        }
 
         // Check for correct user
         if(auth()->user()->id !== $post->user_id && auth()->user()->role !== 'mod' && auth()->user()->role !== 'admin')
@@ -444,7 +456,7 @@ class PostsController extends Controller
         {
             return redirect('/')->with('error', 'Post Not Found');
         }
-        
+
         if($post->cover_image && $post->cover_image !== 'noimage.jpg')
         {
             // Delete cover image
