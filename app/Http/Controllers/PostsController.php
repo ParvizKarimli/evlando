@@ -440,27 +440,25 @@ class PostsController extends Controller
     {
         $id = $request->input('id');
         $post = Post::find($id);
-        if(!empty($post))
-        {
-            if($post->cover_image && $post->cover_image !== 'noimage.jpg')
-            {
-                // Delete cover image
-                unlink('storage/images/cover_images/' . $post->cover_image);
-
-                // Delete thumbnail
-                unlink('storage/images/cover_images/thumbnails/' . $post->thumbnail);
-            }
-
-            $post->cover_image = 'noimage.jpg';
-            $post->thumbnail = 'noimage_thumb.jpg';
-            $post->save();
-
-            return redirect('/posts/' . $post->id . '/' . 'edit')->with('success', 'Cover Image Removed');
-        }
-        else
+        if(empty($post))
         {
             return redirect('/')->with('error', 'Post Not Found');
         }
+        
+        if($post->cover_image && $post->cover_image !== 'noimage.jpg')
+        {
+            // Delete cover image
+            unlink('storage/images/cover_images/' . $post->cover_image);
+
+            // Delete thumbnail
+            unlink('storage/images/cover_images/thumbnails/' . $post->thumbnail);
+        }
+
+        $post->cover_image = 'noimage.jpg';
+        $post->thumbnail = 'noimage_thumb.jpg';
+        $post->save();
+
+        return redirect('/posts/' . $post->id . '/' . 'edit')->with('success', 'Cover Image Removed');
     }
 
     // Remove Image
@@ -468,6 +466,10 @@ class PostsController extends Controller
     {
         $id = $request->input('id');
         $image = Image::find($id);
+        if(empty($image->post))
+        {
+            return redirect('/')->with('error', 'Post Not Found');
+        }
         if(!empty($image))
         {
             unlink('storage/images/' . $image->filename);
