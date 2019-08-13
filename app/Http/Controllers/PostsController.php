@@ -156,7 +156,7 @@ class PostsController extends Controller
             }
         }
 
-        return redirect('posts')->with('success', 'Post Created');
+        return redirect('/')->with('success', 'Post Created');
     }
 
     /**
@@ -211,7 +211,7 @@ class PostsController extends Controller
         // Check for correct user
         if(auth()->user()->id !== $post->user_id)
         {
-            return redirect('posts')->with('error', 'Unauthorized Page');
+            return redirect('/posts/' . $post->id . '/' . $post->slug)->with('error', 'Unauthorized Page');
         }
 
         $images = $post->images;
@@ -340,7 +340,7 @@ class PostsController extends Controller
             }
         }
 
-        return redirect('posts/' . $post->id . '/' . $post->slug)->with('success', 'Post Updated');
+        return redirect('/posts/' . $post->id . '/' . $post->slug)->with('success', 'Post Updated');
     }
 
     /**
@@ -356,7 +356,7 @@ class PostsController extends Controller
         // Check for correct user
         if(auth()->user()->id !== $post->user_id && auth()->user()->role !== 'mod' && auth()->user()->role !== 'admin')
         {
-            return redirect('posts')->with('error', 'Unauthorized Page');
+            return redirect('/posts/' . $post->id . '/' . $post->slug)->with('error', 'Unauthorized Page');
         }
 
         if($post->cover_image && $post->cover_image !== 'noimage.jpg')
@@ -386,7 +386,7 @@ class PostsController extends Controller
         // Delete from DB
         $post->delete();
 
-        return redirect('posts')->with('success', 'Post Removed');
+        return redirect('/')->with('success', 'Post Removed');
     }
 
     public function suspend(Request $request)
@@ -455,11 +455,11 @@ class PostsController extends Controller
             $post->thumbnail = 'noimage_thumb.jpg';
             $post->save();
 
-            return redirect('posts/' . $post->id . '/' . 'edit')->with('success', 'Cover Image Removed');
+            return redirect('/posts/' . $post->id . '/' . 'edit')->with('success', 'Cover Image Removed');
         }
         else
         {
-            return redirect('posts')->with('error', 'Post Not Found');
+            return redirect('/')->with('error', 'Post Not Found');
         }
     }
 
