@@ -174,7 +174,10 @@ class PostsController extends Controller
         }
         elseif($post->suspended === 1)
         {
-            return redirect('/')->with('error', 'Suspended Post');
+            if(auth()->guest() || auth()->user()->role === 'user')
+            {
+                return redirect('/')->with('error', 'Suspended Post');
+            }
         }
         $images = $post->images;
         $number_of_images = count($images);
