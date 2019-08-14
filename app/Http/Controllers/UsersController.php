@@ -163,7 +163,7 @@ class UsersController extends Controller
         }
         elseif($user->role === 'admin')
         {
-            return redirect('/users')->with('error', 'Admin cannot be deleted');
+            return redirect('/users')->with('error', 'Admin Cannot Be Deleted');
         }
 
         // Delete posts of the user to be deleted
@@ -197,5 +197,24 @@ class UsersController extends Controller
         $user->delete();
 
         return redirect('users')->with('success', 'User Removed');
+    }
+
+    public function ban(Request $request)
+    {
+        if(auth()->user()->role !== 'admin')
+        {
+            return redirect('/dashboard')->with('error', 'Unauthorized Page');
+        }
+
+        $id = $request->id;
+        $user = User::find($id);
+        if(empty($user))
+        {
+            return redirect('/users')->with('error', 'User Not Found');
+        }
+        elseif($user->role === 'admin')
+        {
+            return redirect('/users')->with('error', 'Admin Cannot Be Banned');
+        }
     }
 }
