@@ -405,6 +405,11 @@ class PostsController extends Controller
         }
         $post_id = $request->id;
         $post = Post::find($post_id);
+        if(empty($post))
+        {
+            return redirect('/posts')->with('error', 'Post Not Found');
+        }
+
         if($post->suspended === 0)
         {
             $post->suspended = 1;
