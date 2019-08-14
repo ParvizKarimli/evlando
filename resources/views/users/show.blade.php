@@ -7,6 +7,11 @@
             <div class="panel-heading">{{$user->name}}</div>
 
             <div class="panel-body">
+                @if($user->banned === 1)
+                    <div>
+                        <img src="/storage/images/default/suspended-1.jpg">
+                    </div>
+                @endif
 
                 <h3>Posts by {{$user->name}}</h3>
                 @if(count($posts) > 0)
