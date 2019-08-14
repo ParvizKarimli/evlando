@@ -216,5 +216,8 @@ class UsersController extends Controller
         {
             return redirect('/users')->with('error', 'Admin Cannot Be Banned');
         }
+
+        $user->banned = 1;
+        $user->save();
     }
 }
