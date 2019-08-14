@@ -240,7 +240,7 @@ class UsersController extends Controller
         $users = User::where('banned', 1)
             ->orderBy('id', 'desc')
             ->paginate(20);
-        return view('users.index')->with('users', $users);
+        return view('users.banned')->with('users', $users);
     }
 
     public function active()
@@ -252,6 +252,6 @@ class UsersController extends Controller
         $users = User::where('banned', 0)
             ->orderBy('id', 'desc')
             ->paginate(20);
-        return view('users.index')->with('users', $users);
+        return view('users.active')->with('users', $users);
     }
 }
