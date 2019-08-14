@@ -111,7 +111,24 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        if(empty($user))
+        {
+            return redirect('/dashboard')->with('error', 'User Not Found');
+        }
+
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,'.$id,
+            'password' => 'required|min:6|confirmed'
+        ]);
+
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = bcrypt($request->input('password'));
+        $user->save();
+
+        return redirect('/dashboard')->with('success', 'User Updated');
     }
 
     /**
