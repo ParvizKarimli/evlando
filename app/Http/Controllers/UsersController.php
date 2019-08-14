@@ -147,8 +147,11 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        // Chech if the logged in user is admin
-        if(auth()->user()->role !== 'admin')
+        // Chech if the logged in user is admin or
+        // the user wants to delete itself.
+        // Add 0 to string ($id comes from the url so it's a string) and
+        // PHP will automatically convert it to number
+        if(auth()->user()->role !== 'admin' && $id + 0 !== auth()->user()->id)
         {
             return redirect('dashboard')->with('error', 'Unauthorized Page');
         }
