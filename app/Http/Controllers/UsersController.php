@@ -98,6 +98,10 @@ class UsersController extends Controller
         {
             return redirect('/dashboard')->with('error', 'User Not Found');
         }
+        elseif($user->id !== auth()->user()->id)
+        {
+            return redirect('/dashboard')->with('error', 'Unauthorized Page');
+        }
 
         return view('users.edit');
     }
@@ -115,6 +119,10 @@ class UsersController extends Controller
         if(empty($user))
         {
             return redirect('/dashboard')->with('error', 'User Not Found');
+        }
+        elseif($user->id !== auth()->user()->id)
+        {
+            return redirect('/dashboard')->with('error', 'Unauthorized Page');
         }
 
         $this->validate($request, [
