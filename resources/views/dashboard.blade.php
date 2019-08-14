@@ -13,6 +13,8 @@
                     </div>
                 @endif
 
+                <a class="btn btn-warning" href="/users/{{auth()->user()->id}}/edit">Edit</a>
+
                 @if(Auth::user()->role === 'admin')
                     <p><a href="/users" class="btn btn-link">Users</a></p>
                 @endif
