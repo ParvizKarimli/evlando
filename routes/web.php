@@ -30,3 +30,4 @@ Route::get('bookmarks/rent', 'BookmarksController@rent');
 Route::resource('bookmarks', 'BookmarksController');
 Route::post('bookmarks/bookmark', 'BookmarksController@bookmark');
 Route::resource('users', 'UsersController');
+Route::post('users/ban', 'UsersController@ban');

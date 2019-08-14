@@ -46,9 +46,18 @@
                                     {{$user->updated_at}}
                                 </td>
                                 <td>
-                                    <a class="btn btn-warning pull-right" href="/users/{{$user->id}}/edit">
-                                        Edit
-                                    </a>
+                                    @if($user->role === 'user' || $user->role === 'mod')
+                                        <a class="btn btn-warning" href="" onclick="
+                                            event.preventDefault();
+                                            if(confirm('Ban user?')) {
+                                                document.getElementById('user-ban-form-{{$user->id}}').submit();
+                                            }
+                                        ">
+                                            Ban
+                                        </a>
+                                        {!! Form::open(['action' => ['UsersController@ban'], 'method' => 'POST', 'id' => 'user-ban-form-' . $user->id]) !!}
+                                        {!! Form::close() !!}
+                                    @endif
                                 </td>
                                 <td>
                                     @if($user->role === 'user' || $user->role === 'mod')
