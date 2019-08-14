@@ -56,6 +56,7 @@
                                             Ban
                                         </a>
                                         {!! Form::open(['action' => ['UsersController@ban'], 'method' => 'POST', 'id' => 'user-ban-form-' . $user->id]) !!}
+                                            {!! Form::hidden('id', $user->id) !!}
                                         {!! Form::close() !!}
                                     @endif
                                 </td>
