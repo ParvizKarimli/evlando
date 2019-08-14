@@ -29,5 +29,7 @@ Route::get('bookmarks/sale', 'BookmarksController@sale');
 Route::get('bookmarks/rent', 'BookmarksController@rent');
 Route::resource('bookmarks', 'BookmarksController');
 Route::post('bookmarks/bookmark', 'BookmarksController@bookmark');
+Route::get('users/banned', 'UsersController@banned');
+Route::get('users/active', 'UsersController@active');
 Route::resource('users', 'UsersController');
 Route::post('users/ban', 'UsersController@ban');
