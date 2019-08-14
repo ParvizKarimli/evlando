@@ -221,13 +221,13 @@ class UsersController extends Controller
         {
             $user->banned = 1;
             $user->save();
-            return redirect('/users')->with('success', 'User Banned');
+            return redirect()->back()->with('success', 'User Banned');
         }
         elseif($user->banned === 1)
         {
             $user->banned = 0;
             $user->save();
-            return redirect('/users')->with('success', 'User Resumed');
+            return redirect()->back()->with('success', 'User Resumed');
         }
     }
 
