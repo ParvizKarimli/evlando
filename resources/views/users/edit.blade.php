@@ -66,6 +66,17 @@
                         </div>
                     </div>
                 {!! Form::close() !!}
+
+                <a class="btn btn-danger pull-right" href="" onclick="
+                    event.preventDefault();
+                    if(confirm('Delete user?')) {
+                        document.getElementById('user-delete-form').submit();
+                    }
+                ">
+                    Delete User
+                </a>
+                {!! Form::open(['action' => ['UsersController@destroy', auth()->user()->id], 'method' => 'DELETE', 'id' => 'user-delete-form']) !!}
+                {!! Form::close() !!}
             </div>
         </div>
     </div>
