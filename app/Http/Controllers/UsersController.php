@@ -93,7 +93,13 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        if(empty($user))
+        {
+            return redirect('/dashboard')->with('error', 'User Not Found');
+        }
+
+        return view('users.edit');
     }
 
     /**
