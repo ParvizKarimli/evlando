@@ -47,14 +47,25 @@
                                 </td>
                                 <td>
                                     @if($user->role === 'user' || $user->role === 'mod')
-                                        <a class="btn btn-warning" href="" onclick="
-                                            event.preventDefault();
-                                            if(confirm('Ban user?')) {
-                                                document.getElementById('user-ban-form-{{$user->id}}').submit();
-                                            }
-                                        ">
-                                            Ban
-                                        </a>
+                                        @if($user->banned === 0)
+                                            <a class="btn btn-warning" href="" onclick="
+                                                event.preventDefault();
+                                                if(confirm('Ban user?')) {
+                                                    document.getElementById('user-ban-form-{{$user->id}}').submit();
+                                                }
+                                            ">
+                                                Ban
+                                            </a>
+                                        @elseif($user->banned === 1)
+                                            <a class="btn btn-warning" href="" onclick="
+                                                event.preventDefault();
+                                                if(confirm('Resume user?')) {
+                                                    document.getElementById('user-ban-form-{{$user->id}}').submit();
+                                                }
+                                            ">
+                                                Resume
+                                            </a>
+                                        @endif
                                         {!! Form::open(['action' => ['UsersController@ban'], 'method' => 'POST', 'id' => 'user-ban-form-' . $user->id]) !!}
                                             {!! Form::hidden('id', $user->id) !!}
                                         {!! Form::close() !!}
