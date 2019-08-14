@@ -230,4 +230,28 @@ class UsersController extends Controller
             return redirect('/users')->with('success', 'User Resumed');
         }
     }
+
+    public function banned()
+    {
+        if(auth()->user()->role !== 'admin')
+        {
+            return redirect('dashboard')->with('error', 'Unauthorized Page');
+        }
+        $users = User::where('banned', 1)
+            ->orderBy('id', 'desc')
+            ->paginate(20);
+        return view('users.index')->with('users', $users);
+    }
+
+    public function active()
+    {
+        if(auth()->user()->role !== 'admin')
+        {
+            return redirect('dashboard')->with('error', 'Unauthorized Page');
+        }
+        $users = User::where('banned', 0)
+            ->orderBy('id', 'desc')
+            ->paginate(20);
+        return view('users.index')->with('users', $users);
+    }
 }
