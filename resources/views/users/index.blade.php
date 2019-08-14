@@ -10,6 +10,15 @@
 
                 <p><a href="/dashboard" class="btn btn-link">Dashboard</a></p>
 
+                <div class="form-group">
+                    <label for="type">Type:</label>
+                    <select id="site-type" name="type" site="users">
+                        <option value="all">All</option>
+                        <option value="banned">Banned</option>
+                        <option value="active">Active</option>
+                    </select>
+                </div>
+
                 <h3>Users</h3>
                 @if(count($users) > 0)
                     <table class="table table-striped">
