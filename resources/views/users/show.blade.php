@@ -4,7 +4,80 @@
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-default">
-            <div class="panel-heading">{{$user->name}}</div>
+            <div class="panel-heading">
+                <h1>
+                    {{$user->name}}
+
+                    <!-- Trigger the modal with a button -->
+                    <a href="" title="Report this user" data-toggle="modal" data-target="#reportModal">
+                        <i class="fas fa-flag"></i>
+                    </a>
+                </h1>
+
+                <!-- Modal -->
+                <div id="reportModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Report User</h4>
+                            </div>
+                            <div class="modal-body">
+                                {!! Form::open(['action' => 'ReportsController@store', 'method' => 'POST']) !!}
+                                    <div class="form-group {{ $errors->has('category') ? 'has-error' : '' }}">
+                                        <label for="category">Category (required)</label>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="category" value="1" required> Spam
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="category" value="2" required> Nudity
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="category" value="3" required> Hate speech
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="category" value="4" required> Other
+                                            </label>
+                                        </div>
+                                        @if($errors->has('category'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('category') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                    <div class="form-group {{ $errors->has('message') ? 'has-error' : '' }}">
+                                        {{Form::label('message', 'Message (optional)')}}
+                                        {{Form::textarea('message', '', ['rows' => 4, 'class' => 'form-control', 'placeholder' => 'Message'])}}
+                                        @if($errors->has('message'))
+                                            <span class="help-block">
+                                                <strong>{{ $errors->first('message') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                    {!! Form::hidden('reported_type', 'user') !!}
+                                    {!! Form::hidden('user_id', $user->id) !!}
+                                    <div class="form-group">
+                                        {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
+                                    </div>
+                                {!! Form::close() !!}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
 
             <div class="panel-body">
                 @if($user->banned === 1)
