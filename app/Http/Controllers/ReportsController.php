@@ -58,11 +58,28 @@ class ReportsController extends Controller
         if($request->reported_type === 'user')
         {
             $this->validate($request, ['user_id' => 'required|exists:users,id']);
+
+            // Don't let the user report themselves
+            if($request->user_id + 0 === auth()->user()->id)
+            {
+                return redirect()->back()->with('error', 'You cannot report yourself');
+            }
+
             $report->reported_user_id = $request->user_id;
         }
         elseif($request->reported_type === 'post')
         {
-            $this->validate($request, ['post_id' => 'required|exists:posts,id']);
+            $this->validate($request, [
+                'post_id' => 'required|exists:posts,id',
+                'post_owner_id' => 'required|exists:posts,user_id'
+            ]);
+
+            // Don't let the user report their post
+            if($request->post_owner_id + 0 === auth()->user()->id)
+            {
+                return redirect()->back()->with('error', 'You cannot report your post');
+            }
+
             $report->post_id = $request->post_id;
         }
         $report->category = $request->category;

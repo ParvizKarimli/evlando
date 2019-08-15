@@ -206,6 +206,7 @@
                                                     </div>
                                                     {!! Form::hidden('reported_type', 'post') !!}
                                                     {!! Form::hidden('post_id', $post->id) !!}
+                                                    {!! Form::hidden('post_owner_id', $post->user_id) !!}
                                                     <div class="form-group">
                                                         {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
                                                     </div>
