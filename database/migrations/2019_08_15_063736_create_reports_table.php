@@ -21,7 +21,7 @@ class CreateReportsTable extends Migration
             $table->boolean('seen')->default(0);
             $table->boolean('resolved')->default(0);
             $table->tinyInteger('category');
-            $table->text('message');
+            $table->text('message')->nullable();
             $table->timestamps();
         });
     }
