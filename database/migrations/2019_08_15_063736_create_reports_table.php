@@ -18,6 +18,8 @@ class CreateReportsTable extends Migration
             $table->integer('reporter_user_id');
             $table->integer('reported_user_id')->nullable();
             $table->integer('post_id')->nullable();
+            $table->boolean('seen')->default(0);
+            $table->boolean('resolved')->default(0);
             $table->tinyInteger('category');
             $table->text('message');
             $table->timestamps();
