@@ -57,10 +57,12 @@ class ReportsController extends Controller
         $report->reporter_user_id = auth()->user()->id;
         if($request->reported_type === 'user')
         {
+            $this->validate($request, ['user_id' => 'required']);
             $report->reported_user_id = $request->user_id;
         }
         elseif($request->reported_type === 'post')
         {
+            $this->validate($request, ['post_id' => 'required']);
             $report->post_id = $request->post_id;
         }
         $report->category = $request->category;
