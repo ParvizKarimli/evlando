@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Report;
 
 class ReportsController extends Controller
 {
@@ -44,7 +45,29 @@ class ReportsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate
+        $this->validate($request, [
+            'reported_type' => 'required|in:user,post',
+            'category' => 'required|in:1,2,3,4',
+            'message' => 'max:1000'
+        ]);
+
+        // Write to DB
+        $report = new Report;
+        $report->reporter_user_id = auth()->user()->id;
+        if($request->reported_type === 'user')
+        {
+            $report->reported_user_id = $request->user_id;
+        }
+        elseif($request->reported_type === 'post')
+        {
+            $report->post_id = $request->post_id;
+        }
+        $report->category = $request->category;
+        $report->message = $request->message;
+        $report->save();
+
+        return redirect()->back()->with('success', 'Thanks for reporting!');
     }
 
     /**

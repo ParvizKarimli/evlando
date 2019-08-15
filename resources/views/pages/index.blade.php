@@ -148,13 +148,13 @@
                                     @endif
 
                                     <!-- Trigger the modal with a button -->
-                                    <a class="pull-right" href="" title="Report this post" data-toggle="modal" data-target="#reportModal">
+                                    <a class="pull-right" href="" title="Report this post" data-toggle="modal" data-target="#reportModal-{{$post->id}}">
                                         <i class="fas fa-flag"></i>
                                     </a>
                             </h1>
 
                                 <!-- Modal -->
-                                <div id="reportModal" class="modal fade" role="dialog">
+                                <div id="reportModal-{{$post->id}}" class="modal fade" role="dialog">
                                     <div class="modal-dialog">
 
                                         <!-- Modal content-->
@@ -169,22 +169,22 @@
                                                         <label for="category">Category (required)</label>
                                                         <div class="radio">
                                                             <label>
-                                                                {{Form::radio('category', 1)}} Spam
+                                                                <input type="radio" name="category" value="1" required> Spam
                                                             </label>
                                                         </div>
                                                         <div class="radio">
                                                             <label>
-                                                                {{Form::radio('category', 2)}} Nudity
+                                                                <input type="radio" name="category" value="2" required> Nudity
                                                             </label>
                                                         </div>
                                                         <div class="radio">
                                                             <label>
-                                                                {{Form::radio('category', 3)}} Hate speech
+                                                                <input type="radio" name="category" value="3" required> Hate speech
                                                             </label>
                                                         </div>
                                                         <div class="radio">
                                                             <label>
-                                                                {{Form::radio('category', 4)}} Other
+                                                                <input type="radio" name="category" value="4" required> Other
                                                             </label>
                                                         </div>
                                                         @if($errors->has('category'))
@@ -202,6 +202,8 @@
                                                             </span>
                                                         @endif
                                                     </div>
+                                                    {!! Form::hidden('reported_type', 'post') !!}
+                                                    {!! Form::hidden('post_id', $post->id) !!}
                                                     <div class="form-group">
                                                         {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
                                                     </div>
