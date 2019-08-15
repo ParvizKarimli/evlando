@@ -33,3 +33,4 @@ Route::get('users/banned', 'UsersController@banned');
 Route::get('users/active', 'UsersController@active');
 Route::resource('users', 'UsersController');
 Route::post('users/ban', 'UsersController@ban');
+Route::resource('reports', 'ReportsController');
