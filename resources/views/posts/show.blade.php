@@ -49,37 +49,80 @@
                     <img src="/storage/images/default/suspended-1.jpg">
                 </div>
             @endif
-            <h1>
-                @if(auth()->user())
-                    @if($bookmarked === false)
-                        <a href="" title="Bookmark this post" bookmark-post-id="{{$post->id}}"
-                        class="post-to-bookmark">
-                            <i class="far fa-star"></i>
-                        </a>
-                    @elseif($bookmarked === true)
-                        <a href="" title="Remove this post from bookmarks" bookmark-post-id="{{$post->id}}"
-                        class="post-to-bookmark">
-                            <i class="fas fa-star"></i>
-                        </a>
-                    @endif
+            <div>
+                <h1>
+                    @if(auth()->user())
+                        @if($bookmarked === false)
+                            <a href="" title="Bookmark this post" bookmark-post-id="{{$post->id}}"
+                            class="post-to-bookmark">
+                                <i class="far fa-star"></i>
+                            </a>
+                        @elseif($bookmarked === true)
+                            <a href="" title="Remove this post from bookmarks" bookmark-post-id="{{$post->id}}"
+                            class="post-to-bookmark">
+                                <i class="fas fa-star"></i>
+                            </a>
+                        @endif
 
-                    <!-- Trigger the modal with a button -->
-                    <a href="" title="Report this post" data-toggle="modal" data-target="#reportModal">
-                        <i class="fas fa-flag"></i>
-                    </a>
+                        <!-- Trigger the modal with a button -->
+                        <a href="" title="Report this post" data-toggle="modal" data-target="#reportModal">
+                            <i class="fas fa-flag"></i>
+                        </a>
+                </h1>
 
                     <!-- Modal -->
-                    <div id="reportModal" class="modal fade" role="dialog">
+                    <div id="reportModal" class="modal fade text-left" role="dialog">
                         <div class="modal-dialog">
 
                             <!-- Modal content-->
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Modal Header</h4>
+                                    <h4 class="modal-title">Report Post</h4>
                                 </div>
                                 <div class="modal-body">
-                                    <p>Some text in the modal.</p>
+                                    {!! Form::open(['action' => 'ReportsController@store', 'method' => 'POST']) !!}
+                                        <div class="form-group {{ $errors->has('category') ? 'has-error' : '' }}">
+                                            <label for="category">Category (required)</label>
+                                            <div class="radio">
+                                                <label>
+                                                    {{Form::radio('category', 1)}} Spam
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                    {{Form::radio('category', 2)}} Nudity
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                    {{Form::radio('category', 3)}} Hate speech
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                    {{Form::radio('category', 4)}} Other
+                                                </label>
+                                            </div>
+                                            @if($errors->has('category'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('category') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                        <div class="form-group {{ $errors->has('message') ? 'has-error' : '' }}">
+                                            {{Form::label('message', 'Message (optional)')}}
+                                            {{Form::textarea('message', '', ['rows' => 4, 'class' => 'form-control', 'placeholder' => 'Message'])}}
+                                            @if($errors->has('message'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('message') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                        <div class="form-group">
+                                            {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
+                                        </div>
+                                    {!! Form::close() !!}
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -97,7 +140,7 @@
                         <i class="fas fa-flag"></i>
                     </a>
                 @endif
-            </h1>
+            </div>
             @if($post->type === 'sale')
                 <p class="alert-info">{{ucfirst($post->property_type)}} For Sale</p>
             @elseif($post->type === 'rent')
