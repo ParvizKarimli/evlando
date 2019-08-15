@@ -145,9 +145,17 @@
                                         <i class="far fa-star"></i>
                                     </a>
                                 @endif
+
+                                <a class="report-post pull-right" href="" title="Report this post">
+                                    <i class="fas fa-flag"></i>
+                                </a>
                             @elseif(auth()->guest())
                                 <a href="{{route('login')}}" title="Bookmark this post">
                                     <i class="far fa-star"></i>
+                                </a>
+
+                                <a class="pull-right" href="{{route('login')}}" title="Report this post">
+                                    <i class="fas fa-flag"></i>
                                 </a>
                             @endif
                         </h3>
