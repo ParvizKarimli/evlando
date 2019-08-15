@@ -30,7 +30,7 @@ class PostsController extends Controller
     {
         if(auth()->user()->role !== 'mod' && auth()->user()->role !== 'admin')
         {
-            return redirect('dashboard')->with('error', 'Unauthorized Page');
+            return redirect('/');
         }
         $posts = Post::orderBy('id', 'desc')->paginate(20);
         return view('posts.index')->with('posts', $posts);
