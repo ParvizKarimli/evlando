@@ -62,7 +62,7 @@ class ReportsController extends Controller
         }
         elseif($request->reported_type === 'post')
         {
-            $this->validate($request, ['post_id' => 'required']);
+            $this->validate($request, ['post_id' => 'required|exists:posts,id']);
             $report->post_id = $request->post_id;
         }
         $report->category = $request->category;
