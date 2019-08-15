@@ -64,10 +64,12 @@
                             </a>
                         @endif
 
-                        <!-- Trigger the modal with a button -->
-                        <a href="" title="Report this post" data-toggle="modal" data-target="#reportModal">
-                            <i class="fas fa-flag"></i>
-                        </a>
+                        @if($post->user_id !== auth()->user()->id)
+                            <!-- Trigger the modal with a button -->
+                            <a href="" title="Report this post" data-toggle="modal" data-target="#reportModal">
+                                <i class="fas fa-flag"></i>
+                            </a>
+                        @endif
                 </h1>
 
                     <!-- Modal -->

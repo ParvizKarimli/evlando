@@ -8,10 +8,12 @@
                 <h1>
                     {{$user->name}}
 
-                    <!-- Trigger the modal with a button -->
-                    <a href="" title="Report this user" data-toggle="modal" data-target="#reportModal">
-                        <i class="fas fa-flag"></i>
-                    </a>
+                    @if($user->id !== auth()->user()->id)
+                        <!-- Trigger the modal with a button -->
+                        <a href="" title="Report this user" data-toggle="modal" data-target="#reportModal">
+                            <i class="fas fa-flag"></i>
+                        </a>
+                    @endif
                 </h1>
 
                 <!-- Modal -->
@@ -104,23 +106,24 @@
                             <div>
                                 <div>
                                     <h1>
-                                        @if(auth()->user())
-                                            @if(in_array($post->id, $bookmarked_posts_ids))
-                                                <a href="" title="Remove this post from bookmarks" bookmark-post-id="{{$post->id}}"
-                                                   class="post-to-bookmark">
-                                                    <i class="fas fa-star"></i>
-                                                </a>
-                                            @else
-                                                <a href="" title="Bookmark this post" bookmark-post-id="{{$post->id}}"
-                                                   class="post-to-bookmark">
-                                                    <i class="far fa-star"></i>
-                                                </a>
-                                            @endif
+                                        @if(in_array($post->id, $bookmarked_posts_ids))
+                                            <a href="" title="Remove this post from bookmarks" bookmark-post-id="{{$post->id}}"
+                                               class="post-to-bookmark">
+                                                <i class="fas fa-star"></i>
+                                            </a>
+                                        @else
+                                            <a href="" title="Bookmark this post" bookmark-post-id="{{$post->id}}"
+                                               class="post-to-bookmark">
+                                                <i class="far fa-star"></i>
+                                            </a>
+                                        @endif
 
-                                        <!-- Trigger the modal with a button -->
-                                        <a class="pull-right" href="" title="Report this post" data-toggle="modal" data-target="#reportModal-{{$post->id}}">
-                                            <i class="fas fa-flag"></i>
-                                        </a>
+                                        @if($post->user_id !== auth()->user()->id)
+                                            <!-- Trigger the modal with a button -->
+                                            <a class="pull-right" href="" title="Report this post" data-toggle="modal" data-target="#reportModal-{{$post->id}}">
+                                                <i class="fas fa-flag"></i>
+                                            </a>
+                                        @endif
                                     </h1>
 
                                     <!-- Modal -->
@@ -186,15 +189,6 @@
 
                                         </div>
                                     </div>
-                                    @elseif(auth()->guest())
-                                    <a href="{{route('login')}}" title="Bookmark this post">
-                                        <i class="far fa-star"></i>
-                                    </a>
-
-                                    <a class="pull-right" href="{{route('login')}}" title="Report this post">
-                                        <i class="fas fa-flag"></i>
-                                    </a>
-                                    @endif
                                 </div>
                                 @if($post->type === 'sale')
                                     <p class="alert-info">{{ucfirst($post->property_type)}} For Sale</p>
