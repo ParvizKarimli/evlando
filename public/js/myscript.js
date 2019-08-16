@@ -85,15 +85,15 @@ function bookmarkPost()
         if(this.readyState == 4 && this.status == 200)
         {
             // Check if not bookmarked, then bookmark it
-            if(postToBookmark.innerHTML == '<i class="far fa-star"></i>')
+            if(postToBookmark.innerText == '☆')
             {
-                postToBookmark.innerHTML = '<i class="fas fa-star"></i>';
+                postToBookmark.innerHTML = '&#9733;';
                 postToBookmark.title = 'Remove this post from bookmarks';
             }
             // Check if bookmarked, then remove it from bookmarks
-            else if(postToBookmark.innerHTML == '<i class="fas fa-star"></i>')
+            else if(postToBookmark.innerText == '★')
             {
-                postToBookmark.innerHTML = '<i class="far fa-star"></i>';
+                postToBookmark.innerHTML = '&#9734;';
                 postToBookmark.title = 'Add this post to bookmarks';
             }
         }

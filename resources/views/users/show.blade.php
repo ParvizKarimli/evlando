@@ -109,12 +109,12 @@
                                         @if(in_array($post->id, $bookmarked_posts_ids))
                                             <a href="" title="Remove this post from bookmarks" bookmark-post-id="{{$post->id}}"
                                                class="post-to-bookmark">
-                                                <i class="fas fa-star"></i>
+                                                &#9733
                                             </a>
                                         @else
                                             <a href="" title="Bookmark this post" bookmark-post-id="{{$post->id}}"
                                                class="post-to-bookmark">
-                                                <i class="far fa-star"></i>
+                                                &#9734
                                             </a>
                                         @endif
 

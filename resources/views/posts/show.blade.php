@@ -55,12 +55,12 @@
                         @if($bookmarked === false)
                             <a href="" title="Bookmark this post" bookmark-post-id="{{$post->id}}"
                             class="post-to-bookmark">
-                                <i class="far fa-star"></i>
+                                &#9734
                             </a>
                         @elseif($bookmarked === true)
                             <a href="" title="Remove this post from bookmarks" bookmark-post-id="{{$post->id}}"
                             class="post-to-bookmark">
-                                <i class="fas fa-star"></i>
+                                &#9733
                             </a>
                         @endif
 
@@ -138,7 +138,7 @@
                     </div>
                 @elseif(auth()->guest())
                     <a href="{{route('login')}}" title="Bookmark this post">
-                        <i class="far fa-star"></i>
+                        &#9734
                     </a>
 
                     <a href="{{route('login')}}" title="Report this post">
