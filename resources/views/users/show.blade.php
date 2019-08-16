@@ -10,7 +10,7 @@
 
                     @if($user->id !== auth()->user()->id)
                         <!-- Trigger the modal with a button -->
-                        <a href="" title="Report this user" data-toggle="modal" data-target="#reportModal">
+                        <a class="no-txt-decor" href="" title="Report this user" data-toggle="modal" data-target="#reportModal">
                             &#9873
                         </a>
                     @endif
@@ -108,19 +108,19 @@
                                     <h1>
                                         @if(in_array($post->id, $bookmarked_posts_ids))
                                             <a href="" title="Remove this post from bookmarks" bookmark-post-id="{{$post->id}}"
-                                               class="post-to-bookmark">
+                                               class="post-to-bookmark no-txt-decor">
                                                 &#9733
                                             </a>
                                         @else
                                             <a href="" title="Bookmark this post" bookmark-post-id="{{$post->id}}"
-                                               class="post-to-bookmark">
+                                               class="post-to-bookmark no-txt-decor">
                                                 &#9734
                                             </a>
                                         @endif
 
                                         @if($post->user_id !== auth()->user()->id)
                                             <!-- Trigger the modal with a button -->
-                                            <a class="pull-right" href="" title="Report this post" data-toggle="modal" data-target="#reportModal-{{$post->id}}">
+                                            <a class="pull-right no-txt-decor" href="" title="Report this post" data-toggle="modal" data-target="#reportModal-{{$post->id}}">
                                                 &#9873
                                             </a>
                                     </h1>

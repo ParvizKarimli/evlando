@@ -17,3 +17,7 @@ a.location-suggestion-row {
 #jssor_1 {
     border: 1px solid #636b6f;
 }
+
+.no-txt-decor {
+    text-decoration: none !important;
+}
