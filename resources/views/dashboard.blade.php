@@ -19,6 +19,10 @@
                     <p><a href="/users" class="btn btn-link">Users</a></p>
                 @endif
 
+                @if(auth()->user()->role === 'admin' || auth()->user()->role === 'mod')
+                    <p><a href="/reports" class="btn btn-link">Reports</a></p>
+                @endif
+
                 <p><a href="/bookmarks" class="btn btn-link">Bookmarks</a></p>
 
                 @if(auth()->user() && (auth()->user()->role === 'mod' || auth()->user()->role === 'admin'))
