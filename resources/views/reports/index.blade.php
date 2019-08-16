@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-12 col-md-offset-0">
         <div class="panel panel-default">
             <div class="panel-heading">Reports</div>
 
@@ -25,8 +25,8 @@
                         <tr>
                             <th></th>
                             <th>ID</th>
-                            <th>Reporter User ID</th>
-                            <th>Reported User/Post ID</th>
+                            <th>Reporter User</th>
+                            <th>Reported User/Post</th>
                             <th>Category</th>
                             <th>Message</th>
                             <th>Created at</th>
@@ -40,16 +40,24 @@
                                         <h4 class="alert-success" title="Resolved">&#10004;</h4>
                                     @endif
                                 </td>
+                                <td>{{$report->id}}</td>
                                 <td>
-                                    <a href="/reports/{{$report->id}}">
-                                        {{$report->id}}
+                                    <a href="/users/{{$report->reporter_user_id}}">
+                                        {{$report->reporter_user_id}}
                                     </a>
                                 </td>
-                                <td>{{$report->reporter_user_id}}</td>
                                 @if($report->reported_user_id)
-                                    <td>{{$report->reported_user_id}}</td>
+                                    <td>
+                                        <a href="/users/{{$report->reported_user_id}}">
+                                            {{$report->user->name}}
+                                        </a>
+                                    </td>
                                 @else
-                                    <td>{{$report->post_id}}</td>
+                                    <td>
+                                        <a href="/posts/{{$report->post_id}}/{{$report->post->slug}}">
+                                            <img src="/storage/images/cover_images/thumbnails/{{$report->post->thumbnail}}">
+                                        </a>
+                                    </td>
                                 @endif
                                 @if($report->category === 1)
                                     <td>Spam</td>

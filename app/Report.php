@@ -8,7 +8,7 @@ class Report extends Model
 {
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User', 'reported_user_id');
     }
 
     public function post()
