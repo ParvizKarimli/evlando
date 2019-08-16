@@ -150,7 +150,7 @@
                                     @if($post->user_id !== auth()->user()->id)
                                         <!-- Trigger the modal with a button -->
                                         <a class="pull-right" href="" title="Report this post" data-toggle="modal" data-target="#reportModal-{{$post->id}}">
-                                            &#128681
+                                            &#9873
                                         </a>
                                     @endif
                             </h1>
@@ -225,7 +225,7 @@
                                 </a>
 
                                 <a class="pull-right" href="{{route('login')}}" title="Report this post">
-                                    &#128681
+                                    &#9873
                                 </a>
                             @endif
                         </div>
