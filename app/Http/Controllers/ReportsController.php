@@ -71,7 +71,7 @@ class ReportsController extends Controller
         {
             $this->validate($request, [
                 'post_id' => 'required|exists:posts,id',
-                'post_owner_id' => 'required|exists:posts,user_id'
+                'post_owner_id' => 'required'
             ]);
 
             // Don't let the user report their post
