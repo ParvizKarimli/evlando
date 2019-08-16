@@ -24,7 +24,13 @@ class ReportsController extends Controller
      */
     public function index()
     {
-        //
+        if(auth()->user()->role !== 'admin' && auth()->user()->role !== 'mod')
+        {
+            return redirect()->back()->with('error', 'Unauthorized Page');
+        }
+
+        $reports = Report::orderBy('id', 'desc')->paginate(20);
+        return view('reports.index')->with('reports', $reports);
     }
 
     /**
