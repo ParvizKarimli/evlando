@@ -63,8 +63,30 @@ class ReportsController extends Controller
             $categories = ['1', '2', '3', '4'];
         }
 
-        // If both users and posts selected
-        if(count($types) === 2)
+        // If only users selected
+        if(in_array('users', $types) && !in_array('posts', $types))
+        {
+            // Get only users
+            $reports = Report::whereNotNull('reported_user_id')
+                ->whereIn('seen', $seen)
+                ->whereIn('resolved', $resolved)
+                ->whereIn('category', $categories)
+                ->orderBy('id', 'desc')
+                ->paginate(20);
+        }
+        // If only posts selected
+        elseif(in_array('posts', $types) && !in_array('users', $types))
+        {
+            // Get only posts
+            $reports = Report::whereNotNull('post_id')
+                ->whereIn('seen', $seen)
+                ->whereIn('resolved', $resolved)
+                ->whereIn('category', $categories)
+                ->orderBy('id', 'desc')
+                ->paginate(20);
+        }
+        // If both or more selected
+        elseif(in_array('users', $types) && in_array('posts', $types))
         {
             // Get both users and posts
             $reports = Report::whereIn('seen', $seen)
@@ -73,29 +95,11 @@ class ReportsController extends Controller
                 ->orderBy('id', 'desc')
                 ->paginate(20);
         }
-        // If only users or posts selected
-        elseif(count($types) === 1)
+        // If none but something else selected
+        elseif(!in_array('users', $types) && !in_array('posts', $types))
         {
-            // Get only users
-            if(in_array('users', $types))
-            {
-                $reports = Report::whereNotNull('reported_user_id')
-                    ->whereIn('seen', $seen)
-                    ->whereIn('resolved', $resolved)
-                    ->whereIn('category', $categories)
-                    ->orderBy('id', 'desc')
-                    ->paginate(20);
-            }
-            // Get only posts
-            elseif(in_array('posts', $types))
-            {
-                $reports = Report::whereNotNull('post_id')
-                    ->whereIn('seen', $seen)
-                    ->whereIn('resolved', $resolved)
-                    ->whereIn('category', $categories)
-                    ->orderBy('id', 'desc')
-                    ->paginate(20);
-            }
+            // Get nothing
+            $reports = null;
         }
 
         return view('reports.index')->with('reports', $reports);
