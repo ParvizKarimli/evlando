@@ -21,3 +21,8 @@ a.location-suggestion-row {
 .no-txt-decor {
     text-decoration: none !important;
 }
+
+.resolved-report-sign {
+    color: #008000;
+    font-size: 2em;
+}

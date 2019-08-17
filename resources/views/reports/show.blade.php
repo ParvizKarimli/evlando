@@ -8,6 +8,9 @@
         <p>
             <b>Report ID:</b><br>
             {{$report->id}}
+            @if($report->resolved === 1)
+                <span class="resolved-report-sign" title="Resolved">&#10004;</span>
+            @endif
         </p>
         @if($report->reported_user_id !== NULL)
             <p>
@@ -21,9 +24,6 @@
                     <img src="/storage/images/cover_images/thumbnails/{{$report->post->thumbnail}}">
                 </a>
             </p>
-        @endif
-        @if($report->resolved === 1)
-            <h4 class="alert-success" title="Resolved">&#10004;</h4>
         @endif
         <p><b>Category:</b><br>
             @if($report->category === 1)

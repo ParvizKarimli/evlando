@@ -100,7 +100,7 @@
                             <tr @if($report->seen === 0) class="alert alert-info" @endif>
                                 <td>
                                     @if($report->resolved === 1)
-                                        <h4 class="alert-success" title="Resolved">&#10004;</h4>
+                                        <span class="resolved-report-sign" title="Resolved">&#10004;</span>
                                     @endif
                                 </td>
                                 <td>{{$report->id}}</td>
@@ -132,7 +132,7 @@
                                     <td>Other</td>
                                 @endif
                                 <td>
-                                    <a href="/reports/{{$report->id}}">
+                                    <a href="/reports/{{$report->id}}" title="Click to see the full report">
                                         {{str_limit($report->message, $limit = 15, $end = '...')}}
                                     </a>
                                 </td>

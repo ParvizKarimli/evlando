@@ -175,6 +175,11 @@ class ReportsController extends Controller
      */
     public function show($id)
     {
+        if(auth()->user()->role !== 'admin' && auth()->user()->role !== 'mod')
+        {
+            return redirect()->back()->with('error', 'Unauthorized Page');
+        }
+
         $report = Report::find($id);
         if(empty($report))
         {
