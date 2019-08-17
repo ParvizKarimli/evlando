@@ -13,106 +13,106 @@
     <h1>Search</h1>
     <div class="well">
         {!! Form::open(['action' => 'PostsController@search', 'method' => 'GET']) !!}
-        <div class="form-group">
-            {!! Form::label('location-input', 'Location') !!}
-            {!! Form::text('location', '', ['id' => 'location-input', 'class' => 'form-control', 'placeholder' => 'New York', 'autocomplete' => 'off']) !!}
-            {!! Form::hidden('location_id', '', ['id' => 'location_id']) !!}
-        </div>
-        <div id="location-suggestions-container"></div>
-        <div class="form-group">
-            <label for="type">Type</label>
-            <div class="checkbox">
-                <label>
-                    {{ Form::checkbox('types[]', 'sale') }} For Sale
-                </label>
+            <div class="form-group">
+                {!! Form::label('location-input', 'Location') !!}
+                {!! Form::text('location', '', ['id' => 'location-input', 'class' => 'form-control', 'placeholder' => 'New York', 'autocomplete' => 'off']) !!}
+                {!! Form::hidden('location_id', '', ['id' => 'location_id']) !!}
             </div>
-            <div class="checkbox">
-                <label>
-                    {!! Form::checkbox('types[]', 'rent') !!} For Rent
-                </label>
+            <div id="location-suggestions-container"></div>
+            <div class="form-group">
+                <label for="type">Type</label>
+                <div class="checkbox">
+                    <label>
+                        {{ Form::checkbox('types[]', 'sale') }} For Sale
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        {!! Form::checkbox('types[]', 'rent') !!} For Rent
+                    </label>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="property_type">Property Type</label>
-            <div class="checkbox">
-                <label>
-                    {{ Form::checkbox('property_types[]', 'apartment') }} Apartment
-                </label>
+            <div class="form-group">
+                <label for="property_type">Property Type</label>
+                <div class="checkbox">
+                    <label>
+                        {{ Form::checkbox('property_types[]', 'apartment') }} Apartment
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        {!! Form::checkbox('property_types[]', 'house') !!} House
+                    </label>
+                </div>
             </div>
-            <div class="checkbox">
-                <label>
-                    {!! Form::checkbox('property_types[]', 'house') !!} House
-                </label>
+            <div class="form-group">
+                <label for="floor">Floor</label>
+                <div>
+                    <label>
+                        Min {{ Form::number('floor_min', '', ['class' => 'form-control', 'min' => 1]) }}
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        Max {{ Form::number('floor_max', '', ['class' => 'form-control', 'min' => 1]) }}
+                    </label>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="floor">Floor</label>
-            <div>
-                <label>
-                    Min {{ Form::number('floor_min', '', ['class' => 'form-control', 'min' => 1]) }}
-                </label>
+            <div class="form-group">
+                <label for="area">Area (ft<sup>2</sup>)</label>
+                <div>
+                    <label>
+                        Min {{ Form::number('area_min', '', ['class' => 'form-control', 'min' => 10]) }}
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        Max {{ Form::number('area_max', '', ['class' => 'form-control', 'min' => 10]) }}
+                    </label>
+                </div>
             </div>
-            <div>
-                <label>
-                    Max {{ Form::number('floor_max', '', ['class' => 'form-control', 'min' => 1]) }}
-                </label>
+            <div class="form-group">
+                <label for="bedrooms">Bedrooms</label>
+                <div>
+                    <label>
+                        Min {{ Form::number('bedrooms_min', '', ['class' => 'form-control', 'min' => 1]) }}
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        Max {{ Form::number('bedrooms_max', '', ['class' => 'form-control', 'min' => 1]) }}
+                    </label>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="area">Area (ft<sup>2</sup>)</label>
-            <div>
-                <label>
-                    Min {{ Form::number('area_min', '', ['class' => 'form-control', 'min' => 10]) }}
-                </label>
+            <div class="form-group">
+                <label for="bathrooms">Bathrooms</label>
+                <div>
+                    <label>
+                        Min {{ Form::number('bathrooms_min', '', ['class' => 'form-control', 'min' => 1]) }}
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        Max {{ Form::number('bathrooms_max', '', ['class' => 'form-control', 'min' => 1]) }}
+                    </label>
+                </div>
             </div>
-            <div>
-                <label>
-                    Max {{ Form::number('area_max', '', ['class' => 'form-control', 'min' => 10]) }}
-                </label>
+            <div class="form-group">
+                <label for="price">Price</label>
+                <div>
+                    <label>
+                        Min {{ Form::number('price_min', '', ['class' => 'form-control', 'min' => 1]) }}
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        Max {{ Form::number('price_max', '', ['class' => 'form-control', 'min' => 1]) }}
+                    </label>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="bedrooms">Bedrooms</label>
-            <div>
-                <label>
-                    Min {{ Form::number('bedrooms_min', '', ['class' => 'form-control', 'min' => 1]) }}
-                </label>
+            <div class="form-group">
+                {{Form::submit('Search', ['class' => 'btn btn-default'])}}
             </div>
-            <div>
-                <label>
-                    Max {{ Form::number('bedrooms_max', '', ['class' => 'form-control', 'min' => 1]) }}
-                </label>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="bathrooms">Bathrooms</label>
-            <div>
-                <label>
-                    Min {{ Form::number('bathrooms_min', '', ['class' => 'form-control', 'min' => 1]) }}
-                </label>
-            </div>
-            <div>
-                <label>
-                    Max {{ Form::number('bathrooms_max', '', ['class' => 'form-control', 'min' => 1]) }}
-                </label>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="price">Price</label>
-            <div>
-                <label>
-                    Min {{ Form::number('price_min', '', ['class' => 'form-control', 'min' => 1]) }}
-                </label>
-            </div>
-            <div>
-                <label>
-                    Max {{ Form::number('price_max', '', ['class' => 'form-control', 'min' => 1]) }}
-                </label>
-            </div>
-        </div>
-        <div class="form-group">
-            {{Form::submit('Search', ['class' => 'btn btn-default'])}}
-        </div>
         {!! Form::close() !!}
     </div>
 </div>
