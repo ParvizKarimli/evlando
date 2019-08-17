@@ -10,13 +10,76 @@
 
                 <p><a href="/dashboard" class="btn btn-link">Dashboard</a></p>
 
-                <div class="form-group">
-                    <label for="type">Type:</label>
-                    <select id="site-type" name="type" site="reports">
-                        <option value="all">All</option>
-                        <option value=""></option>
-                        <option value=""></option>
-                    </select>
+                <hr>
+
+                <div class="row">
+                    {!! Form::open(['action' => 'ReportsController@get', 'method' => 'GET']) !!}
+                        <div class="form-group col-md-2">
+                            <label for="types">Types</label>
+                            <div class="checkbox">
+                                <label>
+                                    {{ Form::checkbox('types[]', 'users') }} Users
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    {!! Form::checkbox('types[]', 'posts') !!} Posts
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="seen">Seen</label>
+                            <div class="checkbox">
+                                <label>
+                                    {{ Form::checkbox('seen[]', '0') }} Unseen
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    {!! Form::checkbox('seen[]', '1') !!} Seen
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="resolved">Resolved</label>
+                            <div class="checkbox">
+                                <label>
+                                    {{ Form::checkbox('resolved[]', '0') }} Unresolved
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    {!! Form::checkbox('resolved[]', '1') !!} Resolved
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="categories">Categories</label>
+                            <div class="checkbox">
+                                <label>
+                                    {{ Form::checkbox('categories[]', '1') }} Spam
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    {!! Form::checkbox('categories[]', '2') !!} Nudity
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    {{ Form::checkbox('categories[]', '3') }} Hate speech
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    {!! Form::checkbox('categories[]', '4') !!} Other
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {{Form::submit('Get Reports', ['class' => 'btn btn-default'])}}
+                        </div>
+                    {!! Form::close() !!}
                 </div>
 
                 <h3>Reports</h3>

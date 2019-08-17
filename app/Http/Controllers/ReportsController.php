@@ -33,6 +33,74 @@ class ReportsController extends Controller
         return view('reports.index')->with('reports', $reports);
     }
 
+    // Get reports based on the criteria user selects
+    public function get(Request $request)
+    {
+        if(auth()->user()->role !== 'admin' && auth()->user()->role !== 'mod')
+        {
+            return redirect()->back()->with('error', 'Unauthorized Page');
+        }
+
+        $types = $request->input('types');
+        $seen = $request->input('seen');
+        $resolved = $request->input('resolved');
+        $categories = $request->input('categories');
+
+        if(empty($types))
+        {
+            $types = ['users', 'posts'];
+        }
+        if(empty($seen))
+        {
+            $seen = ['0', '1'];
+        }
+        if(empty($resolved))
+        {
+            $resolved = ['0', '1'];
+        }
+        if(empty($categories))
+        {
+            $categories = ['1', '2', '3', '4'];
+        }
+
+        // If both users and posts selected
+        if(count($types) === 2)
+        {
+            // Get both users and posts
+            $reports = Report::whereIn('seen', $seen)
+                ->whereIn('resolved', $resolved)
+                ->whereIn('category', $categories)
+                ->orderBy('id', 'desc')
+                ->paginate(20);
+        }
+        // If only users or posts selected
+        elseif(count($types) === 1)
+        {
+            // Get only users
+            if(in_array('users', $types))
+            {
+                $reports = Report::whereNotNull('reported_user_id')
+                    ->whereIn('seen', $seen)
+                    ->whereIn('resolved', $resolved)
+                    ->whereIn('category', $categories)
+                    ->orderBy('id', 'desc')
+                    ->paginate(20);
+            }
+            // Get only posts
+            elseif(in_array('posts', $types))
+            {
+                $reports = Report::whereNotNull('post_id')
+                    ->whereIn('seen', $seen)
+                    ->whereIn('resolved', $resolved)
+                    ->whereIn('category', $categories)
+                    ->orderBy('id', 'desc')
+                    ->paginate(20);
+            }
+        }
+
+        return view('reports.index')->with('reports', $reports);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
