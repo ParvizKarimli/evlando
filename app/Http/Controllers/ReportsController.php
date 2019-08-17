@@ -181,10 +181,15 @@ class ReportsController extends Controller
         }
 
         $report = Report::find($id);
+
         if(empty($report))
         {
             return redirect()->back()->with('error', 'Report Not Found');
         }
+
+        $report->seen = 1;
+        $report->save();
+
         return view('reports.show')->with('report', $report);
     }
 
