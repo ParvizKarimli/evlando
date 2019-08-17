@@ -99,7 +99,7 @@ class ReportsController extends Controller
         elseif(!in_array('users', $types) && !in_array('posts', $types))
         {
             // Get nothing
-            $reports = null;
+            $reports = NULL;
         }
 
         return view('reports.index')->with('reports', $reports);
@@ -175,7 +175,12 @@ class ReportsController extends Controller
      */
     public function show($id)
     {
-        //
+        $report = Report::find($id);
+        if(empty($report))
+        {
+            return redirect()->back()->with('error', 'Report Not Found');
+        }
+        return view('reports.show')->with('report', $report);
     }
 
     /**

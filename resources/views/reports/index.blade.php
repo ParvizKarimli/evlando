@@ -92,7 +92,7 @@
                             <th>Reported User/Post</th>
                             <th>Category</th>
                             <th>Message</th>
-                            <th>Created at</th>
+                            <th>Reported at</th>
                             <th>Updated at</th>
                             <th></th>
                         </tr>
