@@ -211,9 +211,32 @@ class ReportsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        //
+        if(auth()->user()->role !== 'admin' && auth()->user()->role !== 'mod')
+        {
+            return redirect()->back()->with('error', 'Unauthorized Page');
+        }
+
+        $report = Report::find($id);
+
+        if(empty($report))
+        {
+            return redirect()->back()->with('error', 'Report Not Found');
+        }
+
+        if($report->resolved === 0)
+        {
+            $report->resolved = 1;
+            $report->save();
+            return redirect()->back()->with('success', 'Report Marked as Resolved');
+        }
+        elseif($report->resolved === 1)
+        {
+            $report->resolved = 0;
+            $report->save();
+            return redirect()->back()->with('success', 'Report Marked as Unresolved');
+        }
     }
 
     /**
@@ -224,6 +247,19 @@ class ReportsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(auth()->user()->role !== 'admin' && auth()->user()->role !== 'mod')
+        {
+            return redirect()->back()->with('error', 'Unauthorized Page');
+        }
+
+        $report = Report::find($id);
+
+        if(empty($report))
+        {
+            return redirect()->back()->with('error', 'Report Not Found');
+        }
+
+        $report->delete();
+        return redirect('/reports')->with('success', 'Report Deleted');
     }
 }

@@ -103,7 +103,11 @@
                                         <span class="resolved-report-sign" title="Resolved">&#10004;</span>
                                     @endif
                                 </td>
-                                <td>{{$report->id}}</td>
+                                <td>
+                                    <a href="/reports/{{$report->id}}" title="Click to see the full report">
+                                        {{$report->id}}
+                                    </a>
+                                </td>
                                 <td>
                                     <a href="/users/{{$report->reporter_user_id}}">
                                         {{$report->reporter_user_id}}
