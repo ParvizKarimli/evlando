@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', $post->slug . ' - Edit')
+
 @section('content')
 <h1>Edit Post <a class="btn btn-default" href="/posts/{{$post->id}}/{{$post->slug}}">Back to the post</a></h1>
 {!! Form::open(['id' => 'post-form', 'action' => ['PostsController@update', $post->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}

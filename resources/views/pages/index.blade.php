@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Home')
+
 @section('content')
 <div class="col-md-4 col-sm-4">
     <!-- Empty space -->

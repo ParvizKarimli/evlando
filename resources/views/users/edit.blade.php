@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', auth()->user()->name . ' - Edit')
+
 @section('content')
 <div class="row">
     <div class="col-md-8 col-md-offset-2">

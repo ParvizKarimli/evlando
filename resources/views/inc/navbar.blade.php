@@ -23,7 +23,7 @@
             </ul>
 
             <ul class="nav navbar-nav">
-                <li><a href="/about">About</a></li>
+                <li><a href="/about">About Us</a></li>
             </ul>
 
             <!-- Right Side Of Navbar -->

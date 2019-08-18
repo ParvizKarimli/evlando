@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Report - ' . $report->id)
+
 @section('content')
 <div class="well">
     <div class="row">

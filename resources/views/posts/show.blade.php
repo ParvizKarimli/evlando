@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', $post->slug)
+
 @section('content')
 <div class="well">
     <div class="row">
