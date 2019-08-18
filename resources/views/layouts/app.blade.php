@@ -10,6 +10,8 @@
 
     <title>{{ config('app.name', 'Evlando') }} - @yield('title')</title>
 
+    <link rel="shortcut icon" href="/storage/images/default/59763.png">
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('fontawesome/css/all.min.css') }}" rel="stylesheet">
