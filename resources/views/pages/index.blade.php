@@ -225,7 +225,7 @@
                                     </a>
 
                                     <a class="pull-right no-txt-decor" href="{{route('login')}}" title="Report this post">
-                                        &#9873
+                                        &#9872
                                     </a>
                                 @endif
                         </div>
