@@ -8,9 +8,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <p>Dashboard</p>
-                @if(auth()->user()->role === 'admin' || auth()->user()->role === 'mod')
-                    <p><a href="/adminpanel">Admin Panel</a></p>
-                @endif
+                <p><a href="/adminpanel">Admin Panel</a></p>
             </div>
 
             <div class="panel-body">

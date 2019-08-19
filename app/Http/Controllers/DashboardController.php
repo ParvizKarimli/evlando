@@ -32,11 +32,6 @@ class DashboardController extends Controller
 
     public function adminpanel()
     {
-        if(auth()->user()->role !== 'admin' && auth()->user()->role !== 'mod')
-        {
-            return redirect()->back()->with('error', 'Unauthorized Page');
-        }
-
         return view('adminpanel');
     }
 }
