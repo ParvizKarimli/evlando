@@ -29,4 +29,9 @@ class DashboardController extends Controller
 
         return view('dashboard')->with('posts', $posts);
     }
+
+    public function adminpanel()
+    {
+        echo 'There will be a beautiful admin panel here soon...';
+    }
 }
