@@ -30,7 +30,12 @@ class ReportsController extends Controller
         }
 
         $reports = Report::orderBy('id', 'desc')->paginate(20);
-        return view('reports.index')->with('reports', $reports);
+
+        $unseen_reports = Report::where('seen', 0)
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return view('reports.index')->with(['reports' => $reports, 'unseen_reports' => $unseen_reports]);
     }
 
     // Get reports based on the criteria user selects
@@ -102,7 +107,11 @@ class ReportsController extends Controller
             $reports = NULL;
         }
 
-        return view('reports.index')->with('reports', $reports);
+        $unseen_reports = Report::where('seen', 0)
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return view('reports.index')->with(['reports' => $reports, 'unseen_reports' => $unseen_reports]);
     }
 
     /**
@@ -190,7 +199,11 @@ class ReportsController extends Controller
         $report->seen = 1;
         $report->save();
 
-        return view('reports.show')->with('report', $report);
+        $unseen_reports = Report::where('seen', 0)
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return view('reports.show')->with(['report' => $report, 'unseen_reports' => $unseen_reports]);
     }
 
     /**

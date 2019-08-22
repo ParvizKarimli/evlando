@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.adminpanel.app')
 
 @section('title', 'Report - ' . $report->id)
 
