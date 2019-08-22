@@ -20,8 +20,8 @@
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu">
         <li class="active">
-            <a href="/adminpanel">
-                <i class="fa fa-tachometer-alt"></i> <span>Admin Panel</span>
+            <a href="/dashboard">
+                <i class="fa fa-tachometer-alt"></i> <span>Dashboard</span>
             </a>
         </li>
         @if(auth()->user()->role === 'admin')

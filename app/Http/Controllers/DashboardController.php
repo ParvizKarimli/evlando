@@ -30,19 +30,14 @@ class DashboardController extends Controller
             ->orderBy('id', 'desc')
             ->paginate(10);
 
-        return view('dashboard')->with('posts', $posts);
-    }
-
-    public function adminpanel()
-    {
         if(auth()->user()->role === 'admin' || auth()->user()->role === 'mod')
         {
             $unseen_reports = Report::where('seen', 0)
                 ->orderBy('id', 'desc')
                 ->get();
-            return view('adminpanel')->with('unseen_reports', $unseen_reports);
+            return view('dashboard')->with(['posts' => $posts, 'unseen_reports' => $unseen_reports]);
         }
 
-        return view('adminpanel');
+        return view('dashboard')->with('posts', $posts);
     }
 }

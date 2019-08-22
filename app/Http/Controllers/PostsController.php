@@ -7,6 +7,7 @@ use App\Post;
 use App\Image;
 use App\Bookmark;
 use App\Location;
+use App\Report;
 use Image as ImageLib;
 
 class PostsController extends Controller
@@ -33,7 +34,46 @@ class PostsController extends Controller
             return redirect('/');
         }
         $posts = Post::orderBy('id', 'desc')->paginate(20);
-        return view('posts.index')->with('posts', $posts);
+
+        $unseen_reports = Report::where('seen', 0)
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return view('posts.index')->with(['posts' => $posts, 'unseen_reports' => $unseen_reports]);
+    }
+
+    public function suspended()
+    {
+        if(auth()->user()->role !== 'mod' && auth()->user()->role !== 'admin')
+        {
+            return redirect('dashboard')->with('error', 'Unauthorized Page');
+        }
+        $posts = Post::where('suspended', 1)
+            ->orderBy('id', 'desc')
+            ->paginate(20);
+
+        $unseen_reports = Report::where('seen', 0)
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return view('posts.suspended')->with(['posts' => $posts, 'unseen_reports' => $unseen_reports]);
+    }
+
+    public function active()
+    {
+        if(auth()->user()->role !== 'mod' && auth()->user()->role !== 'admin')
+        {
+            return redirect('dashboard')->with('error', 'Unauthorized Page');
+        }
+        $posts = Post::where('suspended', 0)
+            ->orderBy('id', 'desc')
+            ->paginate(20);
+
+        $unseen_reports = Report::where('seen', 0)
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return view('posts.active')->with(['posts' => $posts, 'unseen_reports' => $unseen_reports]);
     }
 
     /**
@@ -43,6 +83,14 @@ class PostsController extends Controller
      */
     public function create()
     {
+        if(auth()->user()->role === 'admin' || auth()->user()->role === 'mod')
+        {
+            $unseen_reports = Report::where('seen', 0)
+                ->orderBy('id', 'desc')
+                ->get();
+            return view('posts.create')->with('unseen_reports', $unseen_reports);
+        }
+
         return view('posts.create');
     }
 
@@ -219,6 +267,14 @@ class PostsController extends Controller
         }
 
         $images = $post->images;
+
+        if(auth()->user()->role === 'admin' || auth()->user()->role === 'mod')
+        {
+            $unseen_reports = Report::where('seen', 0)
+                ->orderBy('id', 'desc')
+                ->get();
+            return view('posts.edit')->with(['post' => $post, 'images' => $images, 'unseen_reports' => $unseen_reports]);
+        }
 
         return view('posts.edit')->with(['post' => $post, 'images' => $images]);
     }
@@ -422,30 +478,6 @@ class PostsController extends Controller
             $post->save();
             return redirect()->back()->with('success', 'Post Resumed');
         }
-    }
-
-    public function suspended()
-    {
-        if(auth()->user()->role !== 'mod' && auth()->user()->role !== 'admin')
-        {
-            return redirect('dashboard')->with('error', 'Unauthorized Page');
-        }
-        $posts = Post::where('suspended', 1)
-            ->orderBy('id', 'desc')
-            ->paginate(20);
-        return view('posts.suspended')->with('posts', $posts);
-    }
-
-    public function active()
-    {
-        if(auth()->user()->role !== 'mod' && auth()->user()->role !== 'admin')
-        {
-            return redirect('dashboard')->with('error', 'Unauthorized Page');
-        }
-        $posts = Post::where('suspended', 0)
-            ->orderBy('id', 'desc')
-            ->paginate(20);
-        return view('posts.active')->with('posts', $posts);
     }
 
     // Remove Cover Image

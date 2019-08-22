@@ -35,4 +35,3 @@ Route::resource('users', 'UsersController');
 Route::post('users/ban', 'UsersController@ban');
 Route::get('reports/get', 'ReportsController@get');
 Route::resource('reports', 'ReportsController');
-Route::get('adminpanel', 'DashboardController@adminpanel');
