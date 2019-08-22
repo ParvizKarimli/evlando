@@ -5,16 +5,23 @@
             <img src="/storage/images/default/avatar.jpg" class="img-circle" alt="User Image" />
         </div>
         <div class="pull-left info">
-            <p>Hello, {{ auth()->user()->name }}</p>
-
-            <span>{{ auth()->user()->role }}</span>
+            <p>
+                Hello, {{ auth()->user()->name }}
+                &nbsp;
+                <span>
+                    <a href="/users/{{auth()->user()->id}}/edit" title="Edit User">
+                        <i class="fa fa-user-edit"></i>
+                    </a>
+                </span>
+            </p>
+            <p class="text-success">{{ auth()->user()->role }}</p>
         </div>
     </div>
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu">
         <li class="active">
             <a href="/adminpanel">
-                <i class="fa fa-dashboard"></i> <span>Admin Panel</span>
+                <i class="fa fa-tachometer-alt"></i> <span>Admin Panel</span>
             </a>
         </li>
         @if(auth()->user()->role === 'admin')
