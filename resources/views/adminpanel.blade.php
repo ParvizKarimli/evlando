@@ -1,5 +1,7 @@
 @extends('layouts.adminpanel.app')
 
+@section('title', 'Admin Panel')
+
 @section('content')
 <!-- Content Header (Page header) -->
 <section class="content-header">
