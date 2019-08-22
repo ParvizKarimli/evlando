@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Report;
 
 class DashboardController extends Controller
 {
@@ -25,13 +26,23 @@ class DashboardController extends Controller
     public function index()
     {
         $user_id = auth()->user()->id;
-        $posts = Post::where('user_id', '=', $user_id)->orderBy('id', 'desc')->paginate(10);
+        $posts = Post::where('user_id', '=', $user_id)
+            ->orderBy('id', 'desc')
+            ->paginate(10);
 
         return view('dashboard')->with('posts', $posts);
     }
 
     public function adminpanel()
     {
+        if(auth()->user()->role === 'admin' || auth()->user()->role('mod'))
+        {
+            $unseen_reports = Report::where('seen', 0)
+                ->orderBy('id', 'desc')
+                ->get();
+            return view('adminpanel')->with('unseen_reports', $unseen_reports);
+        }
+
         return view('adminpanel');
     }
 }
