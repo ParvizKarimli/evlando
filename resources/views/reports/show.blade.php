@@ -4,58 +4,56 @@
 
 @section('content')
 <div class="well">
-    <div class="row">
-        <h1><a href="/reports">Reports</a></h1>
-        <hr>
-        <p>
-            <b>Report ID:</b><br>
-            {{$report->id}}
-            @if($report->resolved === 1)
-                <span class="resolved-report-sign" title="Resolved">&#10004;</span>
-            @endif
-        </p>
-        @if($report->reported_user_id !== NULL)
-            <p>
-                <b>Reported User:</b><br>
-                <a href="/users/{{$report->reported_user_id}}">{{$report->user->name}}</a>
-            </p>
-        @else
-            <p>
-                <b>Reported Post:</b><br>
-                <a href="/posts/{{$report->post_id}}">
-                    <img src="/storage/images/cover_images/thumbnails/{{$report->post->thumbnail}}">
-                </a>
-            </p>
+    <h1><a href="/reports">Reports</a></h1>
+    <hr>
+    <p>
+        <b>Report ID:</b><br>
+        {{$report->id}}
+        @if($report->resolved === 1)
+            <span class="resolved-report-sign" title="Resolved">&#10004;</span>
         @endif
-        <p><b>Category:</b><br>
-            @if($report->category === 1)
-                Spam
-            @elseif($report->category === 2)
-                Nudity
-            @elseif($report->category === 3)
-                Hate speech
-            @elseif($report->category === 4)
-                Other
-            @endif
-        </p>
+    </p>
+    @if($report->reported_user_id !== NULL)
         <p>
-            <b>Message:</b><br>
-            <span>{{ $report->message }}</span>
+            <b>Reported User:</b><br>
+            <a href="/users/{{$report->reported_user_id}}">{{$report->user->name}}</a>
         </p>
+    @else
         <p>
-            <small>
-                Reported at {{$report->created_at}} by
-                <a href="/users/{{$report->reporter_user_id}}">
-                    {{$report->reporter_user_id}}
-                </a>
-            </small>
+            <b>Reported Post:</b><br>
+            <a href="/posts/{{$report->post_id}}">
+                <img src="/storage/images/cover_images/thumbnails/{{$report->post->thumbnail}}">
+            </a>
         </p>
-        <p>
-            <small>
-                Updated at {{$report->updated_at}}
-            </small>
-        </p>
-    </div>
+    @endif
+    <p><b>Category:</b><br>
+        @if($report->category === 1)
+            Spam
+        @elseif($report->category === 2)
+            Nudity
+        @elseif($report->category === 3)
+            Hate speech
+        @elseif($report->category === 4)
+            Other
+        @endif
+    </p>
+    <p>
+        <b>Message:</b><br>
+        <span>{{ $report->message }}</span>
+    </p>
+    <p>
+        <small>
+            Reported at {{$report->created_at}} by
+            <a href="/users/{{$report->reporter_user_id}}">
+                {{$report->reporter_user_id}}
+            </a>
+        </small>
+    </p>
+    <p>
+        <small>
+            Updated at {{$report->updated_at}}
+        </small>
+    </p>
 </div>
 
 @if(auth()->check() && (auth()->user()->role === 'admin' || auth()->user()->role === 'mod'))
