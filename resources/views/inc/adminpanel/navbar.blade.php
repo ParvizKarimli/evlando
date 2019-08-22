@@ -200,36 +200,39 @@
             <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <i class="glyphicon glyphicon-user"></i>
-                    <span>Jane Doe <i class="caret"></i></span>
+                    <span>{{auth()->user()->name }} <i class="caret"></i></span>
                 </a>
                 <ul class="dropdown-menu">
                     <!-- User image -->
                     <li class="user-header bg-light-blue">
-                        <img src="/storage/images/default/avatar3.png" class="img-circle" alt="User Image" />
+                        <img src="/storage/images/default/avatar.jpg" class="img-circle" alt="User Image" />
                         <p>
-                            Jane Doe - Web Developer
-                            <small>Member since Nov. 2012</small>
+                            {{auth()->user()->name }} - {{auth()->user()->role }}
+                            <small>Member since {{ date('M. Y', strtotime(auth()->user()->created_at)) }}</small>
                         </p>
                     </li>
                     <!-- Menu Body -->
                     <li class="user-body">
                         <div class="col-xs-4 text-center">
-                            <a href="#">Followers</a>
-                        </div>
-                        <div class="col-xs-4 text-center">
-                            <a href="#">Sales</a>
-                        </div>
-                        <div class="col-xs-4 text-center">
-                            <a href="#">Friends</a>
+                            <a href="/bookmarks">Bookmarks</a>
                         </div>
                     </li>
                     <!-- Menu Footer-->
                     <li class="user-footer">
                         <div class="pull-left">
-                            <a href="#" class="btn btn-default btn-flat">Profile</a>
+                            <a href="/users/{{auth()->user()->id}}" class="btn btn-default btn-flat">Profile</a>
                         </div>
                         <div class="pull-right">
-                            <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                            <a href="{{ route('logout') }}" class="btn btn-default btn-flat"
+                                onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();"
+                            >
+                                Log Out
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
                         </div>
                     </li>
                 </ul>
