@@ -7,6 +7,7 @@ use App\User;
 use App\Post;
 use App\Bookmark;
 use App\Image;
+use App\Report;
 
 class UsersController extends Controller
 {
@@ -31,8 +32,50 @@ class UsersController extends Controller
         {
             return redirect('dashboard')->with('error', 'Unauthorized Page');
         }
+
         $users = User::orderBy('id', 'desc')->paginate(20);
-        return view('users.index')->with('users', $users);
+
+        $unseen_reports = Report::where('seen', 0)
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return view('users.index')->with(['users' => $users, 'unseen_reports' => $unseen_reports]);
+    }
+
+    public function banned()
+    {
+        if(auth()->user()->role !== 'admin')
+        {
+            return redirect('dashboard')->with('error', 'Unauthorized Page');
+        }
+
+        $users = User::where('banned', 1)
+            ->orderBy('id', 'desc')
+            ->paginate(20);
+
+        $unseen_reports = Report::where('seen', 0)
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return view('users.banned')->with(['users' => $users, 'unseen_reports' => $unseen_reports]);
+    }
+
+    public function active()
+    {
+        if(auth()->user()->role !== 'admin')
+        {
+            return redirect('dashboard')->with('error', 'Unauthorized Page');
+        }
+
+        $users = User::where('banned', 0)
+            ->orderBy('id', 'desc')
+            ->paginate(20);
+
+        $unseen_reports = Report::where('seen', 0)
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return view('users.active')->with(['users' => $users, 'unseen_reports' => $unseen_reports]);
     }
 
     /**
@@ -101,6 +144,14 @@ class UsersController extends Controller
         elseif($user->id !== auth()->user()->id)
         {
             return redirect('/dashboard')->with('error', 'Unauthorized Page');
+        }
+
+        if(auth()->user()->role === 'admin' || auth()->user()->role === 'mod')
+        {
+            $unseen_reports = Report::where('seen', 0)
+                ->orderBy('id', 'desc')
+                ->get();
+            return view('users.edit')->with('unseen_reports', $unseen_reports);
         }
 
         return view('users.edit');
@@ -229,29 +280,5 @@ class UsersController extends Controller
             $user->save();
             return redirect()->back()->with('success', 'User Resumed');
         }
-    }
-
-    public function banned()
-    {
-        if(auth()->user()->role !== 'admin')
-        {
-            return redirect('dashboard')->with('error', 'Unauthorized Page');
-        }
-        $users = User::where('banned', 1)
-            ->orderBy('id', 'desc')
-            ->paginate(20);
-        return view('users.banned')->with('users', $users);
-    }
-
-    public function active()
-    {
-        if(auth()->user()->role !== 'admin')
-        {
-            return redirect('dashboard')->with('error', 'Unauthorized Page');
-        }
-        $users = User::where('banned', 0)
-            ->orderBy('id', 'desc')
-            ->paginate(20);
-        return view('users.active')->with('users', $users);
     }
 }
