@@ -73,7 +73,6 @@
             </div>
         {!! Form::close() !!}
 
-        <h3>Reports</h3>
         @if(count($reports) > 0)
             <table class="table">
                 <tr>
