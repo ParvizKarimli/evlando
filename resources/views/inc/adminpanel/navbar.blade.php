@@ -12,7 +12,7 @@
                 <!-- Messages: style can be found in dropdown.less-->
                 <li class="dropdown messages-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-life-ring" title="Support"></i>
+                        <i class="fa fa-life-ring" title="Reports"></i>
                         <span class="label label-danger">{{ count($unseen_reports) }}</span>
                     </a>
                     <ul class="dropdown-menu">
@@ -54,6 +54,7 @@
                 <ul class="dropdown-menu">
                     <!-- User image -->
                     <li class="user-header bg-light-blue">
+                        <img src="/storage/images/default/avatar.jpg" class="img-circle" alt="User Image" />
                         <p>
                             {{auth()->user()->name }} - {{auth()->user()->role }}
                             <small>Member since {{ date('M. Y', strtotime(auth()->user()->created_at)) }}</small>

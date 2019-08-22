@@ -35,7 +35,7 @@ class DashboardController extends Controller
 
     public function adminpanel()
     {
-        if(auth()->user()->role === 'admin' || auth()->user()->role('mod'))
+        if(auth()->user()->role === 'admin' || auth()->user()->role === 'mod')
         {
             $unseen_reports = Report::where('seen', 0)
                 ->orderBy('id', 'desc')
