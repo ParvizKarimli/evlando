@@ -24,7 +24,7 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 </head>
-<body class="skin-black">
+<body class="skin-black fixed">
 <!-- header logo: style can be found in header.less -->
 <header class="header">
     <a href="/" class="logo">
