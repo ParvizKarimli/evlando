@@ -178,7 +178,7 @@ $(function() {
             + "</label>"
             + "</div>"
             + "</div>"
-            );*/
+            );
 
     demo.click(function() {
         if (!$(this).hasClass("open")) {
@@ -193,7 +193,7 @@ $(function() {
     });
 
     $("body").append(demo);
-    $("body").append(demo_settings);
+    $("body").append(demo_settings);*/
 });
 function change_layout() {
     $("body").toggleClass("fixed");
