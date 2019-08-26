@@ -284,4 +284,13 @@
         <p>No posts found.</p>
     @endif
 </div>
+
+<div class="page-load-status text-center">
+    <p class="infinite-scroll-request">
+        Loading...<br>
+        <img src="/storage/images/default/loader.svg">
+    </p>
+    <p class="infinite-scroll-last">End of content</p>
+    <p class="infinite-scroll-error">No more pages to load</p>
+</div>
 @endsection

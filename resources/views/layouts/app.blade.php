@@ -42,6 +42,7 @@
             append: '.posts-item',
             history: false,
             hideNav: '.pagination',
+            status: '.page-load-status'
         });
     </script>
 </body>
