@@ -58,7 +58,7 @@
 <script src="{{ asset('js/AdminLTE/app.js') }}" type="text/javascript"></script>
 <!-- My script -->
 <script src="{{ asset('js/myscript.js') }}"></script>
-<!-- jScroll -->
+<!-- Infinite Scroll -->
 <script src="{{ asset('js/infinite-scroll.pkgd.min.js') }}"></script>
 <script>
     $('.reports-container').infiniteScroll({
