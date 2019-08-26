@@ -61,7 +61,6 @@
 <!-- jScroll -->
 <script src="{{ asset('js/infinite-scroll.pkgd.min.js') }}"></script>
 <script>
-    $('.reports-loader').hide();
     $('.reports-container').infiniteScroll({
         // options
         path: '.pagination li.active + li a',
