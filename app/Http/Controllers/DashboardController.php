@@ -34,8 +34,13 @@ class DashboardController extends Controller
         {
             $unseen_reports = Report::where('seen', 0)
                 ->orderBy('id', 'desc')
-                ->get();
-            return view('dashboard')->with(['posts' => $posts, 'unseen_reports' => $unseen_reports]);
+                ->paginate(10);
+            $number_of_unseen_reports = Report::where('seen', 0)->count();
+            return view('dashboard')->with([
+                'posts' => $posts,
+                'unseen_reports' => $unseen_reports,
+                'number_of_unseen_reports' => $number_of_unseen_reports
+            ]);
         }
 
         return view('dashboard')->with('posts', $posts);

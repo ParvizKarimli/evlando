@@ -36,8 +36,13 @@ class BookmarksController extends Controller
         {
             $unseen_reports = Report::where('seen', 0)
                 ->orderBy('id', 'desc')
-                ->get();
-            return view('bookmarks.index')->with(['bookmarks' => $bookmarks, 'unseen_reports' => $unseen_reports]);
+                ->paginate(10);
+            $number_of_unseen_reports = Report::where('seen', 0)->count();
+            return view('bookmarks.index')->with([
+                'bookmarks' => $bookmarks,
+                'unseen_reports' => $unseen_reports,
+                'number_of_unseen_reports' => $number_of_unseen_reports
+            ]);
         }
 
         return view('bookmarks.index')->with('bookmarks', $bookmarks);
@@ -58,8 +63,13 @@ class BookmarksController extends Controller
         {
             $unseen_reports = Report::where('seen', 0)
                 ->orderBy('id', 'desc')
-                ->get();
-            return view('bookmarks.sale')->with(['bookmarks' => $bookmarks, 'unseen_reports' => $unseen_reports]);
+                ->paginate(10);
+            $number_of_unseen_reports = Report::where('seen', 0)->count();
+            return view('bookmarks.sale')->with([
+                'bookmarks' => $bookmarks,
+                'unseen_reports' => $unseen_reports,
+                'number_of_unseen_reports' => $number_of_unseen_reports
+            ]);
         }
 
         return view('bookmarks.sale')->with('bookmarks', $bookmarks);
@@ -80,8 +90,13 @@ class BookmarksController extends Controller
         {
             $unseen_reports = Report::where('seen', 0)
                 ->orderBy('id', 'desc')
-                ->get();
-            return view('bookmarks.rent')->with(['bookmarks' => $bookmarks, 'unseen_reports' => $unseen_reports]);
+                ->paginate(10);
+            $number_of_unseen_reports = Report::where('seen', 0)->count();
+            return view('bookmarks.rent')->with([
+                'bookmarks' => $bookmarks,
+                'unseen_reports' => $unseen_reports,
+                'number_of_unseen_reports' => $number_of_unseen_reports
+            ]);
         }
 
         return view('bookmarks.rent')->with('bookmarks', $bookmarks);

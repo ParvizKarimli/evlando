@@ -56,8 +56,20 @@
 <script src="{{ asset('js/bootstrap.min.js') }}" type="text/javascript"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('js/AdminLTE/app.js') }}" type="text/javascript"></script>
-<!-- My style -->
+<!-- My script -->
 <script src="{{ asset('js/myscript.js') }}"></script>
+<!-- jScroll -->
+<script src="{{ asset('js/infinite-scroll.pkgd.min.js') }}"></script>
+<script>
+    $('.reports-loader').hide();
+    $('.reports-container').infiniteScroll({
+        // options
+        path: '.pagination li.active + li a',
+        append: '.reports-item',
+        history: false,
+        hideNav: '.pagination',
+    });
+</script>
 
 </body>
 </html>

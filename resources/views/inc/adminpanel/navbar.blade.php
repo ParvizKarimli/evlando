@@ -13,15 +13,15 @@
                 <li class="dropdown messages-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-life-ring" title="Reports"></i>
-                        <span class="label label-danger">{{ count($unseen_reports) }}</span>
+                        <span class="label label-danger">{{ $number_of_unseen_reports }}</span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="header">There are {{ count($unseen_reports) }} unseen {{ str_plural('report', count($unseen_reports)) }}</li>
+                        <li class="header">There are {{ $number_of_unseen_reports }} unseen {{ str_plural('report', $number_of_unseen_reports) }}</li>
                         <li>
                             <!-- inner menu: contains the actual data -->
-                            <ul class="menu">
+                            <ul class="menu reports-container">
                                 @foreach($unseen_reports as $unseen_report)
-                                    <li><!-- start message -->
+                                    <li class="reports-item"><!-- start message -->
                                         <a href="/reports/{{$unseen_report->id}}">
                                             <h4>
                                                 @if($unseen_report->category === 1)
@@ -39,6 +39,7 @@
                                         </a>
                                     </li><!-- end message -->
                                 @endforeach
+                                {{ $unseen_reports->links() }}
                             </ul>
                         </li>
                         <li class="footer"><a href="/reports">See All Reports</a></li>

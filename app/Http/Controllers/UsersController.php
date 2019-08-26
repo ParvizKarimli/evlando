@@ -36,10 +36,15 @@ class UsersController extends Controller
         $users = User::orderBy('id', 'desc')->paginate(20);
 
         $unseen_reports = Report::where('seen', 0)
-            ->orderBy('id', 'desc')
-            ->get();
+                ->orderBy('id', 'desc')
+                ->paginate(10);
+        $number_of_unseen_reports = Report::where('seen', 0)->count();
 
-        return view('users.index')->with(['users' => $users, 'unseen_reports' => $unseen_reports]);
+        return view('users.index')->with([
+            'users' => $users,
+            'unseen_reports' => $unseen_reports,
+            'number_of_unseen_reports' => $number_of_unseen_reports
+        ]);
     }
 
     public function banned()
@@ -54,10 +59,15 @@ class UsersController extends Controller
             ->paginate(20);
 
         $unseen_reports = Report::where('seen', 0)
-            ->orderBy('id', 'desc')
-            ->get();
+                ->orderBy('id', 'desc')
+                ->paginate(10);
+        $number_of_unseen_reports = Report::where('seen', 0)->count();
 
-        return view('users.banned')->with(['users' => $users, 'unseen_reports' => $unseen_reports]);
+        return view('users.banned')->with([
+            'users' => $users,
+            'unseen_reports' => $unseen_reports,
+            'number_of_unseen_reports' => $number_of_unseen_reports
+        ]);
     }
 
     public function active()
@@ -72,10 +82,15 @@ class UsersController extends Controller
             ->paginate(20);
 
         $unseen_reports = Report::where('seen', 0)
-            ->orderBy('id', 'desc')
-            ->get();
+                ->orderBy('id', 'desc')
+                ->paginate(10);
+        $number_of_unseen_reports = Report::where('seen', 0)->count();
 
-        return view('users.active')->with(['users' => $users, 'unseen_reports' => $unseen_reports]);
+        return view('users.active')->with([
+            'users' => $users,
+            'unseen_reports' => $unseen_reports,
+            'number_of_unseen_reports' => $number_of_unseen_reports
+        ]);
     }
 
     /**
@@ -150,8 +165,12 @@ class UsersController extends Controller
         {
             $unseen_reports = Report::where('seen', 0)
                 ->orderBy('id', 'desc')
-                ->get();
-            return view('users.edit')->with('unseen_reports', $unseen_reports);
+                ->paginate(10);
+            $number_of_unseen_reports = Report::where('seen', 0)->count();
+            return view('users.edit')->with([
+                'unseen_reports' => $unseen_reports,
+                'number_of_unseen_reports' => $number_of_unseen_reports
+            ]);
         }
 
         return view('users.edit');

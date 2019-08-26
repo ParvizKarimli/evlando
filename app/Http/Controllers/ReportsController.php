@@ -32,10 +32,15 @@ class ReportsController extends Controller
         $reports = Report::orderBy('id', 'desc')->paginate(20);
 
         $unseen_reports = Report::where('seen', 0)
-            ->orderBy('id', 'desc')
-            ->get();
+                ->orderBy('id', 'desc')
+                ->paginate(10);
+        $number_of_unseen_reports = Report::where('seen', 0)->count();
 
-        return view('reports.index')->with(['reports' => $reports, 'unseen_reports' => $unseen_reports]);
+        return view('reports.index')->with([
+            'reports' => $reports,
+            'unseen_reports' => $unseen_reports,
+            'number_of_unseen_reports' => $number_of_unseen_reports
+        ]);
     }
 
     // Get reports based on the criteria user selects
@@ -108,10 +113,15 @@ class ReportsController extends Controller
         }
 
         $unseen_reports = Report::where('seen', 0)
-            ->orderBy('id', 'desc')
-            ->get();
+                ->orderBy('id', 'desc')
+                ->paginate(10);
+        $number_of_unseen_reports = Report::where('seen', 0)->count();
 
-        return view('reports.index')->with(['reports' => $reports, 'unseen_reports' => $unseen_reports]);
+        return view('reports.index')->with([
+            'reports' => $reports,
+            'unseen_reports' => $unseen_reports,
+            'number_of_unseen_reports' => $number_of_unseen_reports
+        ]);
     }
 
     /**
@@ -200,10 +210,15 @@ class ReportsController extends Controller
         $report->save();
 
         $unseen_reports = Report::where('seen', 0)
-            ->orderBy('id', 'desc')
-            ->get();
+                ->orderBy('id', 'desc')
+                ->paginate(10);
+        $number_of_unseen_reports = Report::where('seen', 0)->count();
 
-        return view('reports.show')->with(['report' => $report, 'unseen_reports' => $unseen_reports]);
+        return view('reports.show')->with([
+            'report' => $report,
+            'unseen_reports' => $unseen_reports,
+            'number_of_unseen_reports' => $number_of_unseen_reports
+        ]);
     }
 
     /**

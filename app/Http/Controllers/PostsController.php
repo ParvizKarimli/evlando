@@ -36,10 +36,15 @@ class PostsController extends Controller
         $posts = Post::orderBy('id', 'desc')->paginate(20);
 
         $unseen_reports = Report::where('seen', 0)
-            ->orderBy('id', 'desc')
-            ->get();
+                ->orderBy('id', 'desc')
+                ->paginate(10);
+        $number_of_unseen_reports = Report::where('seen', 0)->count();
 
-        return view('posts.index')->with(['posts' => $posts, 'unseen_reports' => $unseen_reports]);
+        return view('posts.index')->with([
+            'posts' => $posts,
+            'unseen_reports' => $unseen_reports,
+            'number_of_unseen_reports' => $number_of_unseen_reports
+        ]);
     }
 
     public function suspended()
@@ -53,10 +58,15 @@ class PostsController extends Controller
             ->paginate(20);
 
         $unseen_reports = Report::where('seen', 0)
-            ->orderBy('id', 'desc')
-            ->get();
+                ->orderBy('id', 'desc')
+                ->paginate(10);
+        $number_of_unseen_reports = Report::where('seen', 0)->count();
 
-        return view('posts.suspended')->with(['posts' => $posts, 'unseen_reports' => $unseen_reports]);
+        return view('posts.suspended')->with([
+            'posts' => $posts,
+            'unseen_reports' => $unseen_reports,
+            'number_of_unseen_reports' => $number_of_unseen_reports
+        ]);
     }
 
     public function active()
@@ -70,10 +80,15 @@ class PostsController extends Controller
             ->paginate(20);
 
         $unseen_reports = Report::where('seen', 0)
-            ->orderBy('id', 'desc')
-            ->get();
+                ->orderBy('id', 'desc')
+                ->paginate(10);
+        $number_of_unseen_reports = Report::where('seen', 0)->count();
 
-        return view('posts.active')->with(['posts' => $posts, 'unseen_reports' => $unseen_reports]);
+        return view('posts.active')->with([
+            'posts' => $posts,
+            'unseen_reports' => $unseen_reports,
+            'number_of_unseen_reports' => $number_of_unseen_reports
+        ]);
     }
 
     /**
@@ -87,8 +102,12 @@ class PostsController extends Controller
         {
             $unseen_reports = Report::where('seen', 0)
                 ->orderBy('id', 'desc')
-                ->get();
-            return view('posts.create')->with('unseen_reports', $unseen_reports);
+                ->paginate(10);
+            $number_of_unseen_reports = Report::where('seen', 0)->count();
+            return view('posts.create')->with([
+                'unseen_reports' => $unseen_reports,
+                'number_of_unseen_reports' => $number_of_unseen_reports
+            ]);
         }
 
         return view('posts.create');
@@ -272,8 +291,14 @@ class PostsController extends Controller
         {
             $unseen_reports = Report::where('seen', 0)
                 ->orderBy('id', 'desc')
-                ->get();
-            return view('posts.edit')->with(['post' => $post, 'images' => $images, 'unseen_reports' => $unseen_reports]);
+                ->paginate(10);
+            $number_of_unseen_reports = Report::where('seen', 0)->count();
+            return view('posts.edit')->with([
+                'post' => $post,
+                'images' => $images,
+                'unseen_reports' => $unseen_reports,
+                'number_of_unseen_reports' => $number_of_unseen_reports
+            ]);
         }
 
         return view('posts.edit')->with(['post' => $post, 'images' => $images]);
