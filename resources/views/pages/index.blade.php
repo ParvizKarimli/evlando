@@ -118,10 +118,10 @@
         {!! Form::close() !!}
     </div>
 </div>
-<div class="col-md-8 col-sm-8">
+<div class="col-md-8 col-sm-8 posts-container">
     @if(count($posts) > 0)
         @foreach($posts as $post)
-            <div class="well">
+            <div class="well posts-item">
                 <div class="row">
                     <div class="container">
                         <div class="col-md-4 col-sm-4">

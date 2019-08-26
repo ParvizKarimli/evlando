@@ -33,5 +33,16 @@
     <script src="{{ asset('js/jssor_internal.js') }}" type="text/javascript"></script>
     @yield('jssor')
     <script src="{{ asset('js/myscript.js') }}"></script>
+    <!-- Infinite Scroll -->
+    <script src="{{ asset('js/infinite-scroll.pkgd.min.js') }}"></script>
+    <script>
+        $('.posts-container').infiniteScroll({
+            // options
+            path: '.pagination li.active + li a',
+            append: '.posts-item',
+            history: false,
+            hideNav: '.pagination',
+        });
+    </script>
 </body>
 </html>
