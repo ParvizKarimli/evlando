@@ -67,6 +67,7 @@
         append: '.reports-item',
         history: false,
         hideNav: '.pagination',
+        elementScroll: '.reports-container' // or true to use the container element (.reports-container in this case).
     });
 </script>
 
