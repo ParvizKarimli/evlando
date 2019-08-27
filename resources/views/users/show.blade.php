@@ -242,8 +242,6 @@
                                     </div>
                                 </div>
                             </div>
-                        @else
-                            <p>No active posts found.</p>
                         @endif
                     @endforeach
                     {{$posts->links()}}
