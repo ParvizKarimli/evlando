@@ -51,7 +51,7 @@ class PostsController extends Controller
     {
         if(auth()->user()->role !== 'mod' && auth()->user()->role !== 'admin')
         {
-            return redirect('dashboard')->with('error', 'Unauthorized Page');
+            return redirect('dashboard')->with('error', __('pages.unauthorized'));
         }
         $posts = Post::where('suspended', 1)
             ->orderBy('id', 'desc')
@@ -73,7 +73,7 @@ class PostsController extends Controller
     {
         if(auth()->user()->role !== 'mod' && auth()->user()->role !== 'admin')
         {
-            return redirect('dashboard')->with('error', 'Unauthorized Page');
+            return redirect('dashboard')->with('error', __('pages.unauthorized'));
         }
         $posts = Post::where('suspended', 0)
             ->orderBy('id', 'desc')
@@ -223,7 +223,7 @@ class PostsController extends Controller
             }
         }
 
-        return redirect('/')->with('success', 'Post Created');
+        return redirect('/')->with('success', __('posts.created'));
     }
 
     /**
@@ -237,13 +237,13 @@ class PostsController extends Controller
         $post = Post::find($id);
         if(empty($post))
         {
-            return redirect('/')->with('error', 'Post Not Found');
+            return redirect('/')->with('error', __('posts.not_found'));
         }
         elseif($post->suspended === 1)
         {
             if(auth()->guest() || (auth()->user()->role === 'user' && $post->user_id !== auth()->user()->id))
             {
-                return redirect('/')->with('error', 'Suspended Post');
+                return redirect('/')->with('error', __('posts.error_suspended'));
             }
         }
         $images = $post->images;
@@ -276,13 +276,13 @@ class PostsController extends Controller
         $post = Post::find($id);
         if(empty($post))
         {
-            return redirect('/')->with('error', 'Post Not Found');
+            return redirect('/')->with('error', __('posts.not_found'));
         }
 
         // Check for correct user
         if(auth()->user()->id !== $post->user_id)
         {
-            return redirect('/posts/' . $post->id . '/' . $post->slug)->with('error', 'Unauthorized Page');
+            return redirect('/posts/' . $post->id . '/' . $post->slug)->with('error', __('pages.unauthorized'));
         }
 
         $images = $post->images;
@@ -316,7 +316,7 @@ class PostsController extends Controller
         $post = Post::find($id);
         if(empty($post))
         {
-            return redirect('/')->with('error', 'Post Not Found');
+            return redirect('/')->with('error', __('posts.not_found'));
         }
 
         $custom_validation_messages = [
@@ -429,7 +429,7 @@ class PostsController extends Controller
             }
         }
 
-        return redirect('/posts/' . $post->id . '/' . $post->slug)->with('success', 'Post Updated');
+        return redirect('/posts/' . $post->id . '/' . $post->slug)->with('success', __('posts.updated'));
     }
 
     /**
@@ -443,13 +443,13 @@ class PostsController extends Controller
         $post = Post::find($id);
         if(empty($post))
         {
-            return redirect('/')->with('error', 'Post Not Found');
+            return redirect('/')->with('error', __('posts.not_found'));
         }
 
         // Check for correct user
         if(auth()->user()->id !== $post->user_id && auth()->user()->role !== 'mod' && auth()->user()->role !== 'admin')
         {
-            return redirect('/posts/' . $post->id . '/' . $post->slug)->with('error', 'Unauthorized Page');
+            return redirect('/posts/' . $post->id . '/' . $post->slug)->with('error', __('pages.unauthorized'));
         }
 
         if($post->cover_image && $post->cover_image !== 'noimage.jpg')
@@ -475,33 +475,33 @@ class PostsController extends Controller
         // Delete from DB
         $post->delete();
 
-        return redirect('/')->with('success', 'Post Removed');
+        return redirect('/')->with('success', __('posts.removed'));
     }
 
     public function suspend(Request $request)
     {
         if(auth()->user()->role !== 'mod' && auth()->user()->role !== 'admin')
         {
-            return redirect('dashboard')->with('error', 'Unauthorized Page');
+            return redirect('dashboard')->with('error', __('pages.unauthorized'));
         }
         $post_id = $request->id;
         $post = Post::find($post_id);
         if(empty($post))
         {
-            return redirect('/posts')->with('error', 'Post Not Found');
+            return redirect('/posts')->with('error', __('posts.not_found'));
         }
 
         if($post->suspended === 0)
         {
             $post->suspended = 1;
             $post->save();
-            return redirect()->back()->with('success', 'Post Suspended');
+            return redirect()->back()->with('success', __('posts.suspended'));
         }
         elseif($post->suspended === 1)
         {
             $post->suspended = 0;
             $post->save();
-            return redirect()->back()->with('success', 'Post Resumed');
+            return redirect()->back()->with('success', __('posts.resumed'));
         }
     }
 
@@ -512,7 +512,7 @@ class PostsController extends Controller
         $post = Post::find($id);
         if(empty($post))
         {
-            return redirect('/')->with('error', 'Post Not Found');
+            return redirect('/')->with('error', __('posts.not_found'));
         }
 
         if($post->cover_image && $post->cover_image !== 'noimage.jpg')
@@ -528,7 +528,7 @@ class PostsController extends Controller
         $post->thumbnail = 'noimage_thumb.jpg';
         $post->save();
 
-        return redirect('/posts/' . $post->id . '/' . 'edit')->with('success', 'Cover Image Removed');
+        return redirect('/posts/' . $post->id . '/' . 'edit')->with('success', __('posts.cover_image_removed'));
     }
 
     // Remove Image
@@ -538,7 +538,7 @@ class PostsController extends Controller
         $image = Image::find($id);
         if(empty($image->post))
         {
-            return redirect('/')->with('error', 'Post Not Found');
+            return redirect('/')->with('error', __('posts.not_found'));
         }
         if(!empty($image))
         {
@@ -546,7 +546,7 @@ class PostsController extends Controller
             unlink('storage/images/thumbnails/' . $image->filename_thumb);
         }
         $image->delete();
-        return redirect()->back()->with('success', 'Image Removed');
+        return redirect()->back()->with('success', __('posts.image_removed'));
     }
 
     // Search posts

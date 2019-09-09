@@ -26,7 +26,7 @@ class ReportsController extends Controller
     {
         if(auth()->user()->role !== 'admin' && auth()->user()->role !== 'mod')
         {
-            return redirect()->back()->with('error', 'Unauthorized Page');
+            return redirect()->back()->with('error', __('pages.unauthorized'));
         }
 
         $reports = Report::orderBy('id', 'desc')->paginate(20);
@@ -48,7 +48,7 @@ class ReportsController extends Controller
     {
         if(auth()->user()->role !== 'admin' && auth()->user()->role !== 'mod')
         {
-            return redirect()->back()->with('error', 'Unauthorized Page');
+            return redirect()->back()->with('error', __('pages.unauthorized'));
         }
 
         $types = $request->input('types');
@@ -159,7 +159,7 @@ class ReportsController extends Controller
             // Don't let the user report themselves
             if($request->user_id + 0 === auth()->user()->id)
             {
-                return redirect()->back()->with('error', 'You cannot report yourself');
+                return redirect()->back()->with('error', __('reports.error_user'));
             }
 
             $report->reported_user_id = $request->user_id;
@@ -174,7 +174,7 @@ class ReportsController extends Controller
             // Don't let the user report their post
             if($request->post_owner_id + 0 === auth()->user()->id)
             {
-                return redirect()->back()->with('error', 'You cannot report your post');
+                return redirect()->back()->with('error', __('reports.error_post'));
             }
 
             $report->post_id = $request->post_id;
@@ -183,7 +183,7 @@ class ReportsController extends Controller
         $report->message = $request->message;
         $report->save();
 
-        return redirect()->back()->with('success', 'Thanks for reporting!');
+        return redirect()->back()->with('success', __('reports.reported'));
     }
 
     /**
@@ -196,14 +196,14 @@ class ReportsController extends Controller
     {
         if(auth()->user()->role !== 'admin' && auth()->user()->role !== 'mod')
         {
-            return redirect()->back()->with('error', 'Unauthorized Page');
+            return redirect()->back()->with('error', __('pages.unauthorized'));
         }
 
         $report = Report::find($id);
 
         if(empty($report))
         {
-            return redirect()->back()->with('error', 'Report Not Found');
+            return redirect()->back()->with('error', __('reports.not_found'));
         }
 
         $report->seen = 1;
@@ -243,27 +243,27 @@ class ReportsController extends Controller
     {
         if(auth()->user()->role !== 'admin' && auth()->user()->role !== 'mod')
         {
-            return redirect()->back()->with('error', 'Unauthorized Page');
+            return redirect()->back()->with('error', __('pages.unauthorized'));
         }
 
         $report = Report::find($id);
 
         if(empty($report))
         {
-            return redirect()->back()->with('error', 'Report Not Found');
+            return redirect()->back()->with('error', __('reports.not_found'));
         }
 
         if($report->resolved === 0)
         {
             $report->resolved = 1;
             $report->save();
-            return redirect()->back()->with('success', 'Report Marked as Resolved');
+            return redirect()->back()->with('success', __('reports.resolved'));
         }
         elseif($report->resolved === 1)
         {
             $report->resolved = 0;
             $report->save();
-            return redirect()->back()->with('success', 'Report Marked as Unresolved');
+            return redirect()->back()->with('success', __('reports.unresolved'));
         }
     }
 
@@ -277,17 +277,17 @@ class ReportsController extends Controller
     {
         if(auth()->user()->role !== 'admin' && auth()->user()->role !== 'mod')
         {
-            return redirect()->back()->with('error', 'Unauthorized Page');
+            return redirect()->back()->with('error', __('pages.unauthorized'));
         }
 
         $report = Report::find($id);
 
         if(empty($report))
         {
-            return redirect()->back()->with('error', 'Report Not Found');
+            return redirect()->back()->with('error', __('reports.not_found'));
         }
 
         $report->delete();
-        return redirect('/reports')->with('success', 'Report Deleted');
+        return redirect('/reports')->with('success', __('reports.deleted'));
     }
 }

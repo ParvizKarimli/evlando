@@ -33,29 +33,61 @@
                     <li><a href="{{ route('login') }}">Login</a></li>
                     <li><a href="{{ route('register') }}">Register</a></li>
                 @else
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            {{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="/dashboard">Dashboard</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                   document.getElementById('logout-form').submit();"
+                                >
+                                    Log Out
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
+                <!-- Language Setting Links -->
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                        {{ Auth::user()->name }} <span class="caret"></span>
+                        {{ App::getLocale() }} <span class="caret"></span>
                     </a>
 
                     <ul class="dropdown-menu" role="menu">
                         <li>
-                            <a href="/dashboard">Dashboard</a>
+                            <a href=""
+                               onclick="event.preventDefault();
+                               document.getElementById('lang-set-form-en').submit();"
+                            >
+                                en
+                            </a>
+                            {!! Form::open(['action' => ['LanguagesController@set'], 'method' => 'POST', 'id' => 'lang-set-form-en']) !!}
+                                {!! Form::hidden('lang', 'en') !!}
+                            {!! Form::close() !!}
                         </li>
                         <li>
-                            <a href="{{ route('logout') }}"
+                            <a href=""
                                onclick="event.preventDefault();
-                               document.getElementById('logout-form').submit();">
-                                Log Out
+                               document.getElementById('lang-set-form-az').submit();"
+                            >
+                                az
                             </a>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                {{ csrf_field() }}
-                            </form>
+                            {!! Form::open(['action' => ['LanguagesController@set'], 'method' => 'POST', 'id' => 'lang-set-form-az']) !!}
+                                {!! Form::hidden('lang', 'az') !!}
+                            {!! Form::close() !!}
                         </li>
                     </ul>
                 </li>
-                @endif
             </ul>
         </div>
     </div>

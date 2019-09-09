@@ -188,17 +188,17 @@ class BookmarksController extends Controller
         $bookmark = Bookmark::find($id);
         if(empty($bookmark))
         {
-            return redirect('/bookmarks')->with('error', 'Bookmark Not Found');
+            return redirect('/bookmarks')->with('error', __('bookmarks.not_found'));
         }
 
         // Check for correct user
         if(auth()->user()->id !== $bookmark->user_id)
         {
-            return redirect('bookmarks')->with('error', 'Unauthorized Page');
+            return redirect('bookmarks')->with('error', __('pages.unauthorized'));
         }
 
         $bookmark->delete();
 
-        return redirect('bookmarks')->with('success', 'Bookmark Removed');
+        return redirect('bookmarks')->with('success', __('bookmarks.removed'));
     }
 }

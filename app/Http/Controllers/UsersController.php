@@ -30,7 +30,7 @@ class UsersController extends Controller
     {
         if(auth()->user()->role !== 'admin')
         {
-            return redirect('dashboard')->with('error', 'Unauthorized Page');
+            return redirect('dashboard')->with('error', __('pages.unauthorized'));
         }
 
         $users = User::orderBy('id', 'desc')->paginate(20);
@@ -51,7 +51,7 @@ class UsersController extends Controller
     {
         if(auth()->user()->role !== 'admin')
         {
-            return redirect('dashboard')->with('error', 'Unauthorized Page');
+            return redirect('dashboard')->with('error', __('pages.unauthorized'));
         }
 
         $users = User::where('banned', 1)
@@ -74,7 +74,7 @@ class UsersController extends Controller
     {
         if(auth()->user()->role !== 'admin')
         {
-            return redirect('dashboard')->with('error', 'Unauthorized Page');
+            return redirect('dashboard')->with('error', __('pages.unauthorized'));
         }
 
         $users = User::where('banned', 0)
@@ -125,7 +125,7 @@ class UsersController extends Controller
         $user = User::find($id);
         if(empty($user))
         {
-            return redirect('/users')->with('error', 'User Not Found');
+            return redirect('/users')->with('error', __('users.not_found'));
         }
 
         $posts = Post::where('user_id', $id)
@@ -154,11 +154,11 @@ class UsersController extends Controller
         $user = User::find($id);
         if(empty($user))
         {
-            return redirect('/dashboard')->with('error', 'User Not Found');
+            return redirect('/dashboard')->with('error', __('users.not_found'));
         }
         elseif($user->id !== auth()->user()->id)
         {
-            return redirect('/dashboard')->with('error', 'Unauthorized Page');
+            return redirect('/dashboard')->with('error', __('pages.unauthorized'));
         }
 
         if(auth()->user()->role === 'admin' || auth()->user()->role === 'mod')
@@ -188,11 +188,11 @@ class UsersController extends Controller
         $user = User::find($id);
         if(empty($user))
         {
-            return redirect('/dashboard')->with('error', 'User Not Found');
+            return redirect('/dashboard')->with('error', __('users.not_found'));
         }
         elseif($user->id !== auth()->user()->id)
         {
-            return redirect('/dashboard')->with('error', 'Unauthorized Page');
+            return redirect('/dashboard')->with('error', __('pages.unauthorized'));
         }
 
         $this->validate($request, [
@@ -206,7 +206,7 @@ class UsersController extends Controller
         $user->password = bcrypt($request->input('password'));
         $user->save();
 
-        return redirect('/dashboard')->with('success', 'User Updated');
+        return redirect('/dashboard')->with('success', __('users.updated'));
     }
 
     /**
@@ -223,17 +223,17 @@ class UsersController extends Controller
         // PHP will automatically convert it to number
         if(auth()->user()->role !== 'admin' && $id + 0 !== auth()->user()->id)
         {
-            return redirect('dashboard')->with('error', 'Unauthorized Page');
+            return redirect('dashboard')->with('error', __('pages.unauthorized'));
         }
 
         $user = User::find($id);
         if(empty($user))
         {
-            return redirect('/users')->with('error', 'User Not Found');
+            return redirect('/users')->with('error', __('users.not_found'));
         }
         elseif($user->role === 'admin')
         {
-            return redirect('/users')->with('error', 'Admin Cannot Be Deleted');
+            return redirect('/users')->with('error', __('users.admin_delete'));
         }
 
         // Delete posts of the user to be deleted
@@ -266,38 +266,38 @@ class UsersController extends Controller
 
         $user->delete();
 
-        return redirect('users')->with('success', 'User Removed');
+        return redirect('users')->with('success', __('users.removed'));
     }
 
     public function ban(Request $request)
     {
         if(auth()->user()->role !== 'admin')
         {
-            return redirect('/dashboard')->with('error', 'Unauthorized Page');
+            return redirect('/dashboard')->with('error', __('pages.unauthorized'));
         }
 
         $id = $request->id;
         $user = User::find($id);
         if(empty($user))
         {
-            return redirect('/users')->with('error', 'User Not Found');
+            return redirect('/users')->with('error', __('users.not_found'));
         }
         elseif($user->role === 'admin')
         {
-            return redirect('/users')->with('error', 'Admin Cannot Be Banned');
+            return redirect('/users')->with('error', __('users.admin_delete'));
         }
 
         if($user->banned === 0)
         {
             $user->banned = 1;
             $user->save();
-            return redirect()->back()->with('success', 'User Banned');
+            return redirect()->back()->with('success', __('users.banned'));
         }
         elseif($user->banned === 1)
         {
             $user->banned = 0;
             $user->save();
-            return redirect()->back()->with('success', 'User Resumed');
+            return redirect()->back()->with('success', __('users.resumed'));
         }
     }
 }
