@@ -22,5 +22,9 @@ return [
     'image_removed' => 'Şəkil Silindi',
     'not_found' => 'Elan Tapılmadı',
     'error_suspended' => 'Deaktiv Edilmiş Elan',
+    'suspended_list' => 'Deaktiv',
+    'posts' => 'Elanlar',
+    'for_sale' => 'Satış',
+    'for_rent' => 'Kirayə',
 
 ];

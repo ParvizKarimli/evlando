@@ -22,5 +22,9 @@ return [
     'image_removed' => 'Image Removed',
     'not_found' => 'Post Not Found',
     'error_suspended' => 'Suspended Post',
+    'suspended_list' => 'Suspended',
+    'posts' => 'Posts',
+    'for_sale' => 'For Sale',
+    'for_rent' => 'For Rent',
 
 ];

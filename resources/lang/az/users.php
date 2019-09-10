@@ -19,5 +19,10 @@ return [
     'resumed' => 'İstifadəçi Aktiv Edildi',
     'not_found' => 'İstifadəçi Tapılmadı',
     'admin_delete' => 'Admin Silinə Bilməz',
+    'edit_user' => 'İstifadəçini Redaktə Et',
+    'users' => 'İstifadəçilər',
+    'all' => 'Hamısı',
+    'banned_list' => 'Ban Edilən',
+    'active' => 'Aktiv',
 
 ];
