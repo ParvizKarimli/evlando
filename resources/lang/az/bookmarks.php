@@ -16,5 +16,7 @@ return [
     'bookmarks' => 'Əlfəcinlər',
     'removed' => 'Əlfəcin Silindi',
     'not_found' => 'Əlfəcin Tapılmadı',
+    'bookmark' => 'Bu elanı yadda saxla',
+    'remove' => 'Bu elanı yaddaşdan çıxar',
 
 ];

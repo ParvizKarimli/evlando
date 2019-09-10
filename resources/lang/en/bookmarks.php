@@ -16,5 +16,7 @@ return [
     'bookmarks' => 'Bookmarks',
     'removed' => 'Bookmark Removed',
     'not_found' => 'Bookmark Not Found',
+    'bookmark' => 'Bookmark this post',
+    'remove' => 'Remove this post from bookmarks',
 
 ];
