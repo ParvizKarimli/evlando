@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class LanguagesController extends Controller
 {
@@ -16,15 +17,22 @@ class LanguagesController extends Controller
         {
             return back()->with('error', 'Undefined Language');
         }
-        elseif($request->lang === 'en')
+        else
         {
-            \App::setLocale('en');
+            //\App::setLocale($request->lang);
+            //\Config::set('app.locale', $request->lang);
+            if(auth()->guest())
+            {
+                session(['current_lang' => $request->lang]);
+            }
+            elseif(auth()->check())
+            {
+                $user_id = auth()->id();
+                $user = User::find($user_id);
+                $user->lang = $request->lang;
+                $user->save();
+            }
+            return back();
         }
-        elseif($request->lang === 'az')
-        {
-            \App::setLocale('az');
-        }
-
-        return back()->with('success', 'Language changed to ' . \App::getLocale());
     }
 }
