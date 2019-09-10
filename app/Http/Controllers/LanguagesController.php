@@ -19,8 +19,6 @@ class LanguagesController extends Controller
         }
         else
         {
-            //\App::setLocale($request->lang);
-            //\Config::set('app.locale', $request->lang);
             if(auth()->guest())
             {
                 session(['current_lang' => $request->lang]);
