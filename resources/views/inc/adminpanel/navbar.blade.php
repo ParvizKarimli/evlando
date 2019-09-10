@@ -16,7 +16,14 @@
                         <span class="label label-danger">{{ $number_of_unseen_reports }}</span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="header">There are {{ $number_of_unseen_reports }} unseen {{ str_plural('report', $number_of_unseen_reports) }}</li>
+                        <li class="header">
+                            {{ __('dashboard_navbar.number_of_reports_text',
+                                [
+                                    'n' => $number_of_unseen_reports,
+                                    's' => str_plural('report', $number_of_unseen_reports)
+                                ]
+                            ) }}
+                        </li>
                         <li>
                             <!-- inner menu: contains the actual data -->
                             <ul class="menu reports-container">
@@ -25,13 +32,13 @@
                                         <a href="/reports/{{$unseen_report->id}}">
                                             <h4>
                                                 @if($unseen_report->category === 1)
-                                                    Spam
+                                                    {{ __('reports.spam') }}
                                                 @elseif($unseen_report->category === 2)
-                                                    Nudity
+                                                    {{ __('reports.nudity') }}
                                                 @elseif($unseen_report->category === 3)
-                                                    Hate speech
+                                                    {{ __('reports.hate_speech') }}
                                                 @elseif($unseen_report->category === 4)
-                                                    Other
+                                                    {{ __('reports.other') }}
                                                 @endif
                                                 <small><i class="far fa-clock"></i> {{ $unseen_report->created_at }}</small>
                                             </h4>
@@ -42,7 +49,7 @@
                                 {{ $unseen_reports->links() }}
                             </ul>
                         </li>
-                        <li class="footer"><a href="/reports">See All Reports</a></li>
+                        <li class="footer"><a href="/reports">{{ __('dashboard_navbar.see_all_reports') }}</a></li>
                     </ul>
                 </li>
             @endif
@@ -58,26 +65,26 @@
                         <img src="/storage/images/default/avatar.jpg" class="img-circle" alt="User Image" />
                         <p>
                             {{auth()->user()->name }} - {{auth()->user()->role }}
-                            <small>Member since {{ date('M. Y', strtotime(auth()->user()->created_at)) }}</small>
+                            <small>{{ __('dashboard_navbar.member_since') }} {{ date('M. Y', strtotime(auth()->user()->created_at)) }}</small>
                         </p>
                     </li>
                     <!-- Menu Body -->
                     <li class="user-body">
                         <div class="col-xs-4 text-center">
-                            <a href="/bookmarks">Bookmarks</a>
+                            <a href="/bookmarks">{{ __('dashboard_navbar.bookmarks') }}</a>
                         </div>
                     </li>
                     <!-- Menu Footer-->
                     <li class="user-footer">
                         <div class="pull-left">
-                            <a href="/users/{{auth()->user()->id}}" class="btn btn-default btn-flat">Profile</a>
+                            <a href="/users/{{auth()->user()->id}}" class="btn btn-default btn-flat">{{ __('dashboard_navbar.profile') }}</a>
                         </div>
                         <div class="pull-right">
                             <a href="{{ route('logout') }}" class="btn btn-default btn-flat"
                                 onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();"
                             >
-                                Log Out
+                                {{ __('navbar.log_out') }}
                             </a>
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

@@ -20,5 +20,9 @@ return [
     'not_found' => 'Şikayət Tapılmadı',
     'error_user' => 'Öz hesabınızı şikayət edə bilməzsiniz',
     'error_post' => 'Öz elanınızı şikayət edə bilməzsiniz',
+    'spam' => 'İstənməyən',
+    'nudity' => 'Çılpaqlıq',
+    'hate_speech' => 'Nifrət nitqi',
+    'other' => 'Digər',
 
 ];

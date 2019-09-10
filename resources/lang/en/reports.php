@@ -20,5 +20,9 @@ return [
     'not_found' => 'Report Not Found',
     'error_user' => 'You cannot report yourself',
     'error_post' => 'You cannot report your post',
+    'spam' => 'Spam',
+    'nudity' => 'Nudity',
+    'hate_speech' => 'Hate speech',
+    'other' => 'Other',
 
 ];
