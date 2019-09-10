@@ -3,5 +3,5 @@
 @section('title', 'About Us')
 
 @section('content')
-<p>This is the about page.</p>
+<p>{{ __('pages.about_text') }}</p>
 @endsection

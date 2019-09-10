@@ -16,5 +16,6 @@ return [
     'unauthorized' => 'İcazəniz Olmayan Səhifə',
     'search' => 'Axtarış',
     'search_btn' => 'Axtar',
+    'about_text' => 'Bu haqqımızda səhifəsidir.',
 
 ];

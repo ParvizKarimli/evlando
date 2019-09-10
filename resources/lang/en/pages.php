@@ -16,5 +16,6 @@ return [
     'unauthorized' => 'Unauthorized Page',
     'search' => 'Search',
     'search_btn' => 'Search',
+    'about_text' => 'This is the about page.',
 
 ];
