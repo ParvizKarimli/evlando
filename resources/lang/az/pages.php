@@ -14,5 +14,7 @@ return [
     */
 
     'unauthorized' => 'İcazəniz Olmayan Səhifə',
+    'search' => 'Axtarış',
+    'search_btn' => 'Axtar',
 
 ];

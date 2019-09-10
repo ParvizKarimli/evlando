@@ -26,5 +26,15 @@ return [
     'posts' => 'Posts',
     'for_sale' => 'For Sale',
     'for_rent' => 'For Rent',
+    'location' => 'City',
+    'type' => 'Post Type',
+    'property_type' => 'Property Type',
+    'apartment' => 'Apartment',
+    'house' => 'House',
+    'floor' => 'Floor',
+    'area' => 'Area',
+    'bedrooms' => 'Bedrooms',
+    'bathrooms' => 'Bathrooms',
+    'price' => 'Price',
 
 ];

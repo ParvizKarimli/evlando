@@ -12,43 +12,43 @@
     </h1>
 </div>
 <div class="col-md-4 col-sm-4">
-    <h1>Search</h1>
+    <h1>{{ __('pages.search') }}</h1>
     <div class="well">
         {!! Form::open(['action' => 'PostsController@search', 'method' => 'GET']) !!}
             <div class="form-group">
-                {!! Form::label('location-input', 'Location') !!}
+                {!! Form::label('location-input', __('posts.location')) !!}
                 {!! Form::text('location', '', ['id' => 'location-input', 'class' => 'form-control', 'placeholder' => 'New York', 'autocomplete' => 'off']) !!}
                 {!! Form::hidden('location_id', '', ['id' => 'location_id']) !!}
             </div>
             <div id="location-suggestions-container"></div>
             <div class="form-group">
-                <label for="type">Type</label>
+                <label for="type">{{ __('posts.type') }}</label>
                 <div class="checkbox">
                     <label>
-                        {{ Form::checkbox('types[]', 'sale') }} For Sale
+                        {{ Form::checkbox('types[]', 'sale') }} {{ __('posts.for_sale') }}
                     </label>
                 </div>
                 <div class="checkbox">
                     <label>
-                        {!! Form::checkbox('types[]', 'rent') !!} For Rent
-                    </label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="property_type">Property Type</label>
-                <div class="checkbox">
-                    <label>
-                        {{ Form::checkbox('property_types[]', 'apartment') }} Apartment
-                    </label>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        {!! Form::checkbox('property_types[]', 'house') !!} House
+                        {!! Form::checkbox('types[]', 'rent') !!} {{ __('posts.for_rent') }}
                     </label>
                 </div>
             </div>
             <div class="form-group">
-                <label for="floor">Floor</label>
+                <label for="property_type">{{ __('posts.property_type') }}</label>
+                <div class="checkbox">
+                    <label>
+                        {{ Form::checkbox('property_types[]', 'apartment') }} {{ __('posts.apartment') }}
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        {!! Form::checkbox('property_types[]', 'house') !!} {{ __('posts.house') }}
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="floor">{{ __('posts.floor') }}</label>
                 <div>
                     <label>
                         Min {{ Form::number('floor_min', '', ['class' => 'form-control', 'min' => 1]) }}
@@ -61,7 +61,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="area">Area (ft<sup>2</sup>)</label>
+                <label for="area">{{ __('posts.area') }} (ft<sup>2</sup>)</label>
                 <div>
                     <label>
                         Min {{ Form::number('area_min', '', ['class' => 'form-control', 'min' => 10]) }}
@@ -74,7 +74,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="bedrooms">Bedrooms</label>
+                <label for="bedrooms">{{ __('posts.bedrooms') }}</label>
                 <div>
                     <label>
                         Min {{ Form::number('bedrooms_min', '', ['class' => 'form-control', 'min' => 1]) }}
@@ -87,7 +87,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="bathrooms">Bathrooms</label>
+                <label for="bathrooms">{{ __('posts.bathrooms') }}</label>
                 <div>
                     <label>
                         Min {{ Form::number('bathrooms_min', '', ['class' => 'form-control', 'min' => 1]) }}
@@ -100,7 +100,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="price">Price</label>
+                <label for="price">{{ __('posts.price') }}</label>
                 <div>
                     <label>
                         Min {{ Form::number('price_min', '', ['class' => 'form-control', 'min' => 1]) }}
@@ -113,7 +113,7 @@
                 </div>
             </div>
             <div class="form-group">
-                {{Form::submit('Search', ['class' => 'btn btn-default'])}}
+                {{Form::submit(__('pages.search_btn'), ['class' => 'btn btn-default'])}}
             </div>
         {!! Form::close() !!}
     </div>

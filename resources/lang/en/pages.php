@@ -14,5 +14,7 @@ return [
     */
 
     'unauthorized' => 'Unauthorized Page',
+    'search' => 'Search',
+    'search_btn' => 'Search',
 
 ];

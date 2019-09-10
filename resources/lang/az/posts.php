@@ -26,5 +26,14 @@ return [
     'posts' => 'Elanlar',
     'for_sale' => 'Satış',
     'for_rent' => 'Kirayə',
-
+    'location' => 'Şəhər',
+    'type' => 'Elanın Növü',
+    'property_type' => 'Mülkün Növü',
+    'apartment' => 'Bina Evi',
+    'house' => 'Həyət Evi',
+    'floor' => 'Mərtəbə',
+    'area' => 'Sahə',
+    'bedrooms' => 'Yataq Otaqları',
+    'bathrooms' => 'Hamam Otaqları',
+    'price' => 'Qiymət',
 ];
