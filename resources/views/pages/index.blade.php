@@ -286,8 +286,14 @@
                             @endif
                         </div>
                         <small>
-                            {{ __('posts.created_at') }} {{$post->created_at}}
-                            {{ __('posts.by') }} <a href="/users/{{ $post->user->id }}">{{ $post->user->name }}</a>
+                            {!! __(
+                                    'posts.created_at_by',
+                                    [
+                                        'at' => $post->created_at,
+                                        'by' => link_to('/users/' . $post->user->id, $post->user->name)
+                                    ]
+                                )
+                            !!}
                         </small>
                     </div>
                 </div>

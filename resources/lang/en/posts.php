@@ -42,7 +42,6 @@ return [
     'month' => 'month',
     'description' => 'Description',
     'read_more' => 'Read More',
-    'created_at' => 'Created at',
-    'by' => 'by',
+    'created_at_by' => 'Created at :at by :by',
 
 ];

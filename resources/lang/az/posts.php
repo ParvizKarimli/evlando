@@ -42,7 +42,6 @@ return [
     'month' => 'ay',
     'description' => 'Açıqlama',
     'read_more' => 'Ardını Oxu',
-    'created_at' => 'Dərc edildi:',
-    'by' => 'Dərc edən:',
+    'created_at_by' => ':at tarixində :by tərəfindən dərc edildi',
 
 ];
