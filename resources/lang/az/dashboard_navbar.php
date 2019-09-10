@@ -14,7 +14,6 @@ return [
     */
 
     'profile' => 'Profil',
-    'bookmarks' => 'Əlfəcinlər',
     'member_since' => 'Qeydiyyat tarixi:',
     'see_all_reports' => 'Bütün Şikayətləri Görün',
     'number_of_reports_text' => ':n baxılmamış şikayət var',

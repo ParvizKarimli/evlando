@@ -71,7 +71,7 @@
                     <!-- Menu Body -->
                     <li class="user-body">
                         <div class="col-xs-4 text-center">
-                            <a href="/bookmarks">{{ __('dashboard_navbar.bookmarks') }}</a>
+                            <a href="/bookmarks">{{ __('bookmarks.bookmarks') }}</a>
                         </div>
                     </li>
                     <!-- Menu Footer-->

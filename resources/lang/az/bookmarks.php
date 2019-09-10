@@ -13,6 +13,7 @@ return [
     |
     */
 
+    'bookmarks' => 'Əlfəcinlər',
     'removed' => 'Əlfəcin Silindi',
     'not_found' => 'Əlfəcin Tapılmadı',
 

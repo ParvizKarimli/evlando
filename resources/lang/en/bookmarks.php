@@ -13,6 +13,7 @@ return [
     |
     */
 
+    'bookmarks' => 'Bookmarks',
     'removed' => 'Bookmark Removed',
     'not_found' => 'Bookmark Not Found',
 

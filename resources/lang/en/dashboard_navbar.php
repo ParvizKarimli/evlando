@@ -14,7 +14,6 @@ return [
     */
 
     'profile' => 'Profile',
-    'bookmarks' => 'Bookmarks',
     'member_since' => 'Member since',
     'see_all_reports' => 'See All Reports',
     'number_of_reports_text' => 'There are :n unseen :s',
