@@ -287,7 +287,7 @@
                         </div>
                         <small>
                             {{ __('posts.created_at') }} {{$post->created_at}}
-                            {{ __('posts.by', ['s' => link_to('/users/$post->user->id', $post->user->name)]) }}
+                            {{ __('posts.by') }} <a href="/users/{{ $post->user->id }}">{{ $post->user->name }}</a>
                         </small>
                     </div>
                 </div>

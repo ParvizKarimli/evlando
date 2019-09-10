@@ -43,6 +43,6 @@ return [
     'description' => 'Description',
     'read_more' => 'Read More',
     'created_at' => 'Created at',
-    'by' => 'by :s',
+    'by' => 'by',
 
 ];
