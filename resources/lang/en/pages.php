@@ -17,5 +17,6 @@ return [
     'search' => 'Search',
     'search_btn' => 'Search',
     'about_text' => 'This is the about page.',
+    'newest_posts' => 'Newest Posts',
 
 ];

@@ -17,5 +17,6 @@ return [
     'search' => 'Axtarış',
     'search_btn' => 'Axtar',
     'about_text' => 'Bu haqqımızda səhifəsidir.',
+    'newest_posts' => 'Ən Yeni Elanlar',
 
 ];

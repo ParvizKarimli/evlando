@@ -8,7 +8,7 @@
 </div>
 <div class="col-md-8 col-sm-8">
     <h1>
-        Newest Posts
+        {{ __('pages.newest_posts') }}
     </h1>
 </div>
 <div class="col-md-4 col-sm-4">
@@ -230,50 +230,64 @@
                                 @endif
                         </div>
                         @if($post->type === 'sale')
-                            <p class="alert-info">{{ucfirst($post->property_type)}} For Sale</p>
+                            <p class="alert-info">
+                                {{ $post->property_type === 'apartment' ? ucfirst(__('posts.apartment')) : ucfirst(__('posts.house')) }}
+                                {{ __('posts.for_sale') }}
+                            </p>
                         @elseif($post->type === 'rent')
-                            <p class="alert-info">{{ucfirst($post->property_type)}} For Rent</p>
+                            <p class="alert-info">
+                                {{ $post->property_type === 'apartment' ? ucfirst(__('posts.apartment')) : ucfirst(__('posts.house')) }}
+                                {{ __('posts.for_rent') }}
+                            </p>
                         @endif
                         <p>
                             <i class="fas fa-map-marker-alt"></i>
                             {{ $post->location->city }}, {{ $post->location->province }}, {{ $post->location->country }}
                         </p>
                         @if($post->property_type === 'apartment')
-                            <p>{{ $post->floor }}. floor</p>
+                            <p>{{ $post->floor }}. {{ __('posts.floor') }}</p>
                         @elseif($post->property_type === 'house')
                             @if($post->floor === 1)
-                                <p>1 floor</p>
+                                <p>1 {{ __('posts.floor') }}</p>
                             @else
-                                <p>{{ $post->floor }} floors</p>
+                                <p>
+                                    {{ $post->floor }}
+                                    {{ app()->isLocale('en') ? str_plural(__('posts.floor')) : __('posts.floor') }}
+                                </p>
                             @endif
                         @endif
-                        <p>{{ $post->area }} square feet</p>
+                        <p>{{ $post->area }} {{ __('posts.square_feet') }}</p>
                         @if($post->bedrooms === 1)
-                            <p>1 bedroom</p>
+                            <p>1 {{ __('posts.bedroom') }}</p>
                         @else
-                            <p>{{ $post->bedrooms }} bedrooms</p>
+                            <p>
+                                {{ $post->bedrooms }} {{ app()->isLocale('en') ? str_plural(__('posts.bedroom')) : __('posts.bedroom') }}
+                            </p>
                         @endif
                         @if($post->bathrooms === 1)
-                            <p>1 bathroom</p>
+                            <p>1 {{ __('posts.bathroom') }}</p>
                         @else
-                            <p>{{ $post->bathrooms }} bathrooms</p>
+                            <p>
+                                {{ $post->bathrooms }} {{ app()->isLocale('en') ? str_plural(__('posts.bathroom')) : __('posts.bathroom') }}
+                            </p>
                         @endif
                         @if($post->type === 'sale')
                             <p>${{ number_format($post->price) }}</p>
                         @elseif($post->type === 'rent')
-                            <p>${{ number_format($post->price) }}/month</p>
+                            <p>${{ number_format($post->price) }}/{{ __('posts.month') }}</p>
                         @endif
                         <div>
-                            <b>Description:</b><br>
+                            <b>{{ __('posts.description') }}:</b><br>
                             {{ str_limit($post->description, $limit = 150, $end = '...') }}
                             @if(strlen($post->description) > 150)
                                 <a href="/posts/{{$post->id}}/{{$post->slug}}" target="_blank">
-                                    Read More
+                                    {{ __('posts.read_more') }}
                                 </a>
                             @endif
                         </div>
                         <small>
-                            Created at {{$post->created_at}} by <a href="/users/{{$post->user->id}}">{{$post->user->name}}</a>
+                            {{ __('posts.created_at') }} {{$post->created_at}}
+                            {{ __('posts.by', ['s' => link_to('/users/$post->user->id', $post->user->name)]) }}
                         </small>
                     </div>
                 </div>

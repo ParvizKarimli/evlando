@@ -34,6 +34,15 @@ return [
     'floor' => 'Mərtəbə',
     'area' => 'Sahə',
     'bedrooms' => 'Yataq Otaqları',
+    'bedroom' => 'Yataq Otağı',
     'bathrooms' => 'Hamam Otaqları',
+    'bathroom' => 'Hamam Otağı',
     'price' => 'Qiymət',
+    'square_feet' => 'Kvadrat Fut',
+    'month' => 'ay',
+    'description' => 'Açıqlama',
+    'read_more' => 'Ardını Oxu',
+    'created_at' => 'Dərc edildi',
+    'by' => ':s tərəfindən',
+
 ];

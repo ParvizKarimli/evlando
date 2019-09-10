@@ -34,7 +34,15 @@ return [
     'floor' => 'Floor',
     'area' => 'Area',
     'bedrooms' => 'Bedrooms',
+    'bedroom' => 'Bedroom',
     'bathrooms' => 'Bathrooms',
+    'bathroom' => 'Bathroom',
     'price' => 'Price',
+    'square_feet' => 'Square Feet',
+    'month' => 'month',
+    'description' => 'Description',
+    'read_more' => 'Read More',
+    'created_at' => 'Created at',
+    'by' => 'by :s',
 
 ];
