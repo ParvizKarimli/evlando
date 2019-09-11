@@ -143,7 +143,7 @@
             </div>
             <div class="form-group" id="imageAdderButton">
                 <button class="btn btn-default" id="image-adder-button">
-                    <i class="fas fa-plus fa-fw"></i> Add Image
+                    <i class="fas fa-plus fa-fw"></i> {{ __('posts.add_image') }}
                 </button>
             </div>
             <input type="hidden" name="numberOfImages" id="numberOfImages">

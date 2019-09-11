@@ -1,20 +1,20 @@
 @extends('layouts.adminpanel.app')
 
-@section('title', $post->slug . ' - Edit')
+@section('title', __('posts.edit_post') . ' - ' . $post->slug)
 
 @section('content')
 <div class="panel panel-default">
     <div class="panel-heading">
-        <p>Edit Post</p>
+        <p>{{ __('posts.edit_post') }}</p>
         <a class="btn btn-default" href="/posts/{{$post->id}}/{{$post->slug}}">
-            &#8592; Go back to the post
+            &#8592; {{ __('posts.go_back') }}
         </a>
     </div>
 
     <div class="panel-body">
         {!! Form::open(['id' => 'post-form', 'action' => ['PostsController@update', $post->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
             <div class="form-group {{ $errors->has('location_id') ? 'has-error' : '' }}">
-                {{Form::label('location-input', 'Location')}}
+                {{Form::label('location-input', __('posts.location'))}}
                 {{Form::text('location', $post->location->city . ', ' . $post->location->province . ', ' . $post->location->country,
                 ['id' => 'location-input', 'class' => 'form-control', 'placeholder' => 'New York', 'autocomplete' => 'off', 'required' => 'required'])}}
                 {!! Form::hidden('location_id', $post->location_id, ['id' => 'location_id']) !!}
@@ -26,15 +26,15 @@
             </div>
             <div id="location-suggestions-container"></div>
             <div class="form-group {{ $errors->has('type') ? 'has-error' : '' }}">
-                <label for="type">Type</label>
+                <label for="type">{{ __('posts.type') }}</label>
                 <div class="radio">
                     <label>
-                        {{Form::radio('type', 'sale', $post->type === 'sale' ? ['checked'] : '')}} For Sale
+                        {{Form::radio('type', 'sale', $post->type === 'sale' ? ['checked'] : '')}} {{ __('posts.for_sale') }}
                     </label>
                 </div>
                 <div class="radio">
                     <label>
-                        {{Form::radio('type', 'rent', $post->type === 'rent' ? ['checked'] : '')}} For Rent
+                        {{Form::radio('type', 'rent', $post->type === 'rent' ? ['checked'] : '')}} {{ __('posts.for_rent') }}
                     </label>
                 </div>
                 @if($errors->has('type'))
@@ -44,15 +44,15 @@
                 @endif
             </div>
             <div class="form-group {{ $errors->has('property_type') ? 'has-error' : '' }}">
-                <label for="property_type">Property Type</label>
+                <label for="property_type">{{ __('posts.property_type') }}</label>
                 <div class="radio">
                     <label>
-                        {{Form::radio('property_type', 'apartment', $post->property_type === 'apartment' ? ['checked'] : '')}} Apartment
+                        {{Form::radio('property_type', 'apartment', $post->property_type === 'apartment' ? ['checked'] : '')}} {{ __('posts.apartment') }}
                     </label>
                 </div>
                 <div class="radio">
                     <label>
-                        {{Form::radio('property_type', 'house', $post->property_type === 'house' ? ['checked'] : '')}} House
+                        {{Form::radio('property_type', 'house', $post->property_type === 'house' ? ['checked'] : '')}} {{ __('posts.house') }}
                     </label>
                 </div>
                 @if($errors->has('property_type'))
@@ -62,7 +62,7 @@
                 @endif
             </div>
             <div class="form-group {{ $errors->has('floor') ? 'has-error' : '' }}">
-                {{Form::label('floor', 'Floor')}}
+                {{Form::label('floor', __('posts.floor'))}}
                 <div>
                     {{Form::number('floor', $post->floor, ['min' => 1, 'max' => 1000, 'required' => 'required'])}}
                 </div>
@@ -73,7 +73,7 @@
                 @endif
             </div>
             <div class="form-group {{ $errors->has('area') ? 'has-error' : '' }}">
-                {{Form::label('area', 'Area')}}
+                {{Form::label('area', __('posts.area'))}}
                 <div>
                     {{Form::number('area', $post->area, ['min' => 10, 'max' => 100000, 'required' => 'required'])}} ft<sup>2</sup>
                 </div>
@@ -84,7 +84,7 @@
                 @endif
             </div>
             <div class="form-group {{ $errors->has('bedrooms') ? 'has-error' : '' }}">
-                {{Form::label('bedrooms', 'Bedrooms')}}
+                {{Form::label('bedrooms', __('posts.bedrooms'))}}
                 <div>
                     {{Form::number('bedrooms', $post->bedrooms, ['min' => 1, 'max' => 1000, 'required' => 'required'])}}
                 </div>
@@ -95,7 +95,7 @@
                 @endif
             </div>
             <div class="form-group {{ $errors->has('bathrooms') ? 'has-error' : '' }}">
-                {{Form::label('bathrooms', 'Bathrooms')}}
+                {{Form::label('bathrooms', __('posts.bathrooms'))}}
                 <div>
                     {{Form::number('bathrooms', $post->bathrooms, ['min' => 1, 'max' => 100, 'required' => 'required'])}}
                 </div>
@@ -106,7 +106,7 @@
                 @endif
             </div>
             <div class="form-group {{ $errors->has('price') ? 'has-error' : '' }}">
-                {{Form::label('price', 'Price')}}
+                {{Form::label('price', __('posts.price'))}}
                 <div>
                     $ {{Form::number('price', $post->price, ['min' => 1, 'max' => 1000000000, 'required' => 'required'])}}
                     @if($post->type === 'rent')
@@ -120,8 +120,8 @@
                 @endif
             </div>
             <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
-                {{Form::label('description', 'Description')}}
-                {{Form::textarea('description', $post->description, ['class' => 'form-control', 'placeholder' => 'description', 'required' => 'required'])}}
+                {{Form::label('description', __('posts.description'))}}
+                {{Form::textarea('description', $post->description, ['class' => 'form-control', 'placeholder' => __('posts.description'), 'required' => 'required'])}}
                 @if($errors->has('description'))
                     <span class="help-block">
                         <strong>{{ $errors->first('description') }}</strong>
@@ -129,7 +129,7 @@
                 @endif
             </div>
             <div class="form-group {{ $errors->has('cover_image') ? 'has-error' : '' }}">
-                {{Form::label('cover_image', 'Cover Image')}}
+                {{Form::label('cover_image', __('posts.cover_image'))}}
                 <p>
                     <img src="/storage/images/cover_images/thumbnails/{{$post->thumbnail}}">
                 </p>
@@ -137,12 +137,12 @@
                     <p>
                         <a href="" class="btn btn-danger" onclick="
                             event.preventDefault();
-                            if(confirm('Remove Cover Image?'))
+                            if(confirm('{{ __("posts.remove_cover_image_question") }}'))
                             {
                                 document.getElementById('cover-image-form').submit();
                             }
                         ">
-                            Remove Cover Image
+                            {{ __('posts.remove_cover_image') }}
                         </a>
                     </p>
                 @endif
@@ -154,7 +154,7 @@
                 @endif
             </div>
             <div class="form-group">
-                {{Form::label('images', 'Images')}}
+                {{Form::label('images', __('posts.images'))}}
             </div>
             <div class="form-group">
                 @foreach($images as $image)
@@ -162,24 +162,24 @@
                         <img class="mr-auto" src="/storage/images/thumbnails/{{$image->filename_thumb}}">
                         <a href="" class="btn btn-danger" onclick="
                             event.preventDefault();
-                            if(confirm('Remove Image?'))
+                            if(confirm('{{ __("posts.remove_image_question") }}'))
                             {
                                 document.getElementById('image-form-{{$image->id}}').submit();
                             }
                         ">
-                            X
+                            &times;
                         </a>
                     </div>
                 @endforeach
             </div>
             <div class="form-group" id="imageAdderButton">
                 <button class="btn btn-default" id="image-adder-button">
-                    <i class="fas fa-plus fa-fw"></i> Add Image
+                    <i class="fas fa-plus fa-fw"></i> {{ __('posts.add_image') }}
                 </button>
             </div>
             <input type="hidden" name="numberOfImages" id="numberOfImages">
             <div class="form-group">
-                {{Form::submit('Submit', ['class' => 'btn btn-primary', 'id' => 'number-of-images-sender'])}}
+                {{Form::submit(__('posts.update'), ['class' => 'btn btn-primary', 'id' => 'number-of-images-sender'])}}
             </div>
         {!! Form::close() !!}
 
