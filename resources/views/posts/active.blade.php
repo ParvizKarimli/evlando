@@ -1,19 +1,19 @@
 @extends('layouts.adminpanel.app')
 
-@section('title', 'Active Posts')
+@section('title', __('posts.active_posts'))
 
 @section('content')
 <div class="panel panel-default">
-    <div class="panel-heading">Posts</div>
+    <div class="panel-heading">{{ __('posts.posts') }}</div>
 
     <div class="panel-body">
         @if(count($posts) > 0)
             <table class="table table-striped">
                 <tr>
                     <th>ID</th>
-                    <th>Thumb</th>
-                    <th>Created at</th>
-                    <th>Updated at</th>
+                    <th>{{ __('posts.thumb') }}</th>
+                    <th>{{ __('posts.created_at') }}</th>
+                    <th>{{ __('posts.updated_at') }}</th>
                     <th></th>
                 </tr>
                 @foreach($posts as $post)
@@ -30,11 +30,11 @@
                             @if($post->suspended === 0)
                                 <a class="btn btn-warning pull-right" href="" onclick="
                                     event.preventDefault();
-                                    if(confirm('Suspend post?')) {
+                                    if(confirm('{{ __("posts.suspend_question") }}')) {
                                         document.getElementById('post-suspend-form-{{$post->id}}').submit();
                                     }
                                 ">
-                                    Suspend
+                                    {{ __('posts.suspend') }}
                                 </a>
                                 {!! Form::open(['action' => ['PostsController@suspend'], 'method' => 'POST', 'id' => 'post-suspend-form-' . $post->id]) !!}
                                     {!! Form::hidden('id', $post->id) !!}
@@ -42,11 +42,11 @@
                             @elseif($post->suspended === 1)
                                 <a class="btn btn-warning pull-right" href="" onclick="
                                     event.preventDefault();
-                                    if(confirm('Resume post?')) {
+                                    if(confirm('{{ __("posts.resume_question") }}')) {
                                         document.getElementById('post-suspend-form-{{$post->id}}').submit();
                                     }
                                 ">
-                                    Resume
+                                    {{ __('posts.resume') }}
                                 </a>
                                 {!! Form::open(['action' => ['PostsController@suspend'], 'method' => 'POST', 'id' => 'post-suspend-form-' . $post->id]) !!}
                                     {!! Form::hidden('id', $post->id) !!}
@@ -56,11 +56,11 @@
                         <td>
                             <a class="btn btn-danger pull-right" href="" onclick="
                                 event.preventDefault();
-                                if(confirm('Delete post?')) {
+                                if(confirm('{{ __("posts.delete_question") }}')) {
                                     document.getElementById('post-delete-form-{{$post->id}}').submit();
                                 }
                             ">
-                                Delete
+                                {{ __('posts.delete') }}
                             </a>
                             {!! Form::open(['action' => ['PostsController@destroy', $post->id], 'method' => 'DELETE', 'id' => 'post-delete-form-' . $post->id]) !!}
                             {!! Form::close() !!}
@@ -70,7 +70,7 @@
             </table>
             {{$posts->links()}}
         @else
-            <p>No active posts found.</p>
+            <p>{{ __('posts.no_active_posts_found') }}</p>
         @endif
     </div>
 </div>
