@@ -24,5 +24,12 @@ return [
     'all' => 'Hamısı',
     'banned_list' => 'Ban Edilən',
     'active' => 'Aktiv',
+    'name' => 'Ad',
+    'email_address' => 'Email Adresi',
+    'password' => 'Şifrə',
+    'confirm_password' => 'Şifrəni Təsdiqlə',
+    'update' => 'Yenilə',
+    'delete_user' => 'İstifadəçini Sil',
+    'delete_user_question' => 'İstifadəçi silinsin?',
 
 ];

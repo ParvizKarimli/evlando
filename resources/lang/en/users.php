@@ -24,5 +24,12 @@ return [
     'all' => 'All',
     'banned_list' => 'Banned',
     'active' => 'Active',
+    'name' => 'Name',
+    'email_address' => 'Email Address',
+    'password' => 'Password',
+    'confirm_password' => 'Confirm Password',
+    'update' => 'Update',
+    'delete_user' => 'Delete User',
+    'delete_user_question' => 'Delete user?',
 
 ];
