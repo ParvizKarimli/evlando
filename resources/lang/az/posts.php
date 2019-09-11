@@ -13,7 +13,8 @@ return [
     |
     */
 
-    'create_post' => 'Elan Yarat',
+    'create_post' => 'Elan Yarad',
+    'create' => 'Yarad',
     'created' => 'Elan Yaradıldı',
     'edit' => 'Redaktə Et',
     'suspend' => 'Dayandır',
@@ -24,8 +25,10 @@ return [
     'removed' => 'Elan Silindi',
     'suspended' => 'Elan Deaktiv Edildi',
     'resumed' => 'Elan Aktiv Edildi',
+    'cover_image' => 'Örtük Rəsmi',
     'cover_image_removed' => 'Örtük Rəsmi Silindi',
-    'image_removed' => 'Şəkil Silindi',
+    'images' => 'Qalereya Şəkilləri',
+    'image_removed' => 'Qalereya Şəkili Silindi',
     'not_found' => 'Elan Tapılmadı',
     'error_suspended' => 'Deaktiv Edilmiş Elan',
     'suspended_list' => 'Deaktiv',

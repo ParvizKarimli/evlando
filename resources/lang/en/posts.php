@@ -14,6 +14,7 @@ return [
     */
 
     'create_post' => 'Create Post',
+    'create' => 'Create',
     'created' => 'Post Created',
     'edit' => 'Edit',
     'suspend' => 'Suspend',
@@ -24,8 +25,10 @@ return [
     'removed' => 'Post Removed',
     'suspended' => 'Post Suspended',
     'resumed' => 'Post Resumed',
+    'cover_image' => 'Cover Image',
     'cover_image_removed' => 'Cover Image Removed',
-    'image_removed' => 'Image Removed',
+    'images' => 'Gallery Images',
+    'image_removed' => 'Gallery Image Removed',
     'not_found' => 'Post Not Found',
     'error_suspended' => 'Suspended Post',
     'suspended_list' => 'Suspended',
