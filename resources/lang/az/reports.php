@@ -25,5 +25,11 @@ return [
     'hate_speech' => 'Nifrət nitqi',
     'other' => 'Digər',
     'report_post' => 'Bu elanı şikayət et',
+    'modal_header_post' => 'Elanı Şikayət Et',
+    'category_label' => 'Kateqoriya (tələb olunur)',
+    'message_label' => 'Mesaj (istəyə bağlı)',
+    'message_placeholder' => 'Mesaj',
+    'report_btn' => 'Şikayət Et',
+    'close_btn' => 'Bağla',
 
 ];

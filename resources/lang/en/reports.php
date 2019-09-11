@@ -25,5 +25,11 @@ return [
     'hate_speech' => 'Hate speech',
     'other' => 'Other',
     'report_post' => 'Report this post',
+    'modal_header_post' => 'Report Post',
+    'category_label' => 'Category (required)',
+    'message_label' => 'Message (optional)',
+    'message_placeholder' => 'Message',
+    'report_btn' => 'Report',
+    'close_btn' => 'Close',
 
 ];
