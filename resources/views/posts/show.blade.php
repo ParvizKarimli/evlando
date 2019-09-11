@@ -68,12 +68,12 @@
 
                         @if($post->user_id !== auth()->user()->id)
                             <!-- Trigger the modal with a button -->
-                            <a class="pull-right no-txt-decor" href="" title="Report this post" data-toggle="modal" data-target="#reportModal">
+                            <a class="pull-right no-txt-decor" href="" title="Report this post" data-toggle="modal" data-target="#reportModal-{{$post->id}}">
                                 &#9872
                             </a>
                 </h1>
                             <!-- Modal -->
-                            <div id="reportModal" class="modal fade text-left" role="dialog">
+                            <div id="reportModal-{{$post->id}}" class="modal fade text-left" role="dialog">
                                 <div class="modal-dialog">
 
                                     <!-- Modal content-->

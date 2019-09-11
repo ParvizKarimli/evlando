@@ -156,7 +156,7 @@
                                         </a>
                             </h1>
                                         <!-- Modal -->
-                                        <div id="reportModal-{{$post->id}}" class="modal fade" role="dialog">
+                                        <div id="reportModal-{{$post->id}}" class="modal fade text-left" role="dialog">
                                             <div class="modal-dialog">
 
                                                 <!-- Modal content-->
