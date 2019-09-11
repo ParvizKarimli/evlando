@@ -24,5 +24,6 @@ return [
     'nudity' => 'Nudity',
     'hate_speech' => 'Hate speech',
     'other' => 'Other',
+    'report_post' => 'Report this post',
 
 ];

@@ -14,6 +14,9 @@ return [
     */
 
     'created' => 'Elan Yaradıldı',
+    'edit' => 'Redaktə Et',
+    'suspend' => 'Dayandır',
+    'delete' => 'Sil',
     'updated' => 'Elan Yeniləndi',
     'removed' => 'Elan Silindi',
     'suspended' => 'Elan Deaktiv Edildi',
@@ -43,5 +46,6 @@ return [
     'description' => 'Açıqlama',
     'read_more' => 'Ardını Oxu',
     'created_at_by' => ':at tarixində :by tərəfindən dərc edilib',
+    'seen_count' => 'Görülmə sayı',
 
 ];

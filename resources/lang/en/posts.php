@@ -14,6 +14,9 @@ return [
     */
 
     'created' => 'Post Created',
+    'edit' => 'Edit',
+    'suspend' => 'Suspend',
+    'delete' => 'Delete',
     'updated' => 'Post Updated',
     'removed' => 'Post Removed',
     'suspended' => 'Post Suspended',
@@ -43,5 +46,6 @@ return [
     'description' => 'Description',
     'read_more' => 'Read More',
     'created_at_by' => 'Created at :at by :by',
+    'seen_count' => 'Number of times seen',
 
 ];

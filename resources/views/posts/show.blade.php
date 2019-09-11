@@ -55,12 +55,12 @@
                 <h1>
                     @if(auth()->user())
                         @if($bookmarked === false)
-                            <a href="" title="Bookmark this post" bookmark-post-id="{{$post->id}}"
+                            <a href="" title="{{ __('bookmarks.bookmark') }}" bookmark-post-id="{{$post->id}}"
                             class="post-to-bookmark no-txt-decor">
                                 &#9734
                             </a>
                         @elseif($bookmarked === true)
-                            <a href="" title="Remove this post from bookmarks" bookmark-post-id="{{$post->id}}"
+                            <a href="" title="{{ __('bookmarks.remove') }}" bookmark-post-id="{{$post->id}}"
                             class="post-to-bookmark no-txt-decor">
                                 &#9733
                             </a>
@@ -138,57 +138,81 @@
                             </div>
                         @endif
                     @elseif(auth()->guest())
-                        <a class="no-txt-decor" href="{{route('login')}}" title="Bookmark this post">
+                        <a class="no-txt-decor" href="{{route('login')}}" title="{{ __('bookmarks.bookmark') }}">
                             &#9734
                         </a>
 
-                        <a class="no-txt-decor" href="{{route('login')}}" title="Report this post">
+                        <a class="no-txt-decor" href="{{route('login')}}" title="{{ __('reports.report_post') }}">
                             &#9872
                         </a>
                     @endif
             </div>
             @if($post->type === 'sale')
-                <p class="alert-info">{{ucfirst($post->property_type)}} For Sale</p>
+                <p class="alert-info">
+                    {{ $post->property_type === 'apartment' ? ucfirst(__('posts.apartment')) : ucfirst(__('posts.house')) }}
+                    {{ __('posts.for_sale') }}
+                </p>
             @elseif($post->type === 'rent')
-                <p class="alert-info">{{ucfirst($post->property_type)}} For Rent</p>
+                <p class="alert-info">
+                    {{ $post->property_type === 'apartment' ? ucfirst(__('posts.apartment')) : ucfirst(__('posts.house')) }}
+                    {{ __('posts.for_rent') }}
+                </p>
             @endif
             <p>
                 <i class="fas fa-map-marker-alt"></i>
                 {{ $post->location->city }}, {{ $post->location->province }}, {{ $post->location->country }}
             </p>
             @if($post->property_type === 'apartment')
-                <p>{{ $post->floor }}. floor</p>
+                <p>{{ $post->floor }}. {{ __('posts.floor') }}</p>
             @elseif($post->property_type === 'house')
                 @if($post->floor === 1)
-                    <p>{{ $post->floor }} floor</p>
+                    <p>1 {{ __('posts.floor') }}</p>
                 @else
-                    <p>{{ $post->floor }} floors</p>
+                    <p>
+                        {{ $post->floor }}
+                        {{ app()->isLocale('en') ? str_plural(__('posts.floor')) : __('posts.floor') }}
+                    </p>
                 @endif
             @endif
-            <p>{{ $post->area }} square feet</p>
+            <p>{{ $post->area }} {{ __('posts.square_feet') }}</p>
             @if($post->bedrooms === 1)
-                <p>1 bedroom</p>
+                <p>1 {{ __('posts.bedroom') }}</p>
             @else
-                <p>{{ $post->bedrooms }} bedrooms</p>
+                <p>
+                    {{ $post->bedrooms }} {{ app()->isLocale('en') ? str_plural(__('posts.bedroom')) : __('posts.bedroom') }}
+                </p>
             @endif
             @if($post->bathrooms === 1)
-                <p>1 bathroom</p>
+                <p>1 {{ __('posts.bathroom') }}</p>
             @else
-                <p>{{ $post->bathrooms }} bathrooms</p>
+                <p>
+                    {{ $post->bathrooms }} {{ app()->isLocale('en') ? str_plural(__('posts.bathroom')) : __('posts.bathroom') }}
+                </p>
             @endif
             @if($post->type === 'sale')
                 <p>${{ number_format($post->price) }}</p>
             @elseif($post->type === 'rent')
-                <p>${{ number_format($post->price) }}/month</p>
+                <p>${{ number_format($post->price) }}/{{ __('posts.month') }}</p>
             @endif
             <div>
-				<b>Description:</b><br>
+				<b>{{ __('posts.description') }}:</b><br>
 				{{ $post->description }}
             </div>
-            <small>Created at {{$post->created_at}} by <a href="/users/{{$post->user->id}}">{{$post->user->name}}</a></small>
+            <small>
+                {!! __(
+                        'posts.created_at_by',
+                        [
+                            'at' => $post->created_at,
+                            'by' => link_to('/users/' . $post->user->id, $post->user->name)
+                        ]
+                    )
+                !!}
+            </small>
             <div>
-                <i class="fas fa-eye"></i>
-                {{ Counter::showAndCount('/posts/{$post->id}', $post->id) }}
+                <span title="{{ __('posts.seen_count') }}">
+                    <i class="fas fa-eye"></i>
+                    {{ Counter::showAndCount('/posts/{$post->id}', $post->id) }}
+                </span>
             </div>
         </div>
     </div>
@@ -202,7 +226,7 @@
                 document.getElementById('post-suspend-form-{{$post->id}}').submit();
             }
         ">
-            Suspend
+            {{ __('posts.suspend') }}
         </a>
     @endif
     {!! Form::open(['action' => ['PostsController@suspend'], 'method' => 'POST', 'id' => 'post-suspend-form-' . $post->id]) !!}
@@ -212,7 +236,7 @@
 
 @if(!Auth::guest() && Auth::user()->id === $post->user_id)
     <hr>
-    <a href="/posts/{{$post->id}}/edit" class="btn btn-default">Edit</a>
+    <a href="/posts/{{$post->id}}/edit" class="btn btn-default">{{ __('posts.edit') }}</a>
 
     <a class="btn btn-danger pull-right" href="" onclick="
         event.preventDefault();
@@ -220,7 +244,7 @@
             document.getElementById('post-{{$post->id}}').submit();
         }
     ">
-        Delete
+        {{ __('posts.delete') }}
     </a>
     {!! Form::open(['action' => ['PostsController@destroy', $post->id], 'method' => 'DELETE', 'id' => 'post-' . $post->id]) !!}
     {!! Form::close() !!}

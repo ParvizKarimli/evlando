@@ -24,5 +24,6 @@ return [
     'nudity' => 'Çılpaqlıq',
     'hate_speech' => 'Nifrət nitqi',
     'other' => 'Digər',
+    'report_post' => 'Bu elanı şikayət et',
 
 ];

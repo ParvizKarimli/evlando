@@ -220,11 +220,11 @@
                                         </div>
                                     @endif
                                 @elseif(auth()->guest())
-                                    <a class="no-txt-decor" href="{{route('login')}}" title="Bookmark this post">
+                                    <a class="no-txt-decor" href="{{route('login')}}" title="{{ __('bookmarks.bookmark') }}">
                                         &#9734
                                     </a>
 
-                                    <a class="pull-right no-txt-decor" href="{{route('login')}}" title="Report this post">
+                                    <a class="pull-right no-txt-decor" href="{{route('login')}}" title="{{ __('reports.report_post') }}">
                                         &#9872
                                     </a>
                                 @endif
