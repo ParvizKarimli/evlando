@@ -18,5 +18,8 @@ return [
     'search_btn' => 'Axtar',
     'about_text' => 'Bu haqqımızda səhifəsidir.',
     'newest_posts' => 'Ən Yeni Elanlar',
+    'loading' => 'Yüklənir',
+    'end_of_content' => 'Məzmunun sonu',
+    'no_more_pages_to_load' => 'Yükləmək üçün başqa səhifə yoxdur',
 
 ];

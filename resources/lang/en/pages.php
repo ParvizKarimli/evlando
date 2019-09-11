@@ -18,5 +18,8 @@ return [
     'search_btn' => 'Search',
     'about_text' => 'This is the about page.',
     'newest_posts' => 'Newest Posts',
+    'loading' => 'Loading',
+    'end_of_content' => 'End of content',
+    'no_more_pages_to_load' => 'No more pages to load',
 
 ];

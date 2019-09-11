@@ -247,11 +247,11 @@
 @if(count($posts) > 0)
     <div class="page-load-status text-center">
         <p class="infinite-scroll-request">
-            Loading...<br>
+            {{ __('pages.loading') }}...<br>
             <img src="/storage/images/default/loader.svg">
         </p>
-        <p class="infinite-scroll-last">End of content</p>
-        <p class="infinite-scroll-error">No more pages to load</p>
+        <p class="infinite-scroll-last">{{ __('pages.end_of_content') }}</p>
+        <p class="infinite-scroll-error">{{ __('pages.no_more_pages_to_load') }}</p>
     </div>
 @endif
 @endsection
