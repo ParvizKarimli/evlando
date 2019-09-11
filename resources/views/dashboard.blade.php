@@ -5,21 +5,21 @@
 @section('content')
 <div class="panel panel-default">
     <div class="panel-heading">
-        <p>Dashboard</p>
+        <p>{{ __('navbar.dashboard') }}</p>
     </div>
 
     <div class="panel-body">
         <p>
             <a href="/posts/create" class="btn btn-link">
-                <i class="fa fa-plus"> Create Post</i>
+                <i class="fa fa-plus"> {{ __('posts.create_post') }}</i>
             </a>
         </p>
 
-        <h3>Posts by you</h3>
+        <h3>{{ __('posts.posts_by_you') }}</h3>
         @if(count($posts) > 0)
             <table class="table table-striped">
                 <tr>
-                    <th>Post</th>
+                    <th>{{ __('posts.post') }}</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -31,16 +31,16 @@
                             </a>
                         </td>
                         <td>
-                           <a href="/posts/{{$post->id}}/edit" class="btn btn-default">Edit</a>
+                           <a href="/posts/{{$post->id}}/edit" class="btn btn-default">{{ __('posts.edit') }}</a>
                         </td>
                         <td>
                             <a class="btn btn-danger pull-right" href="" onclick="
                                 event.preventDefault();
-                                if(confirm('Delete post?')) {
+                                if(confirm('{{ __("posts.delete_question") }}')) {
                                     document.getElementById('post-{{$post->id}}').submit();
                                 }
                             ">
-                                Delete
+                                {{ __('posts.delete') }}
                             </a>
                             {!! Form::open(['action' => ['PostsController@destroy', $post->id], 'method' => 'DELETE', 'id' => 'post-' . $post->id]) !!}
                             {!! Form::close() !!}
@@ -50,7 +50,7 @@
             </table>
             {{$posts->links()}}
         @else
-            <p>You have no posts.</p>
+            <p>{{ __('posts.you_have_no_posts') }}</p>
         @endif
     </div>
 </div>

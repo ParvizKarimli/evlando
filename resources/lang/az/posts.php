@@ -13,10 +13,13 @@ return [
     |
     */
 
+    'create_post' => 'Elan Yarat',
     'created' => 'Elan Yaradıldı',
     'edit' => 'Redaktə Et',
     'suspend' => 'Dayandır',
+    'suspend_question' => 'Elan dayandırılsın?',
     'delete' => 'Sil',
+    'delete_question' => 'Elan silinsin?',
     'updated' => 'Elan Yeniləndi',
     'removed' => 'Elan Silindi',
     'suspended' => 'Elan Deaktiv Edildi',
@@ -26,6 +29,7 @@ return [
     'not_found' => 'Elan Tapılmadı',
     'error_suspended' => 'Deaktiv Edilmiş Elan',
     'suspended_list' => 'Deaktiv',
+    'post' => 'Elan',
     'posts' => 'Elanlar',
     'for_sale' => 'Satılır',
     'for_rent' => 'Kirayə Verilir',
@@ -47,5 +51,7 @@ return [
     'read_more' => 'Ardını Oxu',
     'created_at_by' => ':at tarixində :by tərəfindən dərc edilib',
     'seen_count' => 'Görülmə sayı',
+    'posts_by_you' => 'Sənin elanların',
+    'you_have_no_posts' => 'Sənin elanın yoxdur.',
 
 ];

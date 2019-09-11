@@ -160,7 +160,7 @@
     @if($post->suspended === 0)
         <a class="btn btn-warning" href="" onclick="
             event.preventDefault();
-            if(confirm('Suspend post?')) {
+            if(confirm('{{ __("posts.suspend_question") }}')) {
                 document.getElementById('post-suspend-form-{{$post->id}}').submit();
             }
         ">
@@ -178,7 +178,7 @@
 
     <a class="btn btn-danger pull-right" href="" onclick="
         event.preventDefault();
-        if(confirm('Delete post?')) {
+        if(confirm('{{ __("posts.delete_question") }}')) {
             document.getElementById('post-{{$post->id}}').submit();
         }
     ">
