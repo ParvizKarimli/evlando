@@ -37,21 +37,21 @@
                             </span>
                         @endif
                     </div>
-                <div class="form-group {{ $errors->has('message') ? 'has-error' : '' }}">
-                    {{Form::label('message', 'Message (optional)')}}
-                    {{Form::textarea('message', '', ['rows' => 4, 'class' => 'form-control', 'placeholder' => 'Message'])}}
-                    @if($errors->has('message'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('message') }}</strong>
-                        </span>
-                    @endif
-                </div>
-                {!! Form::hidden('reported_type', 'post') !!}
-                {!! Form::hidden('post_id', $post->id) !!}
-                {!! Form::hidden('post_owner_id', $post->user_id) !!}
-                <div class="form-group">
-                    {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
-                </div>
+                    <div class="form-group {{ $errors->has('message') ? 'has-error' : '' }}">
+                        {{Form::label('message', 'Message (optional)')}}
+                        {{Form::textarea('message', '', ['rows' => 4, 'class' => 'form-control', 'placeholder' => 'Message'])}}
+                        @if($errors->has('message'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('message') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                    {!! Form::hidden('reported_type', 'post') !!}
+                    {!! Form::hidden('post_id', $post->id) !!}
+                    {!! Form::hidden('post_owner_id', $post->user_id) !!}
+                    <div class="form-group">
+                        {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
+                    </div>
                 {!! Form::close() !!}
             </div>
             <div class="modal-footer">
