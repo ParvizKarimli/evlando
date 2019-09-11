@@ -21,5 +21,6 @@ return [
     'loading' => 'Loading',
     'end_of_content' => 'End of content',
     'no_more_pages_to_load' => 'No more pages to load',
+    'no_posts_found' => 'No posts found.',
 
 ];

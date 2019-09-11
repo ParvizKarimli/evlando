@@ -21,5 +21,6 @@ return [
     'loading' => 'Yüklənir',
     'end_of_content' => 'Məzmunun sonu',
     'no_more_pages_to_load' => 'Yükləmək üçün başqa səhifə yoxdur',
+    'no_posts_found' => 'Heç bir elan tapılmadı.',
 
 ];

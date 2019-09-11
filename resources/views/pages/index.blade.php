@@ -240,7 +240,7 @@
         @endforeach
         {{$posts->links()}}
     @else
-        <p>No posts found.</p>
+        <p>{{ __('pages.no_posts_found') }}</p>
     @endif
 </div>
 
