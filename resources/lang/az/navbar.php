@@ -16,7 +16,7 @@ return [
     'about_us' => 'Haqqımızda',
     'dashboard' => 'İdarə Paneli',
     'log_in' => 'Giriş',
-    'register' => 'Qeydiyyat',
+    'register' => 'Qeydiyyatdan Keç',
     'log_out' => 'Çıxış',
 
 ];

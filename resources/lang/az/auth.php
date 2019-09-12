@@ -15,5 +15,7 @@ return [
 
     'failed' => 'Bu kimlik məlumatları qeydlərimizə uyğun gəlmir.',
     'throttle' => 'Həddindən çox giriş cəhdləri. Xahiş edirik :seconds saniyədən sonra yenidən cəhd edəsiniz.',
+    'remember_me' => 'Məni Xatırla',
+    'forgot_your_password' => 'Şifrənizi Unutmusunuz?',
 
 ];
