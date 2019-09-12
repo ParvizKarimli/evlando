@@ -70,7 +70,7 @@
         @if(auth()->user()->role === 'user' || auth()->user()->role === 'mod')
             <a class="btn btn-danger pull-right" href="" onclick="
                 event.preventDefault();
-                if(confirm('{{ __("users.delete_user_question") }}')) {
+                if(confirm('{{ __("users.delete_question") }}')) {
                     document.getElementById('user-delete-form').submit();
                 }
             ">

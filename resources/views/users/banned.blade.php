@@ -1,21 +1,21 @@
 @extends('layouts.adminpanel.app')
 
-@section('title', 'Banned Users')
+@section('title', __('users.banned_users'))
 
 @section('content')
 <div class="panel panel-default">
-    <div class="panel-heading">Banned Users</div>
+    <div class="panel-heading">{{ __('users.banned_users') }}</div>
 
     <div class="panel-body">
         @if(count($users) > 0)
             <table class="table table-striped">
                 <tr>
                     <th>ID</th>
-                    <th>Role</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Created at</th>
-                    <th>Updated at</th>
+                    <th>{{ __('users.role') }}</th>
+                    <th>{{ __('users.name') }}</th>
+                    <th>{{ __('users.email_address') }}</th>
+                    <th>{{ __('posts.created_at') }}</th>
+                    <th>{{ __('posts.updated_at') }}</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -46,20 +46,20 @@
                                 @if($user->banned === 0)
                                     <a class="btn btn-warning" href="" onclick="
                                         event.preventDefault();
-                                        if(confirm('Ban user?')) {
+                                        if(confirm('{{ __("users.ban_question") }}')) {
                                             document.getElementById('user-ban-form-{{$user->id}}').submit();
                                         }
                                     ">
-                                        Ban
+                                        {{ __('users.ban') }}
                                     </a>
                                 @elseif($user->banned === 1)
                                     <a class="btn btn-warning" href="" onclick="
                                         event.preventDefault();
-                                        if(confirm('Resume user?')) {
+                                        if(confirm('{{ __("users.resume_question") }}')) {
                                             document.getElementById('user-ban-form-{{$user->id}}').submit();
                                         }
                                     ">
-                                        Resume
+                                        {{ __('users.resume') }}
                                     </a>
                                 @endif
                                 {!! Form::open(['action' => ['UsersController@ban'], 'method' => 'POST', 'id' => 'user-ban-form-' . $user->id]) !!}
@@ -71,11 +71,11 @@
                             @if($user->role === 'user' || $user->role === 'mod')
                                 <a class="btn btn-danger pull-right" href="" onclick="
                                     event.preventDefault();
-                                    if(confirm('Delete user?')) {
+                                    if(confirm('{{ __("users.delete_question") }}')) {
                                         document.getElementById('user-delete-form-{{$user->id}}').submit();
                                     }
                                 ">
-                                    Delete
+                                    {{ __('users.delete') }}
                                 </a>
                                 {!! Form::open(['action' => ['UsersController@destroy', $user->id], 'method' => 'DELETE', 'id' => 'user-delete-form-' . $user->id]) !!}
                                 {!! Form::close() !!}
@@ -86,7 +86,7 @@
             </table>
             {{$users->links()}}
         @else
-            <p>No banned users found.</p>
+            <p>{{ __('users.no_banned_users_found') }}</p>
         @endif
     </div>
 </div>
