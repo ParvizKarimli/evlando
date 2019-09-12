@@ -59,7 +59,7 @@
             </div>
 
             <div class="form-group">
-                <div class="col-md-4 col-md-offset-4">
+                <div class="col-md-2 col-md-offset-2">
                     <button type="submit" class="btn btn-primary">
                         {{ __('users.update') }}
                     </button>
