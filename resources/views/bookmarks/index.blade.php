@@ -5,6 +5,8 @@
 @section('content')
 <div class="panel panel-default">
     <div class="panel-heading">Bookmarks</div>
+
+    <div class="panel-body">
         @if(count($bookmarks) > 0)
             <table class="table table-striped">
                 <tr>
