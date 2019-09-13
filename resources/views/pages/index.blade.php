@@ -244,7 +244,7 @@
     @endif
 </div>
 
-@if(count($posts) > 0)
+@if(count($posts) >= 10)
     <div class="page-load-status text-center">
         <p class="infinite-scroll-request">
             {{ __('pages.loading') }}...<br>
@@ -255,3 +255,18 @@
     </div>
 @endif
 @endsection
+
+@if(count($posts) >= 10)
+    @section('infinite_scroll')
+    <script>
+        $('.posts-container').infiniteScroll({
+            // options
+            path: '.pagination li.active + li a',
+            append: '.posts-item',
+            history: false,
+            hideNav: '.pagination',
+            status: '.page-load-status'
+        });
+    </script>
+    @endsection
+@endif

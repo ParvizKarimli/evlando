@@ -35,15 +35,6 @@
     <script src="{{ asset('js/myscript.js') }}"></script>
     <!-- Infinite Scroll -->
     <script src="{{ asset('js/infinite-scroll.pkgd.min.js') }}"></script>
-    <script>
-        $('.posts-container').infiniteScroll({
-            // options
-            path: '.pagination li.active + li a',
-            append: '.posts-item',
-            history: false,
-            hideNav: '.pagination',
-            status: '.page-load-status'
-        });
-    </script>
+    @yield('infinite_scroll')
 </body>
 </html>

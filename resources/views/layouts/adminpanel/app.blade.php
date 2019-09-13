@@ -60,16 +60,7 @@
 <script src="{{ asset('js/myscript.js') }}"></script>
 <!-- Infinite Scroll -->
 <script src="{{ asset('js/infinite-scroll.pkgd.min.js') }}"></script>
-<script>
-    $('.reports-container').infiniteScroll({
-        // options
-        path: '.pagination li.active + li a',
-        append: '.reports-item',
-        history: false,
-        hideNav: '.pagination',
-        elementScroll: '.reports-container' // or true to use the container element (.reports-container in this case).
-    });
-</script>
+@yield('infinite_scroll')
 
 </body>
 </html>

@@ -13,7 +13,7 @@
                 <li class="dropdown messages-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-life-ring" title="Reports"></i>
-                        <span class="label label-danger">{{ $number_of_unseen_reports }}</span>
+                        <span class="label {{ $number_of_unseen_reports > 0 ? 'label-danger' : '' }}">{{ $number_of_unseen_reports }}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <li class="header">
@@ -128,3 +128,18 @@
         </ul>
     </div>
 </nav>
+
+@if($number_of_unseen_reports >= 10)
+    @section('infinite_scroll')
+    <script>
+        $('.reports-container').infiniteScroll({
+            // options
+            path: '.pagination li.active + li a',
+            append: '.reports-item',
+            history: false,
+            hideNav: '.pagination',
+            elementScroll: '.reports-container' // or true to use the container element (.reports-container in this case).
+        });
+    </script>
+    @endsection
+@endif
