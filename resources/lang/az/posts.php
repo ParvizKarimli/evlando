@@ -13,8 +13,8 @@ return [
     |
     */
 
-    'create_post' => 'Elan Yarad',
-    'create' => 'Yarad',
+    'create_post' => 'Elan Yarat',
+    'create' => 'Yarat',
     'created' => 'Elan Yaradıldı',
     'edit_post' => 'Elanı Redaktə Et',
     'edit' => 'Redaktə Et',
