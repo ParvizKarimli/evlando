@@ -129,7 +129,7 @@
     </div>
 </nav>
 
-@if($number_of_unseen_reports >= 10)
+@if($number_of_unseen_reports > 10)
     @section('infinite_scroll')
     <script>
         $('.reports-container').infiniteScroll({
