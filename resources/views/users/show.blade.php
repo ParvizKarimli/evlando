@@ -12,75 +12,14 @@
 
                     @if($user->id !== auth()->user()->id)
                         <!-- Trigger the modal with a button -->
-                        <a class="no-txt-decor" href="" title="Report this user" data-toggle="modal" data-target="#reportModal">
+                        <a class="no-txt-decor" href="" title="{{ __('reports.report_user') }}" data-toggle="modal" data-target="#reportModal-{{$user->id}}">
                             &#9872
                         </a>
                     @endif
                 </h1>
 
-                <!-- Modal -->
-                <div id="reportModal" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
-
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Report User</h4>
-                            </div>
-                            <div class="modal-body">
-                                {!! Form::open(['action' => 'ReportsController@store', 'method' => 'POST']) !!}
-                                    <div class="form-group {{ $errors->has('category') ? 'has-error' : '' }}">
-                                        <label for="category">Category (required)</label>
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="category" value="1" required> Spam
-                                            </label>
-                                        </div>
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="category" value="2" required> Nudity
-                                            </label>
-                                        </div>
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="category" value="3" required> Hate speech
-                                            </label>
-                                        </div>
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="category" value="4" required> Other
-                                            </label>
-                                        </div>
-                                        @if($errors->has('category'))
-                                            <span class="help-block">
-                                                <strong>{{ $errors->first('category') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                    <div class="form-group {{ $errors->has('message') ? 'has-error' : '' }}">
-                                        {{Form::label('message', 'Message (optional)')}}
-                                        {{Form::textarea('message', '', ['rows' => 4, 'class' => 'form-control', 'placeholder' => 'Message'])}}
-                                        @if($errors->has('message'))
-                                            <span class="help-block">
-                                                <strong>{{ $errors->first('message') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                    {!! Form::hidden('reported_type', 'user') !!}
-                                    {!! Form::hidden('user_id', $user->id) !!}
-                                    <div class="form-group">
-                                        {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
-                                    </div>
-                                {!! Form::close() !!}
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+                <!-- Report User Modal -->
+                @include('inc.report_user_modal')
             </div>
 
             <div class="panel-body">
@@ -90,7 +29,7 @@
                     </div>
                 @endif
 
-                <h3>Posts by {{$user->name}}</h3>
+                <h3>{{ __('posts.posts_by', ['u' => $user->name]) }}</h3>
                 @if(count($posts) > 0)
                     @foreach($posts as $post)
                         @if($post->suspended === 0)
@@ -110,12 +49,12 @@
                                         <div>
                                             <h1>
                                                 @if(in_array($post->id, $bookmarked_posts_ids))
-                                                    <a href="" title="Remove this post from bookmarks" bookmark-post-id="{{$post->id}}"
+                                                    <a href="" title="{{ __('bookmarks.remove') }}" bookmark-post-id="{{$post->id}}"
                                                        class="post-to-bookmark no-txt-decor">
                                                         &#9733
                                                     </a>
                                                 @else
-                                                    <a href="" title="Bookmark this post" bookmark-post-id="{{$post->id}}"
+                                                    <a href="" title="{{ __('bookmarks.bookmark') }}" bookmark-post-id="{{$post->id}}"
                                                        class="post-to-bookmark no-txt-decor">
                                                         &#9734
                                                     </a>
@@ -123,121 +62,74 @@
 
                                                 @if($post->user_id !== auth()->user()->id)
                                                     <!-- Trigger the modal with a button -->
-                                                    <a class="pull-right no-txt-decor" href="" title="Report this post" data-toggle="modal" data-target="#reportModal-{{$post->id}}">
+                                                    <a class="pull-right no-txt-decor" href="" title="{{ __('reports.report_post') }}" data-toggle="modal" data-target="#reportModal-{{$post->id}}">
                                                         &#9872
                                                     </a>
                                             </h1>
-                                                    <!-- Modal -->
-                                                    <div id="reportModal-{{$post->id}}" class="modal fade" role="dialog">
-                                                        <div class="modal-dialog">
-
-                                                            <!-- Modal content-->
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                    <h4 class="modal-title">Report Post</h4>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    {!! Form::open(['action' => 'ReportsController@store', 'method' => 'POST']) !!}
-                                                                        <div class="form-group {{ $errors->has('category') ? 'has-error' : '' }}">
-                                                                            <label for="category">Category (required)</label>
-                                                                            <div class="radio">
-                                                                                <label>
-                                                                                    <input type="radio" name="category" value="1" required> Spam
-                                                                                </label>
-                                                                            </div>
-                                                                            <div class="radio">
-                                                                                <label>
-                                                                                    <input type="radio" name="category" value="2" required> Nudity
-                                                                                </label>
-                                                                            </div>
-                                                                            <div class="radio">
-                                                                                <label>
-                                                                                    <input type="radio" name="category" value="3" required> Hate speech
-                                                                                </label>
-                                                                            </div>
-                                                                            <div class="radio">
-                                                                                <label>
-                                                                                    <input type="radio" name="category" value="4" required> Other
-                                                                                </label>
-                                                                            </div>
-                                                                            @if($errors->has('category'))
-                                                                                <span class="help-block">
-                                                                                    <strong>{{ $errors->first('category') }}</strong>
-                                                                                </span>
-                                                                            @endif
-                                                                        </div>
-                                                                        <div class="form-group {{ $errors->has('message') ? 'has-error' : '' }}">
-                                                                            {{Form::label('message', 'Message (optional)')}}
-                                                                            {{Form::textarea('message', '', ['rows' => 4, 'class' => 'form-control', 'placeholder' => 'Message'])}}
-                                                                            @if($errors->has('message'))
-                                                                                <span class="help-block">
-                                                                                    <strong>{{ $errors->first('message') }}</strong>
-                                                                                </span>
-                                                                            @endif
-                                                                        </div>
-                                                                        {!! Form::hidden('reported_type', 'post') !!}
-                                                                        {!! Form::hidden('post_id', $post->id) !!}
-                                                                        {!! Form::hidden('post_owner_id', $post->user_id) !!}
-                                                                        <div class="form-group">
-                                                                            {{Form::submit('Submit', ['class' => 'btn btn-primary'])}}
-                                                                        </div>
-                                                                    {!! Form::close() !!}
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
+                                                    <!-- Report Post Modal -->
+                                                    @include('inc.report_post_modal')
                                                 @endif
                                         </div>
                                         @if($post->type === 'sale')
-                                            <p class="alert-info">{{ucfirst($post->property_type)}} For Sale</p>
+                                            <p class="alert-info">
+                                                {{ $post->property_type === 'apartment' ? ucfirst(__('posts.apartment')) : ucfirst(__('posts.house')) }}
+                                                {{ __('posts.for_sale') }}
+                                            </p>
                                         @elseif($post->type === 'rent')
-                                            <p class="alert-info">{{ucfirst($post->property_type)}} For Rent</p>
+                                            <p class="alert-info">
+                                                {{ $post->property_type === 'apartment' ? ucfirst(__('posts.apartment')) : ucfirst(__('posts.house')) }}
+                                                {{ __('posts.for_rent') }}
+                                            </p>
                                         @endif
                                         <p>
                                             <i class="fas fa-map-marker-alt"></i>
                                             {{ $post->location->city }}, {{ $post->location->province }}, {{ $post->location->country }}
                                         </p>
                                         @if($post->property_type === 'apartment')
-                                            <p>{{ $post->floor }}. floor</p>
+                                            <p>{{ $post->floor }}. {{ __('posts.floor') }}</p>
                                         @elseif($post->property_type === 'house')
                                             @if($post->floor === 1)
-                                                <p>1 floor</p>
+                                                <p>1 {{ __('posts.floor') }}</p>
                                             @else
-                                                <p>{{ $post->floor }} floors</p>
+                                                <p>
+                                                    {{ $post->floor }}
+                                                    {{ app()->isLocale('en') ? str_plural(__('posts.floor')) : __('posts.floor') }}
+                                                </p>
                                             @endif
                                         @endif
-                                        <p>{{ $post->area }} square feet</p>
+                                        <p>{{ $post->area }} {{ __('posts.square_feet') }}</p>
                                         @if($post->bedrooms === 1)
-                                            <p>1 bedroom</p>
+                                            <p>1 {{ __('posts.bedroom') }}</p>
                                         @else
-                                            <p>{{ $post->bedrooms }} bedrooms</p>
+                                            <p>
+                                                {{ $post->bedrooms }} {{ app()->isLocale('en') ? str_plural(__('posts.bedroom')) : __('posts.bedroom') }}
+                                            </p>
                                         @endif
                                         @if($post->bathrooms === 1)
-                                            <p>1 bathroom</p>
+                                            <p>1 {{ __('posts.bathroom') }}</p>
                                         @else
-                                            <p>{{ $post->bathrooms }} bathrooms</p>
+                                            <p>
+                                                {{ $post->bathrooms }} {{ app()->isLocale('en') ? str_plural(__('posts.bathroom')) : __('posts.bathroom') }}
+                                            </p>
                                         @endif
                                         @if($post->type === 'sale')
                                             <p>${{ number_format($post->price) }}</p>
                                         @elseif($post->type === 'rent')
-                                            <p>${{ number_format($post->price) }}/month</p>
+                                            <p>${{ number_format($post->price) }}/{{ __('posts.month') }}</p>
                                         @endif
                                         <div>
-                                            <b>Description:</b><br>
-                                            {{ str_limit($post->description, $limit = 150, $end = '...') }}
-                                            @if(strlen($post->description) > 150)
-                                                <a href="/posts/{{$post->id}}/{{$post->slug}}" target="_blank">
-                                                    Read More
-                                                </a>
-                                            @endif
+                                            <b>{{ __('posts.description') }}:</b><br>
+                                            {{ $post->description }}
                                         </div>
                                         <small>
-                                            Created at {{$post->created_at}}
+                                            {!! __(
+                                                    'posts.created_at_by',
+                                                    [
+                                                        'at' => $post->created_at,
+                                                        'by' => link_to('/users/' . $post->user->id, $post->user->name)
+                                                    ]
+                                                )
+                                            !!}
                                         </small>
                                     </div>
                                 </div>
@@ -246,7 +138,7 @@
                     @endforeach
                     {{$posts->links()}}
                 @else
-                    <p>No posts found.</p>
+                    <p>{{ __('posts.no_posts_found') }}</p>
                 @endif
             </div>
         </div>
