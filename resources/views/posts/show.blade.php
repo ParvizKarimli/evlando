@@ -72,8 +72,8 @@
                                 &#9872
                             </a>
                 </h1>
-                            <!-- Report Modal -->
-                            @include('inc.report_modal')
+                            <!-- Report Post Modal -->
+                            @include('inc.report_post_modal')
                         @endif
                     @elseif(auth()->guest())
                         <a class="no-txt-decor" href="{{route('login')}}" title="{{ __('bookmarks.bookmark') }}">
