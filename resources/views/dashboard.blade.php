@@ -1,6 +1,6 @@
 @extends('layouts.adminpanel.app')
 
-@section('title', 'Dashboard')
+@section('title', __('navbar.dashboard'))
 
 @section('content')
 <div class="panel panel-default">
