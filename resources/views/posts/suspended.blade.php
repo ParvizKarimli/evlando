@@ -27,31 +27,17 @@
                         <td>{{$post->created_at}}</td>
                         <td>{{$post->updated_at}}</td>
                         <td>
-                            @if($post->suspended === 0)
-                                <a class="btn btn-warning pull-right" href="" onclick="
-                                    event.preventDefault();
-                                    if(confirm('{{ __("posts.suspend_question") }}')) {
-                                        document.getElementById('post-suspend-form-{{$post->id}}').submit();
-                                    }
-                                ">
-                                    {{ __('posts.suspend') }}
-                                </a>
-                                {!! Form::open(['action' => ['PostsController@suspend'], 'method' => 'POST', 'id' => 'post-suspend-form-' . $post->id]) !!}
-                                    {!! Form::hidden('id', $post->id) !!}
-                                {!! Form::close() !!}
-                            @elseif($post->suspended === 1)
-                                <a class="btn btn-warning pull-right" href="" onclick="
-                                    event.preventDefault();
-                                    if(confirm('{{ __("posts.resume_question") }}')) {
-                                        document.getElementById('post-suspend-form-{{$post->id}}').submit();
-                                    }
-                                ">
-                                    {{ __('posts.resume') }}
-                                </a>
-                                {!! Form::open(['action' => ['PostsController@suspend'], 'method' => 'POST', 'id' => 'post-suspend-form-' . $post->id]) !!}
-                                    {!! Form::hidden('id', $post->id) !!}
-                                {!! Form::close() !!}
-                            @endif
+                            <a class="btn btn-warning pull-right" href="" onclick="
+                                event.preventDefault();
+                                if(confirm('{{ __("posts.resume_question") }}')) {
+                                    document.getElementById('post-suspend-form-{{$post->id}}').submit();
+                                }
+                            ">
+                                {{ __('posts.resume') }}
+                            </a>
+                            {!! Form::open(['action' => ['PostsController@suspend'], 'method' => 'POST', 'id' => 'post-suspend-form-' . $post->id]) !!}
+                                {!! Form::hidden('id', $post->id) !!}
+                            {!! Form::close() !!}
                         </td>
                         <td>
                             <a class="btn btn-danger pull-right" href="" onclick="

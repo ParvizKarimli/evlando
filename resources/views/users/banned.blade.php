@@ -43,25 +43,14 @@
                         </td>
                         <td>
                             @if($user->role === 'user' || $user->role === 'mod')
-                                @if($user->banned === 0)
-                                    <a class="btn btn-warning" href="" onclick="
-                                        event.preventDefault();
-                                        if(confirm('{{ __("users.ban_question") }}')) {
-                                            document.getElementById('user-ban-form-{{$user->id}}').submit();
-                                        }
-                                    ">
-                                        {{ __('users.ban') }}
-                                    </a>
-                                @elseif($user->banned === 1)
-                                    <a class="btn btn-warning" href="" onclick="
-                                        event.preventDefault();
-                                        if(confirm('{{ __("users.resume_question") }}')) {
-                                            document.getElementById('user-ban-form-{{$user->id}}').submit();
-                                        }
-                                    ">
-                                        {{ __('users.resume') }}
-                                    </a>
-                                @endif
+                                <a class="btn btn-warning" href="" onclick="
+                                    event.preventDefault();
+                                    if(confirm('{{ __("users.resume_question") }}')) {
+                                        document.getElementById('user-ban-form-{{$user->id}}').submit();
+                                    }
+                                ">
+                                    {{ __('users.resume') }}
+                                </a>
                                 {!! Form::open(['action' => ['UsersController@ban'], 'method' => 'POST', 'id' => 'user-ban-form-' . $user->id]) !!}
                                     {!! Form::hidden('id', $user->id) !!}
                                 {!! Form::close() !!}
