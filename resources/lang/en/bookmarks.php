@@ -18,5 +18,10 @@ return [
     'not_found' => 'Bookmark Not Found',
     'bookmark' => 'Bookmark this post',
     'remove' => 'Remove this post from bookmarks',
+    'you_have_no_bookmarks' => 'You have no bookmarks.',
+    'you_have_no_bookmarks_for_rent' => 'You have no bookmarked property for rent.',
+    'you_have_no_bookmarks_for_sale' => 'You have no bookmarked property for sale.',
+    'delete' => 'Delete',
+    'delete_question' => 'Delete bookmark?',
 
 ];

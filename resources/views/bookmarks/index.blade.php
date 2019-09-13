@@ -1,16 +1,16 @@
 @extends('layouts.adminpanel.app')
 
-@section('title', 'Bookmarks')
+@section('title', __('bookmarks.bookmarks'))
 
 @section('content')
 <div class="panel panel-default">
-    <div class="panel-heading">Bookmarks</div>
+    <div class="panel-heading">{{ __('bookmarks.bookmarks') }}</div>
 
     <div class="panel-body">
         @if(count($bookmarks) > 0)
             <table class="table table-striped">
                 <tr>
-                    <th>Post</th>
+                    <th>{{ __('posts.post') }}</th>
                     <th></th>
                 </tr>
                 @foreach($bookmarks as $bookmark)
@@ -23,11 +23,11 @@
                         <td>
                             <a class="btn btn-danger pull-right" href="" onclick="
                                 event.preventDefault();
-                                if(confirm('Delete bookmark?')) {
+                                if(confirm('{{ __("bookmarks.delete_question") }}')) {
                                     document.getElementById('bookmark-delete-form-{{$bookmark->id}}').submit();
                                 }
                             ">
-                                Delete
+                                {{ __('bookmarks.delete') }}
                             </a>
                             {!! Form::open(['action' => ['BookmarksController@destroy', $bookmark->id], 'method' => 'DELETE', 'id' => 'bookmark-delete-form-' . $bookmark->id]) !!}
                             {!! Form::close() !!}
@@ -37,7 +37,7 @@
             </table>
             {{$bookmarks->links()}}
         @else
-            <p>You have no bookmarks.</p>
+            <p>{{ __('bookmarks.you_have_no_bookmarks') }}</p>
         @endif
     </div>
 </div>

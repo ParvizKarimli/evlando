@@ -18,5 +18,10 @@ return [
     'not_found' => 'Əlfəcin Tapılmadı',
     'bookmark' => 'Bu elanı yadda saxla',
     'remove' => 'Bu elanı yaddaşdan çıxar',
+    'you_have_no_bookmarks' => 'Sizin heç bir əlfəcininiz yoxdur.',
+    'you_have_no_bookmarks_for_rent' => 'Sizin heç bir kirayə verilən mülk üçün əlfəcininiz yoxdur.',
+    'you_have_no_bookmarks_for_sale' => 'Sizin heç bir satılan mülk üçün əlfəcininiz yoxdur.',
+    'delete' => 'Sil',
+    'delete_question' => 'Əlfəcin silinsin?',
 
 ];
