@@ -13,6 +13,7 @@ class PagesController extends Controller
         $posts = Post::where('suspended', 0)
             ->orderBy('id', 'desc')
             ->paginate(10);
+        $number_of_active_posts = Post::where('suspended', 0)->count();
         if(auth()->user())
         {
             $user_id = auth()->user()->id;
@@ -20,9 +21,16 @@ class PagesController extends Controller
                 ->pluck('post_id')
                 ->toArray();
 
-            return view('pages.index')->with(['posts' => $posts, 'bookmarked_posts_ids' => $bookmarked_posts_ids]);
+            return view('pages.index')->with([
+                'posts' => $posts,
+                'number_of_active_posts' => $number_of_active_posts,
+                'bookmarked_posts_ids' => $bookmarked_posts_ids
+            ]);
         }
-        return view('pages.index')->with('posts', $posts);
+        return view('pages.index')->with([
+            'posts' => $posts,
+            'number_of_active_posts' => $number_of_active_posts
+        ]);
     }
 
     public function about()

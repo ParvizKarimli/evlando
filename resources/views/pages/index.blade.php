@@ -244,29 +244,33 @@
     @endif
 </div>
 
-@if(count($posts) >= 10)
-    <div class="page-load-status text-center">
+<div class="page-load-status text-center">
+    @if($number_of_active_posts > 10)
         <p class="infinite-scroll-request">
             {{ __('pages.loading') }}...<br>
             <img src="/storage/images/default/loader.svg">
         </p>
-        <p class="infinite-scroll-last">{{ __('pages.end_of_content') }}</p>
+    @endif
+    <p class="infinite-scroll-last">{{ __('pages.end_of_content') }}</p>
+    @if(!$posts)
         <p class="infinite-scroll-error">{{ __('pages.no_more_pages_to_load') }}</p>
-    </div>
-@endif
+    @endif
+</div>
 @endsection
 
-@if(count($posts) >= 10)
+@if($number_of_active_posts > 10)
     @section('infinite_scroll')
     <script>
-        $('.posts-container').infiniteScroll({
-            // options
-            path: '.pagination li.active + li a',
-            append: '.posts-item',
-            history: false,
-            hideNav: '.pagination',
-            status: '.page-load-status'
-        });
+        if(document.querySelector('.pagination')) {
+            $('.posts-container').infiniteScroll({
+                // options
+                path: '.pagination li.active + li a',
+                append: '.posts-item',
+                history: false,
+                hideNav: '.pagination',
+                status: '.page-load-status'
+            });
+        }
     </script>
     @endsection
 @endif
