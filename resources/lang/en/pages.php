@@ -13,6 +13,7 @@ return [
     |
     */
 
+    'home' => 'Home',
     'unauthorized' => 'Unauthorized Page',
     'search' => 'Search',
     'search_btn' => 'Search',
