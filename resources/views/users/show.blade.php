@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $user->name)
+@section('title', __('users.users') . ' - ' . $user->name)
 
 @section('content')
 <div class="row">
