@@ -1,57 +1,64 @@
 @extends('layouts.adminpanel.app')
 
-@section('title', 'Report - ' . $report->id)
+@section('title', __('reports.report') . ' - ' . $report->id)
 
 @section('content')
 <div class="well">
-    <h1><a href="/reports">Reports</a></h1>
+    <h1><a href="/reports">{{ __('reports.reports') }}</a></h1>
     <hr>
     <p>
-        <b>Report ID:</b><br>
+        <b>{{ __('reports.report') }} ID:</b><br>
         {{$report->id}}
         @if($report->resolved === 1)
-            <span class="resolved-report-sign" title="Resolved">&#10004;</span>
+            <span class="resolved-report-sign" title="{{ __('reports.report_resolved') }}">&#10004;</span>
         @endif
     </p>
     @if($report->reported_user_id !== NULL)
         <p>
-            <b>Reported User:</b><br>
+            <b>{{ __('reports.reported_user') }}:</b><br>
             <a href="/users/{{$report->reported_user_id}}">{{$report->user->name}}</a>
         </p>
     @else
         <p>
-            <b>Reported Post:</b><br>
+            <b>{{ __('reports.reported_post') }}:</b><br>
             <a href="/posts/{{$report->post_id}}">
                 <img src="/storage/images/cover_images/thumbnails/{{$report->post->thumbnail}}">
             </a>
         </p>
     @endif
-    <p><b>Category:</b><br>
+    <p><b>{{ __('reports.category') }}:</b><br>
         @if($report->category === 1)
-            Spam
+            {{ __('reports.spam') }}
         @elseif($report->category === 2)
-            Nudity
+            {{ __('reports.nudity') }}
         @elseif($report->category === 3)
-            Hate speech
+            {{ __('reports.hate_speech') }}
         @elseif($report->category === 4)
-            Other
+            {{ __('reports.other') }}
         @endif
     </p>
     <p>
-        <b>Message:</b><br>
+        <b>{{ __('reports.message') }}:</b><br>
         <span>{{ $report->message }}</span>
     </p>
     <p>
         <small>
-            Reported at {{$report->created_at}} by
-            <a href="/users/{{$report->reporter_user_id}}">
-                {{$report->reporter_user_id}}
-            </a>
+            {!!
+                __(
+                    'reports.reported_at_by',
+                    [
+                        'at' => $report->created_at,
+                        'by' => '<a href="/users/' . $report->reporter_user_id . '">' . $report->reporter_user_id . '</a>'
+                        // or
+                        // 'by' => link_to('/users/' . $report->reporter_user_id, $report->reporter_user_id)
+                    ]
+                )
+            !!}
         </small>
     </p>
     <p>
         <small>
-            Updated at {{$report->updated_at}}
+            {{ __('reports.updated_at') }} {{$report->updated_at}}
         </small>
     </p>
 </div>
@@ -61,20 +68,20 @@
     @if($report->resolved === 0)
         <a class="btn btn-success" href="" onclick="
             event.preventDefault();
-            if(confirm('Mark report as resolved?')) {
+            if(confirm('{{ __("reports.mark_as_resolved_question") }}')) {
                 document.getElementById('report-resolve-form-{{$report->id}}').submit();
             }
         ">
-            Mark as resolved
+            {{ __('reports.mark_as_resolved') }}
         </a>
     @else
         <a class="btn btn-info" href="" onclick="
             event.preventDefault();
-            if(confirm('Mark report as unresolved?')) {
+            if(confirm('{{ __("reports.mark_as_unresolved_question") }}')) {
                 document.getElementById('report-resolve-form-{{$report->id}}').submit();
             }
         ">
-            Mark as unresolved
+            {{ __('reports.mark_as_unresolved') }}
         </a>
     @endif
     {!! Form::open(['action' => ['ReportsController@update', $report->id], 'method' => 'PUT', 'id' => 'report-resolve-form-' . $report->id]) !!}
@@ -82,11 +89,11 @@
 
     <a class="btn btn-danger pull-right" href="" onclick="
         event.preventDefault();
-        if(confirm('Delete report?')) {
+        if(confirm('{{ __("reports.delete_question") }}')) {
             document.getElementById('report-delete-form-{{$report->id}}').submit();
         }
     ">
-        Delete
+        {{ __('reports.delete') }}
     </a>
     {!! Form::open(['action' => ['ReportsController@destroy', $report->id], 'method' => 'DELETE', 'id' => 'report-delete-form-' . $report->id]) !!}
     {!! Form::close() !!}
