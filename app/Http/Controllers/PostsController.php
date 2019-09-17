@@ -627,6 +627,17 @@ class PostsController extends Controller
                 ->whereBetween('price', [$price_min, $price_max])
                 ->orderBy('id', 'desc')
                 ->paginate(10);
+
+            $number_of_active_posts = Post::where('suspended', 0)
+                ->whereIn('type', $types)
+                ->whereIn('property_type', $property_types)
+                ->whereBetween('floor', [$floor_min, $floor_max])
+                ->whereBetween('area', [$area_min, $area_max])
+                ->whereBetween('bedrooms', [$bedrooms_min, $bedrooms_max])
+                ->whereBetween('bathrooms', [$bathrooms_min, $bathrooms_max])
+                ->whereBetween('price', [$price_min, $price_max])
+                ->orderBy('id', 'desc')
+                ->count();
         }
         else
         {
@@ -641,8 +652,20 @@ class PostsController extends Controller
                 ->whereBetween('price', [$price_min, $price_max])
                 ->orderBy('id', 'desc')
                 ->paginate(10);
+
+            $number_of_active_posts = Post::where('suspended', 0)
+                ->where('location_id', $location_id)
+                ->whereIn('type', $types)
+                ->whereIn('property_type', $property_types)
+                ->whereBetween('floor', [$floor_min, $floor_max])
+                ->whereBetween('area', [$area_min, $area_max])
+                ->whereBetween('bedrooms', [$bedrooms_min, $bedrooms_max])
+                ->whereBetween('bathrooms', [$bathrooms_min, $bathrooms_max])
+                ->whereBetween('price', [$price_min, $price_max])
+                ->orderBy('id', 'desc')
+                ->count();
         }
-        
+
         if(auth()->user())
         {
             $user_id = auth()->user()->id;
@@ -650,9 +673,13 @@ class PostsController extends Controller
                 ->pluck('post_id')
                 ->toArray();
 
-            return view('pages.index')->with(['posts' => $posts, 'bookmarked_posts_ids' => $bookmarked_posts_ids]);
+            return view('pages.index')->with([
+                'posts' => $posts,
+                'bookmarked_posts_ids' => $bookmarked_posts_ids,
+                'number_of_active_posts' => $number_of_active_posts
+            ]);
         }
-        return view('pages.index')->with('posts', $posts);
+        return view('pages.index', ['posts' => $posts, 'number_of_active_posts' => $number_of_active_posts]);
     }
 
     public function get_location_suggestions(Request $request)
