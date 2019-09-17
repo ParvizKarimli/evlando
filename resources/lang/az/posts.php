@@ -66,7 +66,7 @@ return [
     'seen_count' => 'Görülmə sayı',
     'posts_by' => ':u tərəfindən paylaşılan elanlar',
     'posts_by_you' => 'Sənin elanların',
-    'you_have_no_posts' => 'Sənin elanın yoxdur.',
+    'you_have_no_posts' => 'Sənin heç bir elanın yoxdur.',
     'no_posts_found' => 'Heç bir elan tapılmadı.',
     'no_suspended_posts_found' => 'Heç bir dayandırılmış elan tapılmadı.',
     'no_active_posts_found' => 'Heç bir aktiv elan tapılmadı.',
