@@ -42,5 +42,7 @@ return [
     'no_users_found' => 'No users found.',
     'no_banned_users_found' => 'No banned users found.',
     'no_active_users_found' => 'No active users found.',
+    'reset_password' => 'Reset Password',
+    'send_password_reset_link' => 'Send Password Reset Link',
 
 ];

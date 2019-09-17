@@ -42,5 +42,7 @@ return [
     'no_users_found' => 'Heç bir istifadəçi tapılmadı.',
     'no_banned_users_found' => 'Heç bir ban edilmiş istifadəçi tapılmadı.',
     'no_active_users_found' => 'Heç bir aktiv istifadəçi tapılmadı.',
+    'reset_password' => 'Şifrəni Sıfırla',
+    'send_password_reset_link' => 'Şifrəni Sıfırlama Linkini Göndər',
 
 ];
