@@ -17,7 +17,12 @@
         {!! Form::open(['action' => 'PostsController@search', 'method' => 'GET']) !!}
             <div class="form-group">
                 {!! Form::label('location-input', __('posts.location')) !!}
-                {!! Form::text('location', '', ['id' => 'location-input', 'class' => 'form-control', 'placeholder' => 'New York', 'autocomplete' => 'off']) !!}
+                {!! Form::text('location', '', [
+                    'id' => 'location-input',
+                    'class' => 'form-control',
+                    'placeholder' => 'New York',
+                    'autocomplete' => 'off'
+                ]) !!}
                 {!! Form::hidden('location_id', '', ['id' => 'location_id']) !!}
             </div>
             <div id="location-suggestions-container"></div>
