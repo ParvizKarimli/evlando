@@ -1,78 +1,78 @@
 @extends('layouts.adminpanel.app')
 
-@section('title', 'Reports')
+@section('title', __('reports.reports'))
 
 @section('content')
 <div class="panel panel-default">
-    <div class="panel-heading">Reports</div>
+    <div class="panel-heading">{{ __('reports.reports') }}</div>
 
     <div class="panel-body">
         <div class="row">
             {!! Form::open(['action' => 'ReportsController@get', 'method' => 'GET']) !!}
                 <div class="form-group col-md-2">
-                    <label for="types">Types</label>
+                    <label for="types">{{ __('reports.types') }}</label>
                     <div class="checkbox">
                         <label>
-                            {{ Form::checkbox('types[]', 'users') }} Users
+                            {{ Form::checkbox('types[]', 'users') }} {{ __('users.users') }}
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            {!! Form::checkbox('types[]', 'posts') !!} Posts
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group col-md-2">
-                    <label for="seen">Seen</label>
-                    <div class="checkbox">
-                        <label>
-                            {{ Form::checkbox('seen[]', '0') }} Unseen
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            {!! Form::checkbox('seen[]', '1') !!} Seen
+                            {!! Form::checkbox('types[]', 'posts') !!} {{ __('posts.posts') }}
                         </label>
                     </div>
                 </div>
                 <div class="form-group col-md-2">
-                    <label for="resolved">Resolved</label>
+                    <label for="seen">{{ __('reports.seen') }}</label>
                     <div class="checkbox">
                         <label>
-                            {{ Form::checkbox('resolved[]', '0') }} Unresolved
+                            {{ Form::checkbox('seen[]', '0') }} {{ __('reports.seen_1') }}
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            {!! Form::checkbox('resolved[]', '1') !!} Resolved
+                            {!! Form::checkbox('seen[]', '1') !!} {{ __('reports.unseen_0') }}
                         </label>
                     </div>
                 </div>
                 <div class="form-group col-md-2">
-                    <label for="categories">Categories</label>
+                    <label for="resolved">{{ __('reports.resolved') }}</label>
                     <div class="checkbox">
                         <label>
-                            {{ Form::checkbox('categories[]', '1') }} Spam
+                            {{ Form::checkbox('resolved[]', '0') }} {{ __('reports.resolved_1') }}
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            {!! Form::checkbox('categories[]', '2') !!} Nudity
+                            {!! Form::checkbox('resolved[]', '1') !!} {{ __('reports.unresolved_0') }}
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="categories">{{ __('reports.categories') }}</label>
+                    <div class="checkbox">
+                        <label>
+                            {{ Form::checkbox('categories[]', '1') }} {{ __('reports.spam') }}
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            {{ Form::checkbox('categories[]', '3') }} Hate speech
+                            {!! Form::checkbox('categories[]', '2') !!} {{ __('reports.nudity') }}
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            {!! Form::checkbox('categories[]', '4') !!} Other
+                            {{ Form::checkbox('categories[]', '3') }} {{ __('reports.hate_speech') }}
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            {!! Form::checkbox('categories[]', '4') !!} {{ __('reports.other') }}
                         </label>
                     </div>
                 </div>
                 <div class="form-group">
-                    {{Form::submit('Get Reports', ['class' => 'btn btn-default'])}}
+                    {{Form::submit(__('reports.get_reports'), ['class' => 'btn btn-default'])}}
                 </div>
             {!! Form::close() !!}
         </div>
@@ -83,23 +83,25 @@
                     <tr>
                         <th></th>
                         <th>ID</th>
-                        <th>Reporter User</th>
-                        <th>Reported User/Post</th>
-                        <th>Category</th>
-                        <th>Message</th>
-                        <th>Reported at</th>
-                        <th>Updated at</th>
+                        <th>{{ __('reports.reporter_user') }}</th>
+                        <th>{{ __('reports.reported_user_post') }}</th>
+                        <th>{{ __('reports.category') }}</th>
+                        <th>{{ __('reports.message') }}</th>
+                        <th>{{ __('reports.reported_at') }}</th>
+                        <th>{{ __('reports.updated_at') }}</th>
                         <th></th>
                     </tr>
                     @foreach($reports as $report)
                         <tr @if($report->seen === 0) class="alert alert-info" @endif>
                             <td>
                                 @if($report->resolved === 1)
-                                    <span class="resolved-report-sign" title="Resolved">&#10004;</span>
+                                    <span class="resolved-report-sign" title="{{ __('reports.report_resolved') }}">
+                                        &#10004;
+                                    </span>
                                 @endif
                             </td>
                             <td>
-                                <a href="/reports/{{$report->id}}" title="Click to see the full report">
+                                <a href="/reports/{{$report->id}}" title="{{ __('reports.click_to_see_the_full_report') }}">
                                     {{$report->id}}
                                 </a>
                             </td>
@@ -131,7 +133,7 @@
                                 <td>Other</td>
                             @endif
                             <td>
-                                <a href="/reports/{{$report->id}}" title="Click to see the full report">
+                                <a href="/reports/{{$report->id}}" title="{{ __('reports.click_to_see_the_full_report') }}">
                                     {{str_limit($report->message, $limit = 15, $end = '...')}}
                                 </a>
                             </td>
@@ -140,13 +142,23 @@
                             <td>
                                 <a class="btn btn-danger pull-right" href="" onclick="
                                     event.preventDefault();
-                                    if(confirm('Delete report?')) {
+                                    if(confirm('{{ __("reports.delete_question") }}')) {
                                         document.getElementById('report-delete-form-{{$report->id}}').submit();
                                     }
                                 ">
-                                    Delete
+                                    {{ __('reports.delete') }}
                                 </a>
-                                {!! Form::open(['action' => ['ReportsController@destroy', $report->id], 'method' => 'DELETE', 'id' => 'report-delete-form-' . $report->id]) !!}
+                                {!! Form::open(
+                                    [
+                                        'action' =>
+                                        [
+                                            'ReportsController@destroy',
+                                            $report->id
+                                        ],
+                                        'method' => 'DELETE',
+                                        'id' => 'report-delete-form-' . $report->id
+                                    ]
+                                ) !!}
                                 {!! Form::close() !!}
                             </td>
                         </tr>
@@ -154,7 +166,7 @@
                 </table>
                 {{$reports->links()}}
             @else
-                <p>No reports found.</p>
+                <p>{{ __('reports.no_reports_found') }}</p>
             @endif
         </div>
     </div>
