@@ -564,7 +564,15 @@ class PostsController extends Controller
         $bathrooms_max = $request->input('bathrooms_max');
         $price_min = $request->input('price_min');
         $price_max = $request->input('price_max');
-        $location_id = $request->input('location_id');
+        $location_input = $request->input('location');
+        if(empty($location_input))
+        {
+            $location_id = '';
+        }
+        else
+        {
+            $location_id = $request->input('location_id');
+        }
 
         if(empty($types))
         {
