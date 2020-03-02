@@ -12,6 +12,7 @@
     </h1>
 </div>
 <div class="col-md-4 col-sm-4">
+    <p><a href="https://parvizkarimli.com" target="_blank">&copy; Parviz Karimli</a></p>
     <h1>{{ __('pages.search') }}</h1>
     <div class="well">
         {!! Form::open(['action' => 'PostsController@search', 'method' => 'GET']) !!}
