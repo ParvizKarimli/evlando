@@ -4,5 +4,5 @@
 
 @section('content')
 <p>{{ __('pages.about_text') }}</p>
-<p><a href="https://parvizkarimli.com" target="_blank">&copy; Parviz Karimli</a></p>
+<p>Developed by <a href="https://parvizkarimli.com" target="_blank">Parviz Karimli</a></p>
 @endsection
